@@ -1,4 +1,12 @@
 import mongoose from 'mongoose';
+import dns from 'dns';
+
+// Force DNS servers to Google & Cloudflare to resolve Atlas SRV records
+try {
+  dns.setServers(['8.8.8.8', '1.1.1.1']);
+} catch (e) {
+  console.warn('DNS override failed:', e);
+}
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://sarthakam24hite_db_user:aO4Ygmq62505ZZ0S@phcl.bn6sxxu.mongodb.net/phcl?retryWrites=true&w=majority';
 
