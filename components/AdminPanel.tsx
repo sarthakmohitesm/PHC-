@@ -96,7 +96,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
 
   const handleSaveAllScores = async () => {
     setIsSaving(true);
-    setSaveStatus('Saving points matrix to MongoDB...');
+    setSaveStatus('Saving points matrix...');
 
     try {
       for (const team of teams) {
@@ -111,7 +111,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         });
       }
 
-      setSaveStatus('✅ All team points updated & saved to MongoDB successfully!');
+      setSaveStatus('✅ All team points updated & saved successfully!');
       onRefreshData();
     } catch {
       setSaveStatus('Error saving points matrix.');
@@ -289,9 +289,6 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
           <div>
             <div className="flex items-center gap-2">
               <h2 className="text-2xl font-black text-white">PHCL Admin Dashboard</h2>
-              <span className="text-[10px] px-2 py-0.5 rounded font-black uppercase tracking-wider bg-green-500/20 text-green-400 border border-green-500/40">
-                Connected to MongoDB
-              </span>
             </div>
             <p className="text-xs text-slate-400">Add up to 10 Captains with Team Names, squad members, and assign points.</p>
           </div>
