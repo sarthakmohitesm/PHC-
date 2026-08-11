@@ -1,23 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { connectDB } from '@/lib/db';
+import { AdminModel, verifyPassword } from '@/lib/models/Admin';
 
 export async function POST(req: NextRequest) {
   try {
     const { username, password } = await req.json();
 
-    // Admin credentials (username: sarthak, password: 2025HE0611)
-    const validUsername = process.env.ADMIN_USERNAME || 'sarthak';
-    const validPassword = process.env.ADMIN_PASSWORD || '2025HE0611';
+    if (!username || !password) {
+      return NextResponse.json(
+        { success: false, message: 'Username and password are required' },
+        { status: 400 }
+      );
+    }
 
-    if (username === validUsername && password === validPassword) {
-      return NextResponse.json({
-        success: true,
-        message: 'Admin authentication successful',
-        token: 'phcl_admin_token_2026_verified',
-        admin: {
-          username: validUsername,
-          role: 'Administrator'
-        }
-      });
+    // Connect to MongoDB and look up admin credentials from the database
+    const db = await connectDB();
+    if (db) {
+      const admin = await AdminModel.findOne({ username });
+      if (admin && verifyPassword(password, admin.passwordHash)) {
+        return NextResponse.json({
+          success: true,
+          message: 'Admin authentication successful',
+          token: 'phcl_admin_token_2026_verified',
+          admin: {
+            username: admin.username,
+            role: admin.role
+          }
+        });
+      }
     }
 
     return NextResponse.json(
