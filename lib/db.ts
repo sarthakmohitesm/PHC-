@@ -26,7 +26,7 @@ if (!cached) {
   cached = global.mongooseCache = { conn: null, promise: null };
 }
 
-export async function connectDB(): Promise<typeof mongoose | null> {
+export async function connectDB(throwOnError = false): Promise<typeof mongoose | null> {
   if (cached?.conn) {
     return cached.conn;
   }
@@ -41,18 +41,19 @@ export async function connectDB(): Promise<typeof mongoose | null> {
     cached!.promise = mongoose.connect(MONGODB_URI, opts).then((mongooseInstance) => {
       console.log('✅ MongoDB Atlas connected successfully — Database: phcl');
       return mongooseInstance;
-    }).catch((err) => {
-      console.warn('❌ MongoDB Connection Failed. Using In-Memory Fallback:', err.message);
-      cached!.promise = null; // Reset so next request retries
-      return null as unknown as typeof mongoose;
     });
   }
 
   try {
     cached!.conn = await cached!.promise;
-  } catch {
+  } catch (err: any) {
     cached!.conn = null;
     cached!.promise = null;
+    if (throwOnError) {
+      throw err;
+    }
+    console.warn('❌ MongoDB Connection Failed. Using In-Memory Fallback:', err.message);
+    return null;
   }
 
   return cached!.conn;

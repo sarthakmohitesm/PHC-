@@ -5,13 +5,7 @@ import { AdminModel, hashPassword } from '@/lib/models/Admin';
 // GET /api/admin/seed — Seeds the default admin user into MongoDB if none exists
 export async function GET() {
   try {
-    const db = await connectDB();
-    if (!db) {
-      return NextResponse.json(
-        { success: false, message: 'Database connection failed' },
-        { status: 500 }
-      );
-    }
+    const db = await connectDB(true);
 
     // Check if an admin already exists
     const existingAdmin = await AdminModel.findOne({ username: 'sarthak' });
