@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/phcl';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://sarthakam24hite_db_user:aO4Ygmq62505ZZ0S@phcl.bn6sxxu.mongodb.net/phcl?retryWrites=true&w=majority';
 
 interface MongooseCache {
   conn: typeof mongoose | null;
