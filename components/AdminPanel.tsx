@@ -221,7 +221,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
 
   if (!isAuthenticated) {
     return (
-      <div className="max-w-md mx-auto my-12 p-8 bg-slate-800 border border-slate-600 rounded-2xl shadow-xl space-y-6">
+      <div className="max-w-md mx-auto my-12 p-8 glass-card rounded-2xl shadow-xl space-y-6">
         <div className="text-center space-y-2">
           <div className="w-14 h-14 bg-[#E87A2D]/20 text-[#E87A2D] rounded-full flex items-center justify-center mx-auto border border-[#E87A2D]">
             <Lock className="w-7 h-7" />
@@ -281,7 +281,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
     <div className="max-w-7xl mx-auto space-y-8 my-8 px-2 sm:px-6">
       
       {/* Top Banner Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-800 border border-slate-600 p-6 rounded-2xl">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 glass-card p-6 rounded-2xl">
         <div className="flex items-center gap-4">
           <div className="p-3 rounded-xl bg-[#E87A2D]/20 text-[#E87A2D] border border-[#E87A2D]/40">
             <ShieldCheck className="w-8 h-8" />
@@ -347,7 +347,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
       {activeTab === 'captains' && (
         <div className="space-y-6">
           
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-800/80 p-4 rounded-xl border border-slate-600">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 glass-card p-4 rounded-xl">
             <div>
               <h3 className="text-base font-extrabold text-white flex items-center gap-2">
                 <UserCheck className="w-5 h-5 text-[#E87A2D]" />
@@ -393,7 +393,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
             {teams.map((team, index) => (
               <div
                 key={team.id}
-                className="bg-slate-800 border border-slate-600 rounded-2xl overflow-hidden shadow-xl flex flex-col justify-between"
+                className="glass-card-hover rounded-2xl overflow-hidden shadow-xl flex flex-col justify-between"
               >
                 {/* Captain Header Box */}
                 <div>
@@ -623,14 +623,37 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-300 mb-1">Captain Photo URL</label>
-                    <input
-                      type="text"
-                      placeholder="https://images.unsplash.com/..."
-                      value={newCaptainImage}
-                      onChange={(e) => setNewCaptainImage(e.target.value)}
-                      className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-xs text-white"
-                    />
+                    <label className="block text-xs font-bold text-slate-300 mb-1">Captain Photo (File Upload or URL)</label>
+                    <div className="space-y-2">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            const reader = new FileReader();
+                            reader.onloadend = () => {
+                              setNewCaptainImage(reader.result as string);
+                            };
+                            reader.readAsDataURL(file);
+                          }
+                        }}
+                        className="w-full text-xs text-slate-300 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-[#E87A2D] file:text-white hover:file:bg-[#d06a20] file:cursor-pointer cursor-pointer"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Or paste image URL (https://...)"
+                        value={newCaptainImage}
+                        onChange={(e) => setNewCaptainImage(e.target.value)}
+                        className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-xs text-white"
+                      />
+                      {newCaptainImage && (
+                        <div className="flex items-center gap-2 pt-1">
+                          <img src={newCaptainImage} alt="Preview" className="w-10 h-10 rounded-lg object-cover border border-[#E87A2D]" />
+                          <span className="text-[10px] text-green-400 font-bold">Image Ready</span>
+                        </div>
+                      )}
+                    </div>
                   </div>
 
                   <div>
@@ -715,23 +738,29 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
               </button>
             </div>
           ) : (
-            <div className="bg-slate-800 rounded-2xl border border-slate-600 overflow-hidden shadow-xl">
-              <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse">
+            <div className="bg-slate-800 rounded-2xl border border-slate-600 overflow-hidden shadow-xl w-full">
+              <div className="w-full">
+                <table className="w-full text-left border-collapse table-fixed">
                   <thead>
-                    <tr className="bg-slate-900 border-b border-slate-700 text-[11px] text-slate-300 uppercase font-black tracking-wider">
-                      <th className="py-4 px-4 min-w-[140px] sticky left-0 bg-slate-900 z-10 border-r border-slate-700">
+                    <tr className="bg-slate-900 border-b border-slate-700 text-[10px] text-slate-300 uppercase font-black tracking-wider">
+                      <th className="py-3 px-2 sm:px-3 w-[18%] sticky left-0 bg-slate-900 z-10 border-r border-slate-700">
                         Team & Captain
                       </th>
-                      {PHCL_EVENTS.map(ev => (
-                        <th key={ev.id} className="py-4 px-3 text-center min-w-[100px] border-r border-slate-800">
-                          <div className="text-base">{ev.icon}</div>
-                          <div className="font-extrabold text-white text-[10px] truncate">{ev.name}</div>
-                          <div className="text-[9px] text-slate-400 font-normal">Max {ev.pointsScale.first}pts</div>
-                        </th>
-                      ))}
-                      <th className="py-4 px-4 text-center min-w-[110px] bg-slate-950 text-amber-400 font-black">
-                        Total Score
+                      {PHCL_EVENTS.map(ev => {
+                        const shortName = ev.name.includes('Box Cricket') ? 'Cricket' :
+                          ev.name.includes('Athletics') ? 'Athletics' :
+                          ev.name.includes('GK Quiz') ? 'GK Quiz' : ev.name;
+
+                        return (
+                          <th key={ev.id} className="py-2.5 px-0.5 sm:px-1 text-center w-[8%] border-r border-slate-800">
+                            <div className="text-base sm:text-lg">{ev.icon}</div>
+                            <div className="font-extrabold text-white text-[9px] sm:text-[10px] truncate px-0.5" title={ev.name}>{shortName}</div>
+                            <div className="text-[8px] sm:text-[9px] text-[#E87A2D] font-bold">Max {ev.pointsScale.first}P</div>
+                          </th>
+                        );
+                      })}
+                      <th className="py-3 px-1 sm:px-2 text-center w-[10%] bg-slate-950 text-amber-400 font-black">
+                        Total
                       </th>
                     </tr>
                   </thead>
@@ -746,11 +775,13 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         <tr key={team.id} className="hover:bg-slate-700/40 transition-colors">
                           
                           {/* Team Name Column */}
-                          <td className="py-3 px-4 font-extrabold text-white sticky left-0 bg-slate-800 z-10 border-r border-slate-700 flex items-center gap-2">
-                            <span className="text-lg">{team.badgeSymbol}</span>
-                            <div>
-                              <div className="font-extrabold text-sm">{team.name}</div>
-                              <span className="text-[10px] text-slate-400 font-normal">{team.captain}</span>
+                          <td className="py-2.5 px-2 sm:px-3 font-extrabold text-white sticky left-0 bg-slate-800 z-10 border-r border-slate-700">
+                            <div className="flex items-center gap-1.5 min-w-0">
+                              <span className="text-base sm:text-lg shrink-0">{team.badgeSymbol}</span>
+                              <div className="min-w-0 truncate">
+                                <div className="font-extrabold text-xs sm:text-sm truncate">{team.name}</div>
+                                <span className="text-[10px] text-slate-400 font-normal truncate block">{team.captain}</span>
+                              </div>
                             </div>
                           </td>
 
@@ -758,14 +789,14 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                           {PHCL_EVENTS.map(ev => {
                             const currentScore = teamScores[ev.id] !== undefined ? teamScores[ev.id] : 0;
                             return (
-                              <td key={ev.id} className="py-2 px-2 text-center border-r border-slate-700/50">
+                              <td key={ev.id} className="py-2 px-0.5 text-center border-r border-slate-700/50">
                                 <input
                                   type="number"
                                   min="0"
                                   max="100"
                                   value={currentScore}
                                   onChange={(e) => handleScoreChange(team.id, ev.id, e.target.value)}
-                                  className={`w-16 text-center py-1.5 rounded font-extrabold text-xs border focus:outline-none transition-colors ${
+                                  className={`w-10 sm:w-12 text-center py-1 rounded font-extrabold text-xs border focus:outline-none transition-colors ${
                                     currentScore > 0
                                       ? 'bg-[#E87A2D]/20 text-amber-300 border-[#E87A2D]'
                                       : 'bg-slate-900 text-slate-400 border-slate-700'
@@ -776,8 +807,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                           })}
 
                           {/* Total Score Cell */}
-                          <td className="py-3 px-4 text-center font-black text-base text-amber-400 bg-slate-950/70">
-                            {totalScore} pts
+                          <td className="py-2.5 px-1 sm:px-2 text-center font-black text-xs sm:text-sm text-amber-400 bg-slate-950/70">
+                            {totalScore} <span className="text-[9px] text-slate-400 font-bold hidden sm:inline">pts</span>
                           </td>
 
                         </tr>

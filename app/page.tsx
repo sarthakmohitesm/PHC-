@@ -8,7 +8,6 @@ import { LeaderboardTable } from '@/components/LeaderboardTable';
 import { TeamsGrid } from '@/components/TeamsGrid';
 import { TeamRosterModal } from '@/components/TeamRosterModal';
 import { EventsGrid } from '@/components/EventsGrid';
-import { LiveScoreSimulator } from '@/components/LiveScoreSimulator';
 import { RulesScoringSection } from '@/components/RulesScoringSection';
 import { AdminPanel } from '@/components/AdminPanel';
 import { Footer } from '@/components/Footer';
@@ -81,10 +80,6 @@ export default function Home() {
     setSelectedTeamId(null);
   };
 
-  const handleResetResults = () => {
-    setEventResults(INITIAL_EVENT_RESULTS);
-  };
-
   return (
     <div className="min-h-screen flex flex-col justify-between bg-[#0f172a] text-slate-100">
       
@@ -102,6 +97,7 @@ export default function Home() {
         {/* Render Hero Banner ONLY on initial 'home' view */}
         {activeTab === 'home' && (
           <HeroBanner
+            teams={teams}
             topLeaderboard={leaderboard}
             setActiveTab={setActiveTab}
             onOpenTeamModal={handleOpenTeamModal}
@@ -153,16 +149,6 @@ export default function Home() {
             <EventsGrid
               eventResults={eventResults}
               teams={teams}
-            />
-          )}
-
-          {/* Live Simulator View */}
-          {activeTab === 'simulator' && (
-            <LiveScoreSimulator
-              teams={teams}
-              eventResults={eventResults}
-              onUpdateResults={setEventResults}
-              onResetResults={handleResetResults}
             />
           )}
 

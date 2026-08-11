@@ -95,12 +95,12 @@ export const LiveScoreSimulator: React.FC<LiveScoreSimulatorProps> = ({
           className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-700 text-xs font-bold transition-colors"
         >
           <RefreshCw className="w-4 h-4 text-amber-400" />
-          <span>Reset Season 4 Results</span>
+          <span>Reset Season 5 Results</span>
         </button>
       </div>
 
       {/* Main Simulator Card */}
-      <div className="bg-slate-800 rounded-2xl p-6 sm:p-8 border border-slate-600 relative overflow-hidden">
+      <div className="glass-card rounded-2xl p-6 sm:p-8 relative overflow-hidden">
         
         <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
           <Sparkles className="w-64 h-64 text-amber-400" />
@@ -111,7 +111,7 @@ export const LiveScoreSimulator: React.FC<LiveScoreSimulatorProps> = ({
           {/* Select Event */}
           <div className="space-y-2">
             <label className="text-xs font-extrabold uppercase tracking-wider text-amber-400 block">
-              Step 1: Select Season 4 Event to Declare Winner
+              Step 1: Select Season 5 Event to Declare Winner
             </label>
             <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-9 gap-2">
               {PHCL_EVENTS.map((ev) => {
@@ -136,7 +136,7 @@ export const LiveScoreSimulator: React.FC<LiveScoreSimulatorProps> = ({
           </div>
 
           {/* Active Event Banner */}
-          <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 flex items-center justify-between">
+          <div className="bg-black/30 backdrop-blur-sm p-4 rounded-2xl border border-white/10 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <span className="text-3xl">{activeEvent.icon}</span>
               <div>

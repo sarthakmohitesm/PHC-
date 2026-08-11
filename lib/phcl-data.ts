@@ -70,7 +70,7 @@ export interface MatchFixture {
   mvp?: string;
 }
 
-// 9 Official PHCL Season 4 Events
+// 9 Official PHCL Season 5 Events
 export const PHCL_EVENTS: EventInfo[] = [
   {
     id: 'box-cricket',
@@ -253,7 +253,7 @@ export const PHCL_EVENTS: EventInfo[] = [
   }
 ];
 
-// Common Rules from Season 4 Rulebook
+// Common Rules from Season 5 Rulebook
 export const COMMON_RULES: string[] = [
   'Reporting Time: Captains must ensure teams report at least 30 minutes before match time. Failure to report may lead to disqualification.',
   'Disqualification: Any misbehavior during the event will lead to immediate disqualification of the team.',

@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PHCL Season 4 — Pillai HOC Champions League | Euforia 2026",
-  description: "Official portal for PHCL Season 4 (Pillai HOC Champions League) at Euforia 2026. View live standings, 10 team rosters, 9 events, match results & points leaderboard. 8th September 2026.",
+  title: "PHCL Season 5 — Pillai HOC Champions League | Euforia 2026",
+  description: "Official portal for PHCL Season 5 (Pillai HOC Champions League) at Euforia 2026. View live standings, 10 team rosters, 9 events, match results & points leaderboard. 8th September 2026.",
 };
 
 export default function RootLayout({

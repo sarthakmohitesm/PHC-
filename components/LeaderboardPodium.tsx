@@ -22,7 +22,7 @@ export const LeaderboardPodium: React.FC<LeaderboardPodiumProps> = ({
   return (
     <div className="py-8 my-4">
       <div className="text-center max-w-xl mx-auto mb-8 space-y-2">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-slate-800 border border-slate-600 text-[#E87A2D] text-xs font-bold uppercase tracking-widest">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded glass-card text-[#E87A2D] text-xs font-bold uppercase tracking-widest">
           <Trophy className="w-4 h-4" /> Championship Standings
         </div>
         <h2 className="text-3xl sm:text-4xl font-extrabold text-white">Top 3 League Leaders</h2>
@@ -32,7 +32,7 @@ export const LeaderboardPodium: React.FC<LeaderboardPodiumProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end max-w-5xl mx-auto px-4">
         
         {/* 2nd Place - SILVER */}
-        <div className="order-2 md:order-1 bg-slate-800 rounded-2xl p-6 border border-slate-600 relative overflow-hidden group hover:border-slate-500 transition-all">
+        <div className="order-2 md:order-1 glass-card rounded-2xl p-6 relative overflow-hidden group hover:border-white/20 transition-all">
           <div className="absolute top-0 right-0 px-4 py-1 rounded-bl-xl bg-slate-500 text-white font-extrabold text-xs">
             RANK #2 • SILVER
           </div>
@@ -55,7 +55,7 @@ export const LeaderboardPodium: React.FC<LeaderboardPodiumProps> = ({
               <p className="text-xs text-slate-400 font-medium">Capt. {second.team.captain}</p>
             </div>
 
-            <div className="bg-[#0f172a] p-3 rounded-lg border border-slate-700 flex justify-around text-center">
+            <div className="bg-black/30 backdrop-blur-sm p-3 rounded-lg border border-white/10 flex justify-around text-center">
               <div>
                 <span className="block text-[10px] text-slate-400 font-bold uppercase">Points</span>
                 <span className="text-xl font-black text-slate-200">{second.totalPoints}</span>
@@ -78,7 +78,7 @@ export const LeaderboardPodium: React.FC<LeaderboardPodiumProps> = ({
         </div>
 
         {/* 1st Place - GOLD */}
-        <div className="order-1 md:order-2 bg-slate-800 rounded-2xl p-7 border-2 border-amber-500 relative overflow-hidden group hover:border-amber-400 transition-all transform md:-translate-y-4">
+        <div className="order-1 md:order-2 glass-card rounded-2xl p-7 border-2 !border-amber-500/60 relative overflow-hidden group hover:!border-amber-400/80 transition-all transform md:-translate-y-4" style={{ boxShadow: '0 0 30px rgba(245, 158, 11, 0.08), 0 4px 24px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.06)' }}>
           <div className="absolute top-0 right-0 px-5 py-1.5 rounded-bl-xl bg-amber-500 text-slate-950 font-black text-xs uppercase tracking-wider">
             👑 LEAGUE CHAMPION #1
           </div>
@@ -105,7 +105,7 @@ export const LeaderboardPodium: React.FC<LeaderboardPodiumProps> = ({
               <p className="text-sm text-slate-300 font-semibold">Captain: {first.team.captain}</p>
             </div>
 
-            <div className="bg-[#0f172a] p-4 rounded-lg border border-amber-500/30 flex justify-around text-center">
+            <div className="bg-black/30 backdrop-blur-sm p-4 rounded-lg border border-amber-500/20 flex justify-around text-center">
               <div>
                 <span className="block text-[11px] text-amber-500 font-bold uppercase">Total Score</span>
                 <span className="text-3xl font-black text-amber-400">{first.totalPoints}</span>
@@ -128,7 +128,7 @@ export const LeaderboardPodium: React.FC<LeaderboardPodiumProps> = ({
         </div>
 
         {/* 3rd Place - BRONZE */}
-        <div className="order-3 bg-slate-800 rounded-2xl p-6 border border-amber-700 relative overflow-hidden group hover:border-amber-600 transition-all">
+        <div className="order-3 glass-card rounded-2xl p-6 !border-amber-700/50 relative overflow-hidden group hover:!border-amber-600/60 transition-all">
           <div className="absolute top-0 right-0 px-4 py-1 rounded-bl-xl bg-amber-800 text-amber-100 font-extrabold text-xs">
             RANK #3 • BRONZE
           </div>
@@ -151,7 +151,7 @@ export const LeaderboardPodium: React.FC<LeaderboardPodiumProps> = ({
               <p className="text-xs text-slate-400 font-medium">Capt. {third.team.captain}</p>
             </div>
 
-            <div className="bg-[#0f172a] p-3 rounded-lg border border-slate-700 flex justify-around text-center">
+            <div className="bg-black/30 backdrop-blur-sm p-3 rounded-lg border border-white/10 flex justify-around text-center">
               <div>
                 <span className="block text-[10px] text-slate-400 font-bold uppercase">Points</span>
                 <span className="text-xl font-black text-amber-500">{third.totalPoints}</span>

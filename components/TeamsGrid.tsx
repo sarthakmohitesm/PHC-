@@ -70,7 +70,7 @@ export const TeamsGrid: React.FC<TeamsGridProps> = ({
           return (
             <div
               key={team.id}
-              className="bg-slate-800 rounded-2xl p-6 border border-slate-600 relative flex flex-col justify-between group hover:border-slate-500 transition-all hover:-translate-y-1"
+              className="glass-card-hover rounded-2xl p-6 relative flex flex-col justify-between group"
             >
               <div className="space-y-4">
                 {/* Header Badge */}
@@ -114,7 +114,7 @@ export const TeamsGrid: React.FC<TeamsGridProps> = ({
 
               {/* Stats & Roster Trigger */}
               <div className="mt-6 pt-4 border-t border-slate-800/80 space-y-3">
-                <div className="grid grid-cols-2 gap-2 text-center bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                <div className="grid grid-cols-2 gap-2 text-center bg-black/30 backdrop-blur-sm p-2.5 rounded-xl border border-white/10">
                   <div>
                     <span className="block text-[10px] text-slate-400 font-bold uppercase">League Points</span>
                     <span className="text-lg font-black text-amber-400">{points} pts</span>

@@ -39,10 +39,10 @@ export const EventsGrid: React.FC<EventsGridProps> = ({
         <div>
           <div className="flex items-center gap-2">
             <Zap className="w-6 h-6 text-amber-400" />
-            <h2 className="text-2xl font-black text-white tracking-wide">PHCL Season 4 Official Events</h2>
+            <h2 className="text-2xl font-black text-white tracking-wide">PHCL Season 5 Official Events</h2>
           </div>
           <p className="text-xs text-slate-400 mt-1">
-            Exact regulations, venues, and points system from the Season 4 Manual. Group events (50/30/20/10 pts) and Individual events (30/20/10/5 pts).
+            Exact regulations, venues, and points system from the Season 5 Manual. Group events (50/30/20/10 pts) and Individual events (30/20/10/5 pts).
           </p>
         </div>
 
@@ -75,7 +75,7 @@ export const EventsGrid: React.FC<EventsGridProps> = ({
           return (
             <div
               key={ev.id}
-              className="bg-slate-800 rounded-2xl p-6 border border-slate-600 relative flex flex-col justify-between group hover:border-slate-500 transition-all hover:-translate-y-1"
+              className="glass-card-hover rounded-2xl p-6 relative flex flex-col justify-between group"
             >
               <div className="space-y-4">
                 
@@ -129,7 +129,7 @@ export const EventsGrid: React.FC<EventsGridProps> = ({
 
                 {/* Winner Card if Completed */}
                 {res && (
-                  <div className="bg-slate-950 p-3 rounded-xl border border-amber-500/30 space-y-1">
+                  <div className="bg-black/30 backdrop-blur-sm p-3 rounded-xl border border-amber-500/20 space-y-1">
                     <div className="text-[10px] text-amber-400 font-bold uppercase flex items-center gap-1">
                       <Award className="w-3.5 h-3.5" /> Event Podium Winners
                     </div>
@@ -156,7 +156,7 @@ export const EventsGrid: React.FC<EventsGridProps> = ({
                   className="w-full py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-colors flex items-center justify-center gap-2"
                 >
                   <Info className="w-4 h-4 text-amber-400" />
-                  <span>Season 4 Official Rules</span>
+                  <span>Season 5 Official Rules</span>
                 </button>
               </div>
 
@@ -167,8 +167,8 @@ export const EventsGrid: React.FC<EventsGridProps> = ({
 
       {/* Rules Modal */}
       {activeRuleModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80">
-          <div className="relative w-full max-w-lg rounded-2xl border border-slate-600 bg-slate-800 p-6 space-y-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 glass-modal-backdrop">
+          <div className="relative w-full max-w-lg rounded-2xl glass-modal p-6 space-y-4">
             <button
               onClick={() => setActiveRuleModal(null)}
               className="absolute top-4 right-4 p-2 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300"
@@ -190,7 +190,7 @@ export const EventsGrid: React.FC<EventsGridProps> = ({
             </div>
 
             <div className="space-y-2">
-              <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Season 4 Official Rules</h4>
+              <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Season 5 Official Rules</h4>
               <ul className="space-y-1.5 text-xs text-slate-200">
                 {activeRuleModal.rules.map((rule, idx) => (
                   <li key={idx} className="flex items-start gap-2 bg-slate-950 p-2.5 rounded-lg border border-slate-800">

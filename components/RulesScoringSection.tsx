@@ -13,10 +13,10 @@ export const RulesScoringSection: React.FC = () => {
         <div>
           <div className="flex items-center gap-2">
             <Award className="w-6 h-6 text-amber-400" />
-            <h2 className="text-2xl font-black text-white tracking-wide">PHCL Season 4 Official Rulebook</h2>
+            <h2 className="text-2xl font-black text-white tracking-wide">PHCL Season 5 Official Rulebook</h2>
           </div>
           <p className="text-xs text-slate-400 mt-1">
-            Official guidelines, scoring breakdown, participant quotas, and event rules from the Pillai HOC College League Season 4 Manual.
+            Official guidelines, scoring breakdown, participant quotas, and event rules from the Pillai HOC College League Season 5 Manual.
           </p>
         </div>
       </div>
@@ -25,13 +25,13 @@ export const RulesScoringSection: React.FC = () => {
       <div className="space-y-4">
         <h3 className="text-lg font-black text-white flex items-center gap-2">
           <Trophy className="w-5 h-5 text-amber-400" />
-          Season 4 Official Points System Matrix
+          Season 5 Official Points System Matrix
         </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           
           {/* Group Events Points Box */}
-          <div className="bg-slate-800 rounded-2xl p-6 border-2 border-amber-500 space-y-4">
+          <div className="glass-card rounded-2xl p-6 !border-2 !border-amber-500/50 space-y-4" style={{ boxShadow: '0 0 20px rgba(245, 158, 11, 0.06), 0 4px 24px rgba(0,0,0,0.15)' }}>
             <div className="flex items-center justify-between">
               <div>
                 <span className="text-xs font-bold text-amber-400 uppercase tracking-widest block">Category 1</span>
@@ -63,7 +63,7 @@ export const RulesScoringSection: React.FC = () => {
           </div>
 
           {/* Individual Events Points Box */}
-          <div className="bg-slate-800 rounded-2xl p-6 border-2 border-[#1C6E7D] space-y-4">
+          <div className="glass-card rounded-2xl p-6 !border-2 !border-[#1C6E7D]/50 space-y-4" style={{ boxShadow: '0 0 20px rgba(28, 110, 125, 0.06), 0 4px 24px rgba(0,0,0,0.15)' }}>
             <div className="flex items-center justify-between">
               <div>
                 <span className="text-xs font-bold text-cyan-400 uppercase tracking-widest block">Category 2</span>
@@ -97,11 +97,11 @@ export const RulesScoringSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Common Rules from Season 4 Manual */}
-      <div className="bg-slate-800 rounded-2xl p-6 border border-slate-600 space-y-4">
+      {/* Common Rules from Season 5 Manual */}
+      <div className="glass-card rounded-2xl p-6 space-y-4">
         <h3 className="text-lg font-black text-white flex items-center gap-2">
           <Shield className="w-5 h-5 text-amber-400" />
-          Season 4 Common Regulations & Student Eligibility
+          Season 5 Common Regulations & Student Eligibility
         </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-300">
@@ -123,14 +123,14 @@ export const RulesScoringSection: React.FC = () => {
       <div className="space-y-4">
         <h3 className="text-lg font-black text-white flex items-center gap-2">
           <Zap className="w-5 h-5 text-amber-400" />
-          Season 4 Event-Specific Regulations & Venues
+          Season 5 Event-Specific Regulations & Venues
         </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {PHCL_EVENTS.map((ev) => (
             <div
               key={ev.id}
-              className="bg-slate-800 rounded-2xl p-6 border border-slate-600 space-y-4"
+              className="glass-card-hover rounded-2xl p-6 space-y-4"
             >
               <div className="flex items-center justify-between border-b border-slate-800/80 pb-3">
                 <div className="flex items-center gap-3">

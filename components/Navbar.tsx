@@ -26,7 +26,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-700 bg-[#0f172a]">
+    <header className="sticky top-0 z-50 glass-navbar">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
@@ -45,7 +45,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <div className="flex items-center gap-2">
                 <span className="font-extrabold text-xl tracking-wider text-white">PHCL</span>
                 <span className="text-xs px-2 py-0.5 rounded font-bold uppercase tracking-widest bg-[#E87A2D] text-white">
-                  Season 4
+                  Season 5
                 </span>
               </div>
               <p className="text-xs text-slate-400 font-medium">Pillai HOC Champions League 2026</p>

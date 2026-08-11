@@ -5,7 +5,7 @@ import { Trophy, Heart, Shield, Sparkles } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#0b1222] border-t border-slate-700 py-12 text-slate-400 text-xs">
+    <footer className="bg-[#0b1222]/80 backdrop-blur-md border-t border-white/10 py-12 text-slate-400 text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
@@ -18,7 +18,7 @@ export const Footer: React.FC = () => {
               className="w-12 h-12 object-contain"
             />
             <div>
-              <div className="text-white font-extrabold text-lg tracking-wider">PHCL Season 4</div>
+              <div className="text-white font-extrabold text-lg tracking-wider">PHCL Season 5</div>
               <p className="text-[11px] text-slate-400">Pillai HOC Champions League • Euforia 2026</p>
             </div>
           </div>
@@ -47,7 +47,7 @@ export const Footer: React.FC = () => {
           <p>© 2026 PHCL — Pillai HOC Champions League. All rights reserved.</p>
           <div className="flex items-center gap-1 text-slate-400">
             <span>8th September 2026 •</span>
-            <span className="text-[#E87A2D] font-bold">Euforia Season 4</span>
+            <span className="text-[#E87A2D] font-bold">Euforia Season 5</span>
           </div>
         </div>
 
