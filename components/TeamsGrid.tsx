@@ -114,15 +114,9 @@ export const TeamsGrid: React.FC<TeamsGridProps> = ({
 
               {/* Stats & Roster Trigger */}
               <div className="mt-6 pt-4 border-t border-slate-800/80 space-y-3">
-                <div className="grid grid-cols-2 gap-2 text-center bg-black/30 backdrop-blur-sm p-2.5 rounded-xl border border-white/10">
-                  <div>
-                    <span className="block text-[10px] text-slate-400 font-bold uppercase">League Points</span>
-                    <span className="text-lg font-black text-amber-400">{points} pts</span>
-                  </div>
-                  <div>
-                    <span className="block text-[10px] text-slate-400 font-bold uppercase">Gold Victories</span>
-                    <span className="text-lg font-black text-[#E87A2D]">{goldWins} Gold</span>
-                  </div>
+                <div className="text-center bg-black/30 backdrop-blur-sm p-2.5 rounded-xl border border-white/10">
+                  <span className="block text-[10px] text-slate-400 font-bold uppercase">League Points</span>
+                  <span className="text-lg font-black text-amber-400">{points} pts</span>
                 </div>
 
                 <button

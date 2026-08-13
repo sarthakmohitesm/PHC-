@@ -4,6 +4,7 @@ import React from 'react';
 import { Trophy, Shield, Users, Zap, Award, ChevronRight } from 'lucide-react';
 import { Team, TeamLeaderboardEntry } from '@/lib/phcl-data';
 import { CaptainsShowcase } from '@/components/CaptainsShowcase';
+import { ImageSlider } from '@/components/ImageSlider';
 
 interface HeroBannerProps {
   teams: Team[];
@@ -19,15 +20,17 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
   onOpenTeamModal
 }) => {
   return (
-    <div className="relative overflow-hidden py-12 md:py-16 border-b border-white/10 bg-[#111a2e]">
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          
+    <div className="relative overflow-hidden border-b border-white/10 bg-[#111a2e]">
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* ── Top: Hero Info (left) + Image Slider (right) ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-12 md:py-16">
+
           {/* Left: Hero Info */}
-          <div className="lg:col-span-6 space-y-5">
-            
-            {/* Season 4 Badge */}
+          <div className="lg:col-span-5 space-y-5">
+
+            {/* Season Badge */}
             <div className="flex items-center gap-3">
               <span className="text-xs font-semibold text-slate-300 tracking-wide uppercase">
                 Pillai HOC College • 8th September 2026
@@ -73,7 +76,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
               </button>
             </div>
 
-            {/* Stats Ticker Banner - Glass Cards */}
+            {/* Stats Ticker */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-5 border-t border-white/10">
               <div className="glass-card p-3 rounded-xl">
                 <div className="flex items-center gap-2 text-[#1C6E7D] text-xs font-semibold uppercase">
@@ -105,15 +108,21 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
             </div>
           </div>
 
-          {/* Right: Captains Showcase (replaces 3D scene) */}
-          <div className="lg:col-span-6">
-            <CaptainsShowcase
-              teams={teams}
-              onOpenTeamModal={onOpenTeamModal}
-            />
+          {/* Right: Image Slider */}
+          <div className="lg:col-span-7">
+            <ImageSlider />
           </div>
 
         </div>
+
+        {/* ── Bottom: Captains Slider ── */}
+        <div className="border-t border-white/10">
+          <CaptainsShowcase
+            teams={teams}
+            onOpenTeamModal={onOpenTeamModal}
+          />
+        </div>
+
       </div>
     </div>
   );

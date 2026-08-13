@@ -96,7 +96,7 @@ export const MatchSchedule: React.FC<MatchScheduleProps> = ({
                   </div>
                 </div>
 
-                {/* Match Scoreboard Clash */}
+                {/* Match Leaderboard Clash */}
                 <div className="flex-1 grid grid-cols-7 items-center gap-2 bg-slate-950/90 p-4 rounded-2xl border border-slate-800 text-center">
                   
                   {/* Team A */}

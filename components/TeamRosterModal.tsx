@@ -22,8 +22,7 @@ export const TeamRosterModal: React.FC<TeamRosterModalProps> = ({
 
   const filteredMembers = team.members.filter(m => {
     const matchesSearch = m.name.toLowerCase().includes(memberSearch.toLowerCase()) ||
-                          m.specialtyEvent.toLowerCase().includes(memberSearch.toLowerCase()) ||
-                          m.department.toLowerCase().includes(memberSearch.toLowerCase());
+                          m.specialtyEvent.toLowerCase().includes(memberSearch.toLowerCase());
     const matchesRole = filterRole === 'ALL' || m.role === filterRole;
     return matchesSearch && matchesRole;
   });
@@ -74,7 +73,7 @@ export const TeamRosterModal: React.FC<TeamRosterModalProps> = ({
         <div className="p-6 sm:p-8 space-y-6 flex-1 overflow-y-auto">
           
           {/* Squad Summary Stats Bar */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-black/30 backdrop-blur-sm p-4 rounded-2xl border border-white/10 text-center">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 bg-black/30 backdrop-blur-sm p-4 rounded-2xl border border-white/10 text-center">
             <div>
               <span className="block text-[10px] text-slate-400 font-bold uppercase">Total Squad</span>
               <span className="text-xl font-black text-white">{team.members.length} Members</span>
@@ -84,12 +83,8 @@ export const TeamRosterModal: React.FC<TeamRosterModalProps> = ({
               <span className="text-xl font-black text-amber-400">{team.captain.split(' ')[0]}</span>
             </div>
             <div>
-              <span className="block text-[10px] text-slate-400 font-bold uppercase">Gold Wins</span>
-              <span className="text-xl font-black text-[#E87A2D]">{leaderboardEntry?.eventsWon || 0}</span>
-            </div>
-            <div>
               <span className="block text-[10px] text-slate-400 font-bold uppercase">Points Scored</span>
-              <span className="text-xl font-black text-amber-400">{leaderboardEntry?.totalPoints || 0}</span>
+              <span className="text-xl font-black text-amber-400">{leaderboardEntry?.totalPoints || 0} pts</span>
             </div>
           </div>
 
@@ -162,11 +157,6 @@ export const TeamRosterModal: React.FC<TeamRosterModalProps> = ({
                     <div className="flex items-center justify-between text-slate-300">
                       <span className="text-[11px] text-slate-400">Primary Event:</span>
                       <span className="font-medium text-[#E87A2D]">{member.specialtyEvent}</span>
-                    </div>
-
-                    <div className="flex items-center justify-between text-slate-400 text-[11px]">
-                      <span>{member.department}</span>
-                      <span className="font-bold text-slate-300">{member.year}</span>
                     </div>
                   </div>
                 </div>

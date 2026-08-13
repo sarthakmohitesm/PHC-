@@ -34,7 +34,7 @@ export const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
         <div>
           <div className="flex items-center gap-2">
             <Trophy className="w-6 h-6 text-amber-400" />
-            <h2 className="text-2xl font-black text-white tracking-wide">PHCL Tournament Scoreboard</h2>
+            <h2 className="text-2xl font-black text-white tracking-wide">PHCL Tournament Leaderboard</h2>
           </div>
           <p className="text-xs text-slate-400 mt-1">
             Official live points matrix across all 9 PHCL events. Updated in real-time by event judges!
@@ -65,18 +65,13 @@ export const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
                 </th>
                 {PHCL_EVENTS.map(ev => {
                   // Short labels for clean fitting
-                  const shortName = ev.name.includes('Box Cricket') ? 'Cricket' :
-                    ev.name.includes('Athletics') ? 'Athletics' :
-                    ev.name.includes('GK Quiz') ? 'GK Quiz' : ev.name;
+                  const shortName = ev.name.includes('Box Cricket') ? 'Cricket' : ev.name;
 
                   return (
                     <th key={ev.id} className="py-2.5 px-0.5 sm:px-1 text-center w-[8%] border-r border-slate-800/60">
                       <div className="text-base sm:text-lg">{ev.icon}</div>
                       <div className="font-black text-white text-[9px] sm:text-[10px] uppercase leading-tight truncate px-0.5" title={ev.name}>
                         {shortName}
-                      </div>
-                      <div className="text-[8px] sm:text-[9px] text-[#E87A2D] font-bold mt-0.5">
-                        {ev.pointsScale.first}P
                       </div>
                     </th>
                   );

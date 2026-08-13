@@ -271,7 +271,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         </form>
 
         <div className="text-center pt-2">
-          <p className="text-[11px] text-slate-400">Default: Username: <code className="text-amber-400 font-bold">admin</code> | Password: <code className="text-amber-400 font-bold">admin123</code></p>
+          <p className="text-[11px] text-slate-400">Enter authorized administrator credentials to access management controls.</p>
         </div>
       </div>
     );
@@ -529,7 +529,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                             <div className="truncate pr-2">
                               <span className="font-extrabold text-white">{m.name}</span>{' '}
                               <span className="text-[10px] text-amber-400">({m.role})</span>
-                              <div className="text-[10px] text-slate-400">{m.department} {m.year} • {m.specialtyEvent}</div>
+                              <div className="text-[10px] text-slate-400">{m.specialtyEvent}</div>
                             </div>
 
                             <button
@@ -744,15 +744,12 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         Team & Captain
                       </th>
                       {PHCL_EVENTS.map(ev => {
-                        const shortName = ev.name.includes('Box Cricket') ? 'Cricket' :
-                          ev.name.includes('Athletics') ? 'Athletics' :
-                          ev.name.includes('GK Quiz') ? 'GK Quiz' : ev.name;
+                        const shortName = ev.name.includes('Box Cricket') ? 'Cricket' : ev.name;
 
                         return (
                           <th key={ev.id} className="py-2.5 px-0.5 sm:px-1 text-center w-[8%] border-r border-slate-800">
                             <div className="text-base sm:text-lg">{ev.icon}</div>
                             <div className="font-extrabold text-white text-[9px] sm:text-[10px] truncate px-0.5" title={ev.name}>{shortName}</div>
-                            <div className="text-[8px] sm:text-[9px] text-[#E87A2D] font-bold">Max {ev.pointsScale.first}P</div>
                           </th>
                         );
                       })}

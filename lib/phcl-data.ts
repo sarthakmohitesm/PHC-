@@ -73,27 +73,6 @@ export interface MatchFixture {
 // 9 Official PHCL Season 5 Events
 export const PHCL_EVENTS: EventInfo[] = [
   {
-    id: 'box-cricket',
-    name: 'Box Cricket',
-    icon: '🏏',
-    category: 'Outdoor Sports',
-    eventType: 'Group Event',
-    venue: 'Main Lawn',
-    teamSize: '6 Players',
-    description: 'High-octane lawn box cricket with underarm bowling, 3-over matches, and strict boundary rules.',
-    rules: [
-      'Reporting time strictly 9.30 AM.',
-      'Each match consists of 3 overs.',
-      'Maximum 1 over per bowler.',
-      'Wickets count: Catch, Bowled, Run-out, Stumped & Hit Wicket.',
-      'Underarm bowling only; proper bowling action required without throwing.',
-      'Hitting out of the box on a no-ball results in batsman declared OUT.'
-    ],
-    status: 'Completed',
-    scheduledTime: 'Day 1 - 09:30 AM',
-    pointsScale: { first: 50, second: 30, third: 20, participation: 10 }
-  },
-  {
     id: 'futsal',
     name: 'Futsal',
     icon: '⚽',
@@ -115,42 +94,64 @@ export const PHCL_EVENTS: EventInfo[] = [
     pointsScale: { first: 50, second: 30, third: 20, participation: 10 }
   },
   {
-    id: 'athletics',
-    name: 'Athletics (Shuttle Run & Shotput)',
-    icon: '🏃',
-    category: 'Mind & Athletics',
+    id: 'box-cricket',
+    name: 'Box Cricket',
+    icon: '🏏',
+    category: 'Outdoor Sports',
     eventType: 'Group Event',
-    venue: 'Main Ground',
-    teamSize: '2 Participants',
-    description: 'Exhilarating dual athletics challenge combining 50m x 10 Shuttle Run and heavy Shotput throws.',
+    venue: 'Main Lawn',
+    teamSize: '6 Players',
+    description: 'High-octane lawn box cricket with underarm bowling, 3-over matches, and strict boundary rules.',
     rules: [
-      'Shuttle Run: 50m x 10 distance. Spike shoes are NOT allowed. Camera tracking near both finish lines.',
-      'Shotput: 3 rounds per athlete, best attempt considered.',
-      'Shot must be released with one hand above shoulder height.',
-      'Stepping out of circle before landing results in immediate disqualification.',
-      'Shotput weights: Girls 5kg, Boys 7kg.'
+      'Reporting time strictly 9.30 AM.',
+      'Each match consists of 3 overs.',
+      'Maximum 1 over per bowler.',
+      'Wickets count: Catch, Bowled, Run-out, Stumped & Hit Wicket.',
+      'Underarm bowling only; proper bowling action required without throwing.',
+      'Hitting out of the box on a no-ball results in batsman declared OUT.'
     ],
-    status: 'Live',
-    scheduledTime: 'Day 2 - 10:00 AM',
+    status: 'Completed',
+    scheduledTime: 'Day 1 - 09:30 AM',
     pointsScale: { first: 50, second: 30, third: 20, participation: 10 }
   },
   {
-    id: 'gk-quiz',
-    name: 'GK Quiz',
-    icon: '🧠',
-    category: 'Mind & Athletics',
+    id: 'basketball',
+    name: 'Basketball',
+    icon: '🏀',
+    category: 'Outdoor Sports',
     eventType: 'Group Event',
-    venue: 'PHCET Reception',
-    teamSize: '2 Participants',
-    description: 'Multi-round intellectual battle featuring 15s Rapid Fire, Buzzer Round, and High Stakes Q&A.',
+    venue: 'Basketball Court',
+    teamSize: '3 Members',
+    description: 'Fast 3v3 basketball showdown with 6-minute fast-paced half matches.',
     rules: [
-      'Round 1 (Rapid Fire): 2 Groups of 5 teams. 15 seconds to answer max questions. 1 pt per correct answer, 0 neg.',
-      'Round 2 (Buzzer Round): Top 6 teams compete across 15 questions. +3 pts correct, -1 pt incorrect.',
-      'Round 3 (Final Q&A): Top 4 teams compete across 10 questions.',
-      'Q1-3: +3 pts correct, -1 pt neg | Q4-7: +5 pts correct, -3 pts neg | Q8-10: +10 pts correct, -5 pts neg.'
+      'Team size: 3 members per side.',
+      'Duration: 6 minutes total (3 minutes per half).',
+      'Proper basketball kit and court shoes mandatory.',
+      'Scoring: 3-pointer = 2 points, 2-pointer = 1 point.',
+      'Defensive team must play strictly within the defensive lane.'
     ],
     status: 'Completed',
-    scheduledTime: 'Day 2 - 02:00 PM',
+    scheduledTime: 'Day 2 - 04:00 PM',
+    pointsScale: { first: 50, second: 30, third: 20, participation: 10 }
+  },
+  {
+    id: 'relay',
+    name: 'Relay',
+    icon: '🏃',
+    category: 'Outdoor Sports',
+    eventType: 'Group Event',
+    venue: 'Main Ground',
+    teamSize: '4 Participants',
+    description: 'High-speed team baton relay race testing sprint velocity and baton exchange precision.',
+    rules: [
+      'Team consists of 4 runners per squad.',
+      'Baton pass must occur strictly within the designated exchange zone.',
+      'Dropping the baton requires the runner to pick it up without interfering with other lanes.',
+      'Spike shoes are NOT allowed. Proper running attire required.',
+      'Camera tracking near finish line for photo-finish decisions.'
+    ],
+    status: 'Live',
+    scheduledTime: 'Day 2 - 10:00 AM',
     pointsScale: { first: 50, second: 30, third: 20, participation: 10 }
   },
   {
@@ -174,6 +175,44 @@ export const PHCL_EVENTS: EventInfo[] = [
     pointsScale: { first: 50, second: 30, third: 20, participation: 10 }
   },
   {
+    id: 'chess',
+    name: 'Chess',
+    icon: '♟️',
+    category: 'Indoor Sports',
+    eventType: 'Individual Event',
+    venue: 'PHCET Reception',
+    teamSize: '1 Participant',
+    description: 'Tactical grandmaster chess under 10-minute clock control per player.',
+    rules: [
+      'Reporting time strictly 9.30 AM.',
+      'Clock timing: 10 minutes per player.',
+      'Accumulating 2 illegal moves results in immediate loss.',
+      'Misbehavior or distraction results in team disqualification.'
+    ],
+    status: 'Completed',
+    scheduledTime: 'Day 1 - 04:00 PM',
+    pointsScale: { first: 30, second: 20, third: 10, participation: 5 }
+  },
+  {
+    id: 'shotput',
+    name: 'Shotput',
+    icon: '☄️',
+    category: 'Outdoor Sports',
+    eventType: 'Individual Event',
+    venue: 'Main Ground',
+    teamSize: '1 Participant',
+    description: 'Heavy shotput throws testing upper body strength and technique across 3 attempts.',
+    rules: [
+      '3 rounds per athlete, best distance attempt considered.',
+      'Shot must be released with one hand above shoulder height.',
+      'Stepping out of circle before landing results in immediate foul.',
+      'Shotput weights: Girls 5kg, Boys 7kg.'
+    ],
+    status: 'Completed',
+    scheduledTime: 'Day 2 - 11:00 AM',
+    pointsScale: { first: 30, second: 20, third: 10, participation: 5 }
+  },
+  {
     id: 'badminton',
     name: 'Badminton',
     icon: '🏸',
@@ -193,63 +232,22 @@ export const PHCL_EVENTS: EventInfo[] = [
     pointsScale: { first: 30, second: 20, third: 10, participation: 5 }
   },
   {
-    id: 'basketball',
-    name: 'Basketball',
-    icon: '🏀',
-    category: 'Outdoor Sports',
-    eventType: 'Group Event',
-    venue: 'Basketball Court',
-    teamSize: '3 Members',
-    description: 'Fast 3v3 basketball showdown with 6-minute fast-paced half matches.',
-    rules: [
-      'Team size: 3 members per side.',
-      'Duration: 6 minutes total (3 minutes per half).',
-      'Proper basketball kit and court shoes mandatory.',
-      'Scoring: 3-pointer = 2 points, 2-pointer = 1 point.',
-      'Defensive team must play strictly within the defensive lane.'
-    ],
-    status: 'Completed',
-    scheduledTime: 'Day 2 - 04:00 PM',
-    pointsScale: { first: 50, second: 30, third: 20, participation: 10 }
-  },
-  {
-    id: 'table-tennis',
-    name: 'Table Tennis',
-    icon: '🏓',
-    category: 'Indoor Sports',
-    eventType: 'Individual Event',
-    venue: 'Gymkhana',
-    teamSize: '1 Participant',
-    description: 'Rapid ping pong duels under standard ITTF rules up to 7 winning points.',
-    rules: [
-      'Standard ITTF table tennis rules apply.',
-      'If ping pong ball hits net or lands outside court, point awarded to opponent.',
-      'First player to reach 7 points wins the set.',
-      'Matches played as Best of 3 sets.',
-      'Players must bring their own table tennis rackets.'
-    ],
-    status: 'Completed',
-    scheduledTime: 'Day 2 - 12:00 PM',
-    pointsScale: { first: 30, second: 20, third: 10, participation: 5 }
-  },
-  {
-    id: 'chess',
-    name: 'Chess',
-    icon: '♟️',
+    id: 'quiz',
+    name: 'Quiz',
+    icon: '🧠',
     category: 'Mind & Athletics',
-    eventType: 'Individual Event',
+    eventType: 'Group Event',
     venue: 'PHCET Reception',
-    teamSize: '1 Participant',
-    description: 'Tactical grandmaster chess under 10-minute clock control per player.',
+    teamSize: '2 Participants',
+    description: 'Multi-round intellectual battle featuring Rapid Fire, Buzzer Round, and High Stakes Q&A.',
     rules: [
-      'Reporting time strictly 9.30 AM.',
-      'Clock timing: 10 minutes per player.',
-      'Accumulating 2 illegal moves results in immediate loss.',
-      'Misbehavior or distraction results in team disqualification.'
+      'Round 1 (Rapid Fire): 2 Groups of 5 teams. 15 seconds to answer max questions.',
+      'Round 2 (Buzzer Round): Top 6 teams compete across 15 questions.',
+      'Round 3 (Final Q&A): Top 4 teams compete across 10 questions.'
     ],
     status: 'Completed',
-    scheduledTime: 'Day 1 - 04:00 PM',
-    pointsScale: { first: 30, second: 20, third: 10, participation: 5 }
+    scheduledTime: 'Day 2 - 02:00 PM',
+    pointsScale: { first: 50, second: 30, third: 20, participation: 10 }
   }
 ];
 
@@ -306,21 +304,20 @@ export function computeLeaderboard(teams: Team[], eventResults: EventResult[]): 
       breakdown: []
     };
 
-    // Calculate direct scores matrix points assigned by Admin per event
-    if (t.eventScores) {
-      Object.entries(t.eventScores).forEach(([eventId, score]) => {
-        const numScore = Number(score) || 0;
+    // Calculate direct matrix points assigned by Admin per event (only for official 9 PHCL_EVENTS)
+    if (t.eventScores && typeof t.eventScores === 'object') {
+      PHCL_EVENTS.forEach(ev => {
+        const rawScore = t.eventScores ? t.eventScores[ev.id] : undefined;
+        const numScore = Math.max(0, Number(rawScore) || 0);
         if (numScore > 0) {
-          const evObj = PHCL_EVENTS.find(e => e.id === eventId);
           standingsMap[t.id].totalPoints += numScore;
           standingsMap[t.id].eventsParticipated += 1;
-          if (numScore >= 50 || numScore === 30) {
-            standingsMap[t.id].goldCount += 1;
+          if (numScore >= 30) {
             standingsMap[t.id].eventsWon += 1;
           }
           standingsMap[t.id].breakdown.push({
-            eventId,
-            eventName: evObj ? evObj.name : eventId,
+            eventId: ev.id,
+            eventName: ev.name,
             points: numScore,
             position: `Score: +${numScore} pts`
           });
@@ -329,7 +326,7 @@ export function computeLeaderboard(teams: Team[], eventResults: EventResult[]): 
     }
   });
 
-  // Calculate eventResults if matrix score wasn't provided
+  // Calculate eventResults if direct matrix score wasn't set
   eventResults.forEach(res => {
     const eventObj = PHCL_EVENTS.find(e => e.id === res.eventId);
     const scale = eventObj ? eventObj.pointsScale : { first: 50, second: 30, third: 20, participation: 10 };
@@ -340,13 +337,12 @@ export function computeLeaderboard(teams: Team[], eventResults: EventResult[]): 
       if (!alreadyScored) {
         standingsMap[res.firstTeamId].totalPoints += scale.first;
         standingsMap[res.firstTeamId].eventsWon += 1;
-        standingsMap[res.firstTeamId].goldCount += 1;
         standingsMap[res.firstTeamId].eventsParticipated += 1;
         standingsMap[res.firstTeamId].breakdown.push({
           eventId: res.eventId,
-          eventName: res.eventName,
+          eventName: res.eventName || (eventObj ? eventObj.name : res.eventId),
           points: scale.first,
-          position: `🥇 1st Place`
+          position: `1st Place`
         });
       }
     }
@@ -356,13 +352,12 @@ export function computeLeaderboard(teams: Team[], eventResults: EventResult[]): 
       const alreadyScored = standingsMap[res.secondTeamId].breakdown.some(b => b.eventId === res.eventId);
       if (!alreadyScored) {
         standingsMap[res.secondTeamId].totalPoints += scale.second;
-        standingsMap[res.secondTeamId].silverCount += 1;
         standingsMap[res.secondTeamId].eventsParticipated += 1;
         standingsMap[res.secondTeamId].breakdown.push({
           eventId: res.eventId,
-          eventName: res.eventName,
+          eventName: res.eventName || (eventObj ? eventObj.name : res.eventId),
           points: scale.second,
-          position: `🥈 2nd Place`
+          position: `2nd Place`
         });
       }
     }
@@ -372,13 +367,12 @@ export function computeLeaderboard(teams: Team[], eventResults: EventResult[]): 
       const alreadyScored = standingsMap[res.thirdTeamId].breakdown.some(b => b.eventId === res.eventId);
       if (!alreadyScored) {
         standingsMap[res.thirdTeamId].totalPoints += scale.third;
-        standingsMap[res.thirdTeamId].bronzeCount += 1;
         standingsMap[res.thirdTeamId].eventsParticipated += 1;
         standingsMap[res.thirdTeamId].breakdown.push({
           eventId: res.eventId,
-          eventName: res.eventName,
+          eventName: res.eventName || (eventObj ? eventObj.name : res.eventId),
           points: scale.third,
-          position: `🥉 3rd Place`
+          position: `3rd Place`
         });
       }
     }
@@ -390,7 +384,7 @@ export function computeLeaderboard(teams: Team[], eventResults: EventResult[]): 
     ...standingsMap[t.id]
   }));
 
-  // Sort by Total Points descending, then Events Won descending
+  // Sort by Total Points descending, then Events Won descending, then team name
   list.sort((a, b) => {
     if (b.totalPoints !== a.totalPoints) return b.totalPoints - a.totalPoints;
     if (b.eventsWon !== a.eventsWon) return b.eventsWon - a.eventsWon;

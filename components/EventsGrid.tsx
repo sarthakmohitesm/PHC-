@@ -42,7 +42,7 @@ export const EventsGrid: React.FC<EventsGridProps> = ({
             <h2 className="text-2xl font-black text-white tracking-wide">PHCL Season 5 Official Events</h2>
           </div>
           <p className="text-xs text-slate-400 mt-1">
-            Exact regulations, venues, and points system from the Season 5 Manual. Group events (50/30/20/10 pts) and Individual events (30/20/10/5 pts).
+            Exact regulations, venues, and match rules from the Season 5 Manual. Event points are calculated live and displayed on the Leaderboard!
           </p>
         </div>
 
@@ -70,7 +70,6 @@ export const EventsGrid: React.FC<EventsGridProps> = ({
           const res = getEventResult(ev.id);
           const isCompleted = ev.status === 'Completed' || !!res?.firstTeamId;
           const isLive = ev.status === 'Live';
-          const scale = ev.pointsScale;
 
           return (
             <div
@@ -127,26 +126,6 @@ export const EventsGrid: React.FC<EventsGridProps> = ({
                   </div>
                 </div>
 
-                {/* Winner Card if Completed */}
-                {res && (
-                  <div className="bg-black/30 backdrop-blur-sm p-3 rounded-xl border border-amber-500/20 space-y-1">
-                    <div className="text-[10px] text-amber-400 font-bold uppercase flex items-center gap-1">
-                      <Award className="w-3.5 h-3.5" /> Event Podium Winners
-                    </div>
-                    <div className="text-xs font-bold text-white flex items-center justify-between">
-                      <span>🥇 1st: {getTeamName(res.firstTeamId)}</span>
-                      <span className="text-amber-400 font-black">+{scale.first} pts</span>
-                    </div>
-                    <div className="text-[11px] text-slate-300 flex items-center justify-between">
-                      <span>🥈 2nd: {getTeamName(res.secondTeamId)}</span>
-                      <span className="text-slate-400 font-semibold">+{scale.second} pts</span>
-                    </div>
-                    <div className="text-[11px] text-slate-400 flex items-center justify-between">
-                      <span>🥉 3rd: {getTeamName(res.thirdTeamId)}</span>
-                      <span className="text-amber-600 font-semibold">+{scale.third} pts</span>
-                    </div>
-                  </div>
-                )}
               </div>
 
               {/* Action Button */}
@@ -202,8 +181,8 @@ export const EventsGrid: React.FC<EventsGridProps> = ({
             </div>
 
             <div className="bg-slate-950 p-3 rounded-xl border border-amber-500/20 text-xs flex justify-between items-center text-slate-300">
-              <span>Points scale ({activeRuleModal.eventType}):</span>
-              <span className="font-bold text-amber-400">🥇 {activeRuleModal.pointsScale.first} | 🥈 {activeRuleModal.pointsScale.second} | 🥉 {activeRuleModal.pointsScale.third} | 🎖️ {activeRuleModal.pointsScale.participation}</span>
+              <span>Event points calculation:</span>
+              <span className="font-bold text-amber-400">Points are displayed on the Leaderboard</span>
             </div>
 
             <button

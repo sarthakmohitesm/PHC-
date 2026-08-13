@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Team } from '@/lib/phcl-data';
 
 const DEFAULT_CAPTAIN_IMAGES = [
@@ -28,29 +28,29 @@ const DEFAULT_TEAM_NAMES = [
 ];
 
 const BANNER_GRADIENTS = [
-  'from-amber-500 via-orange-600 to-[#E87A2D]',   // #1 Gold/Orange
-  'from-blue-600 via-indigo-600 to-blue-800',     // #2 Blue
-  'from-emerald-600 via-teal-600 to-green-800',   // #3 Green
-  'from-red-600 via-rose-600 to-red-900',         // #4 Crimson
-  'from-purple-600 via-fuchsia-700 to-indigo-900',// #5 Purple
-  'from-teal-500 via-cyan-600 to-teal-800',       // #6 Cyan
-  'from-rose-500 via-pink-600 to-rose-900',       // #7 Pink
-  'from-amber-700 via-orange-800 to-amber-950',   // #8 Bronze
-  'from-lime-600 via-emerald-600 to-lime-900',    // #9 Lime/Green
-  'from-cyan-600 via-blue-700 to-indigo-950',     // #10 Ocean
+  'from-amber-500 via-orange-600 to-[#E87A2D]',
+  'from-blue-600 via-indigo-600 to-blue-800',
+  'from-emerald-600 via-teal-600 to-green-800',
+  'from-red-600 via-rose-600 to-red-900',
+  'from-purple-600 via-fuchsia-700 to-indigo-900',
+  'from-teal-500 via-cyan-600 to-teal-800',
+  'from-rose-500 via-pink-600 to-rose-900',
+  'from-amber-700 via-orange-800 to-amber-950',
+  'from-lime-600 via-emerald-600 to-lime-900',
+  'from-cyan-600 via-blue-700 to-indigo-950',
 ];
 
 const GLOW_COLORS = [
-  'rgba(245, 158, 11, 0.45)',  // Amber/Gold
-  'rgba(59, 130, 246, 0.45)',   // Blue
-  'rgba(16, 185, 129, 0.45)',  // Green
-  'rgba(239, 68, 68, 0.45)',   // Red
-  'rgba(168, 85, 247, 0.45)',  // Purple
-  'rgba(20, 184, 166, 0.45)',  // Teal
-  'rgba(244, 63, 94, 0.45)',   // Pink
-  'rgba(217, 119, 6, 0.45)',   // Bronze
-  'rgba(132, 204, 22, 0.45)',  // Lime
-  'rgba(6, 182, 212, 0.45)',   // Cyan
+  'rgba(245, 158, 11, 0.45)',
+  'rgba(59, 130, 246, 0.45)',
+  'rgba(16, 185, 129, 0.45)',
+  'rgba(239, 68, 68, 0.45)',
+  'rgba(168, 85, 247, 0.45)',
+  'rgba(20, 184, 166, 0.45)',
+  'rgba(244, 63, 94, 0.45)',
+  'rgba(217, 119, 6, 0.45)',
+  'rgba(132, 204, 22, 0.45)',
+  'rgba(6, 182, 212, 0.45)',
 ];
 
 interface CaptainsShowcaseProps {
@@ -62,7 +62,9 @@ export const CaptainsShowcase: React.FC<CaptainsShowcaseProps> = ({
   teams,
   onOpenTeamModal
 }) => {
-  // Build array of 10 captains: use real teams if available, fill rest with placeholders
+  const [startIndex, setStartIndex] = useState(0);
+
+  // Build array of 10 captains
   const captains = Array.from({ length: 10 }, (_, i) => {
     if (i < teams.length) {
       const team = teams[i];
@@ -85,96 +87,112 @@ export const CaptainsShowcase: React.FC<CaptainsShowcaseProps> = ({
     };
   });
 
-  // Layout: 4 Top, 2 Center, 4 Bottom
-  const topRow = captains.slice(0, 4);      // #1, #2, #3, #4
-  const centerRow = captains.slice(4, 6);   // #5, #6
-  const bottomRow = captains.slice(6, 10);  // #7, #8, #9, #10
+  const totalCaptains = captains.length;
+
+  // Auto-rotate: advance by 3 every 3 seconds (shows each group for 3s)
+  const advanceSlider = useCallback(() => {
+    setStartIndex((prev) => (prev + 3) % totalCaptains);
+  }, [totalCaptains]);
+
+  useEffect(() => {
+    const timer = setInterval(advanceSlider, 3000);
+    return () => clearInterval(timer);
+  }, [advanceSlider]);
+
+  // Get current 3 captains to display (wraps around)
+  const visibleCaptains = Array.from({ length: 3 }, (_, i) => {
+    const idx = (startIndex + i) % totalCaptains;
+    return captains[idx];
+  });
+
+  // Dot indicators — one per group of 3
+  const totalGroups = Math.ceil(totalCaptains / 3); // 4 groups (3+3+3+1)
+  const activeGroup = Math.floor(startIndex / 3);
 
   return (
-    <div className="w-full relative py-2">
-      {/* Background Animated Ambient Orbs */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#E87A2D]/10 rounded-full blur-[100px] pointer-events-none -z-10 animate-pulse" />
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-[80px] pointer-events-none -z-10" />
-
-      {/* Header section with subtle animated wheat icons */}
+    <div className="w-full relative py-6">
+      {/* Header */}
       <div className="text-center mb-5">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="flex items-center justify-center gap-2"
+          className="flex items-center justify-center gap-3"
         >
           <motion.span
             animate={{ rotate: [-5, 5, -5] }}
             transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-            className="text-amber-400 text-sm inline-block"
+            className="text-amber-400 text-lg inline-block"
           >
             🌾
           </motion.span>
-          <h3 className="text-xs sm:text-sm font-black uppercase tracking-[0.2em] text-white">
+          <h3 className="text-lg sm:text-xl font-black uppercase tracking-[0.25em] text-white">
             10 Team Captains • Season 5
           </h3>
           <motion.span
             animate={{ rotate: [5, -5, 5] }}
             transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-            className="text-amber-400 text-sm inline-block"
+            className="text-amber-400 text-lg inline-block"
           >
             🌾
           </motion.span>
         </motion.div>
-        <p className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">
+        <p className="text-xs sm:text-sm font-bold text-slate-400 uppercase tracking-widest mt-2">
           Leading. Competing. Winning Together.
         </p>
       </div>
 
-      {/* 3-Tier Layout: 4 Top, 2 Center, 4 Bottom */}
-      <div className="space-y-3.5">
-        {/* Top Row: 4 Captains */}
-        <div className="grid grid-cols-4 gap-2.5 sm:gap-3.5">
-          {topRow.map((captain) => (
-            <CaptainCard
-              key={captain.id}
-              captain={captain}
-              index={captain.originalIndex}
-              bannerGradient={BANNER_GRADIENTS[captain.originalIndex]}
-              glowColor={GLOW_COLORS[captain.originalIndex]}
-              onOpenTeamModal={onOpenTeamModal}
-            />
-          ))}
+      {/* 3-Card Animated Slider */}
+      <div className="relative overflow-hidden">
+        <div className="grid grid-cols-3 gap-4 sm:gap-6">
+          <AnimatePresence mode="popLayout">
+            {visibleCaptains.map((captain, i) => (
+              <motion.div
+                key={`${startIndex}-${captain.id}`}
+                initial={{ opacity: 0, x: 80, scale: 0.9 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                exit={{ opacity: 0, x: -80, scale: 0.9 }}
+                transition={{
+                  duration: 0.5,
+                  delay: i * 0.08,
+                  type: 'spring',
+                  stiffness: 200,
+                  damping: 22,
+                }}
+              >
+                <CaptainCard
+                  captain={captain}
+                  index={captain.originalIndex}
+                  bannerGradient={BANNER_GRADIENTS[captain.originalIndex]}
+                  glowColor={GLOW_COLORS[captain.originalIndex]}
+                  onOpenTeamModal={onOpenTeamModal}
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
+      </div>
 
-        {/* Center Row: 2 Captains (Centered) */}
-        <div className="flex justify-center gap-2.5 sm:gap-3.5">
-          {centerRow.map((captain) => (
-            <div key={captain.id} className="w-[calc(25%-0.5rem)]">
-              <CaptainCard
-                captain={captain}
-                index={captain.originalIndex}
-                bannerGradient={BANNER_GRADIENTS[captain.originalIndex]}
-                glowColor={GLOW_COLORS[captain.originalIndex]}
-                onOpenTeamModal={onOpenTeamModal}
-              />
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom Row: 4 Captains */}
-        <div className="grid grid-cols-4 gap-2.5 sm:gap-3.5">
-          {bottomRow.map((captain) => (
-            <CaptainCard
-              key={captain.id}
-              captain={captain}
-              index={captain.originalIndex}
-              bannerGradient={BANNER_GRADIENTS[captain.originalIndex]}
-              glowColor={GLOW_COLORS[captain.originalIndex]}
-              onOpenTeamModal={onOpenTeamModal}
-            />
-          ))}
-        </div>
+      {/* Dot Indicators */}
+      <div className="flex items-center justify-center gap-2 mt-5">
+        {Array.from({ length: totalGroups }, (_, i) => (
+          <button
+            key={i}
+            onClick={() => setStartIndex(i * 3)}
+            className={`transition-all duration-300 rounded-full cursor-pointer ${
+              i === activeGroup
+                ? 'w-8 h-2.5 bg-[#E87A2D]'
+                : 'w-2.5 h-2.5 bg-white/20 hover:bg-white/40'
+            }`}
+            aria-label={`Go to group ${i + 1}`}
+          />
+        ))}
       </div>
     </div>
   );
 };
+
+/* ─── Captain Card ──────────────────────────────── */
 
 interface CaptainCardProps {
   captain: {
@@ -195,16 +213,7 @@ const CaptainCard: React.FC<CaptainCardProps> = ({ captain, index, bannerGradien
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 25, scale: 0.92 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{
-        duration: 0.45,
-        delay: index * 0.05,
-        type: 'spring',
-        stiffness: 200,
-        damping: 18
-      }}
-      whileHover={{ y: -7, scale: 1.04 }}
+      whileHover={{ y: -10, scale: 1.04 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       className={`group relative rounded-xl sm:rounded-2xl overflow-hidden bg-[#0d1322] border transition-all duration-300 flex flex-col justify-between ${
@@ -213,12 +222,12 @@ const CaptainCard: React.FC<CaptainCardProps> = ({ captain, index, bannerGradien
           : 'border-slate-800/50 opacity-70'
       } ${captain.isReal ? 'cursor-pointer' : 'cursor-default'}`}
       style={{
-        boxShadow: isHovered ? `0 10px 25px -5px ${glowColor}, 0 0 15px ${glowColor}` : '0 4px 12px rgba(0,0,0,0.3)',
+        boxShadow: isHovered ? `0 12px 30px -5px ${glowColor}, 0 0 20px ${glowColor}` : '0 4px 15px rgba(0,0,0,0.3)',
         borderColor: isHovered ? glowColor : undefined
       }}
       onClick={() => captain.isReal ? onOpenTeamModal(captain.id) : undefined}
     >
-      {/* Dynamic Sheen Sweep Reflection on Hover */}
+      {/* Sheen Sweep on Hover */}
       <motion.div
         animate={{
           x: isHovered ? ['-100%', '200%'] : '-100%'
@@ -230,34 +239,34 @@ const CaptainCard: React.FC<CaptainCardProps> = ({ captain, index, bannerGradien
         className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -skew-x-12 z-20 pointer-events-none"
       />
 
-      {/* Top Image Container with Smooth Zoom */}
-      <div className="relative w-full aspect-[4/4.5] overflow-hidden bg-slate-950">
+
+
+      {/* Image */}
+      <div className="relative w-full aspect-[3/4] overflow-hidden bg-slate-950">
         <img
           src={captain.image}
           alt={captain.name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
         />
-
-        {/* Dark Gradient Overlay for Depth */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0d1322] via-transparent to-black/30 opacity-70 group-hover:opacity-40 transition-opacity duration-300" />
       </div>
 
-      {/* Middle Team Banner Ribbon with Shimmer Line */}
-      <div className={`w-full py-1.5 px-1 bg-gradient-to-r ${bannerGradient} flex items-center justify-center shadow-md relative overflow-hidden`}>
+      {/* Team Banner */}
+      <div className={`w-full py-2 px-3 bg-gradient-to-r ${bannerGradient} flex items-center justify-center shadow-md relative overflow-hidden`}>
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-        <span className="text-[9px] sm:text-[11px] font-black text-white truncate tracking-wide uppercase drop-shadow-sm relative z-10">
+        <span className="text-[10px] sm:text-sm font-black text-white truncate tracking-wide uppercase drop-shadow-sm relative z-10">
           {captain.teamName}
         </span>
       </div>
 
-      {/* Bottom Name & Role Section */}
-      <div className="py-2.5 px-1.5 text-center bg-[#0a0f1b] transition-colors duration-300">
-        <div className={`text-[10px] sm:text-xs font-black truncate leading-tight transition-all duration-300 ${
+      {/* Name & Role */}
+      <div className="py-3 px-3 text-center bg-[#0a0f1b] transition-colors duration-300">
+        <div className={`text-xs sm:text-sm font-black truncate leading-tight transition-all duration-300 ${
           isHovered ? 'text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]' : 'text-slate-100'
         }`}>
           {captain.name}
         </div>
-        <div className="text-[8px] sm:text-[9px] text-slate-400 font-bold uppercase tracking-wider mt-0.5 group-hover:text-amber-400 transition-colors duration-300">
+        <div className="text-[9px] sm:text-xs text-slate-400 font-bold uppercase tracking-wider mt-1 group-hover:text-amber-400 transition-colors duration-300">
           Captain
         </div>
       </div>

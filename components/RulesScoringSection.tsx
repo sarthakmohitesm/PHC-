@@ -21,16 +21,16 @@ export const RulesScoringSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Points System Comparison Banner (Group vs Individual) */}
+      {/* Points & Leaderboard Notice Banner */}
       <div className="space-y-4">
         <h3 className="text-lg font-black text-white flex items-center gap-2">
           <Trophy className="w-5 h-5 text-amber-400" />
-          Season 5 Official Points System Matrix
+          Season 5 Official Events & Leaderboard System
         </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           
-          {/* Group Events Points Box */}
+          {/* Group Events Box */}
           <div className="glass-card rounded-2xl p-6 !border-2 !border-amber-500/50 space-y-4" style={{ boxShadow: '0 0 20px rgba(245, 158, 11, 0.06), 0 4px 24px rgba(0,0,0,0.15)' }}>
             <div className="flex items-center justify-between">
               <div>
@@ -38,31 +38,18 @@ export const RulesScoringSection: React.FC = () => {
                 <h4 className="text-xl font-black text-white">Group Events</h4>
               </div>
               <span className="text-xs px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 font-bold border border-amber-500/40">
-                Box Cricket, Futsal, Basketball, Athletics, GK Quiz, Debate
+                Futsal, Box Cricket, Basketball, Relay, Debate, Quiz
               </span>
             </div>
 
-            <div className="grid grid-cols-4 gap-2 text-center pt-2">
-              <div className="bg-slate-950 p-3 rounded-xl border border-amber-500/30">
-                <span className="block text-[10px] text-slate-400 font-bold uppercase">🥇 1st Place</span>
-                <span className="text-2xl font-black text-amber-400">50 Pts</span>
-              </div>
-              <div className="bg-slate-950 p-3 rounded-xl border border-slate-700">
-                <span className="block text-[10px] text-slate-400 font-bold uppercase">🥈 2nd Place</span>
-                <span className="text-2xl font-black text-slate-200">30 Pts</span>
-              </div>
-              <div className="bg-slate-950 p-3 rounded-xl border border-amber-800">
-                <span className="block text-[10px] text-slate-400 font-bold uppercase">🥉 3rd Place</span>
-                <span className="text-2xl font-black text-amber-600">20 Pts</span>
-              </div>
-              <div className="bg-slate-950 p-3 rounded-xl border border-slate-800">
-                <span className="block text-[10px] text-slate-400 font-bold uppercase">🎖️ Participated</span>
-                <span className="text-2xl font-black text-cyan-400">10 Pts</span>
-              </div>
+            <div className="bg-slate-950 p-4 rounded-xl border border-amber-500/30 text-center">
+              <span className="block text-xs text-slate-300 font-medium">
+                🏆 Group event victories award maximum team points. All earned points are updated live directly on the <strong className="text-amber-400 font-bold">Leaderboard</strong>!
+              </span>
             </div>
           </div>
 
-          {/* Individual Events Points Box */}
+          {/* Individual Events Box */}
           <div className="glass-card rounded-2xl p-6 !border-2 !border-[#1C6E7D]/50 space-y-4" style={{ boxShadow: '0 0 20px rgba(28, 110, 125, 0.06), 0 4px 24px rgba(0,0,0,0.15)' }}>
             <div className="flex items-center justify-between">
               <div>
@@ -70,27 +57,14 @@ export const RulesScoringSection: React.FC = () => {
                 <h4 className="text-xl font-black text-white">Individual Events</h4>
               </div>
               <span className="text-xs px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/40">
-                Badminton, Table Tennis, Chess
+                Chess, Shotput, Badminton
               </span>
             </div>
 
-            <div className="grid grid-cols-4 gap-2 text-center pt-2">
-              <div className="bg-slate-950 p-3 rounded-xl border border-cyan-500/30">
-                <span className="block text-[10px] text-slate-400 font-bold uppercase">🥇 1st Place</span>
-                <span className="text-2xl font-black text-amber-400">30 Pts</span>
-              </div>
-              <div className="bg-slate-950 p-3 rounded-xl border border-slate-700">
-                <span className="block text-[10px] text-slate-400 font-bold uppercase">🥈 2nd Place</span>
-                <span className="text-2xl font-black text-slate-200">20 Pts</span>
-              </div>
-              <div className="bg-slate-950 p-3 rounded-xl border border-amber-800">
-                <span className="block text-[10px] text-slate-400 font-bold uppercase">🥉 3rd Place</span>
-                <span className="text-2xl font-black text-amber-600">10 Pts</span>
-              </div>
-              <div className="bg-slate-950 p-3 rounded-xl border border-slate-800">
-                <span className="block text-[10px] text-slate-400 font-bold uppercase">🎖️ Participated</span>
-                <span className="text-2xl font-black text-cyan-400">5 Pts</span>
-              </div>
+            <div className="bg-slate-950 p-4 rounded-xl border border-cyan-500/30 text-center">
+              <span className="block text-xs text-slate-300 font-medium">
+                🎯 Individual event performances contribute directly to total team standings on the <strong className="text-cyan-400 font-bold">Leaderboard</strong>!
+              </span>
             </div>
           </div>
 
