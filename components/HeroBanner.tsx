@@ -52,7 +52,8 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
                 <span className="text-sm text-slate-300 font-bold">PHCL 2026</span>
               </div>
               <p className="text-slate-400 text-base sm:text-lg max-w-2xl font-normal leading-relaxed pt-2">
-                9 Thrilling Events. 10 Captains. 220 Athletes. The ultimate sports battle for total supremacy at Euforia. Points update live after every victory!
+                One College. One Spirit. One Championship. 🏆
+                Where passion meets performance, and every victory brings glory to your team!
               </p>
             </div>
 
