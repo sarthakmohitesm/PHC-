@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Team } from '@/lib/phcl-data';
 
 const DEFAULT_CAPTAIN_IMAGES = [
@@ -88,26 +89,22 @@ export const CaptainsShowcase: React.FC<CaptainsShowcaseProps> = ({
   });
 
   const totalCaptains = captains.length;
+  const totalGroups = Math.ceil(totalCaptains / 3);
+  const activeGroup = Math.floor(startIndex / 3);
 
-  // Auto-rotate: advance by 3 every 3 seconds (shows each group for 3s)
-  const advanceSlider = useCallback(() => {
-    setStartIndex((prev) => (prev + 3) % totalCaptains);
-  }, [totalCaptains]);
+  const goToPreviousGroup = () => {
+    setStartIndex(((activeGroup - 1 + totalGroups) % totalGroups) * 3);
+  };
 
-  useEffect(() => {
-    const timer = setInterval(advanceSlider, 3000);
-    return () => clearInterval(timer);
-  }, [advanceSlider]);
+  const goToNextGroup = () => {
+    setStartIndex(((activeGroup + 1) % totalGroups) * 3);
+  };
 
   // Get current 3 captains to display (wraps around)
   const visibleCaptains = Array.from({ length: 3 }, (_, i) => {
     const idx = (startIndex + i) % totalCaptains;
     return captains[idx];
   });
-
-  // Dot indicators — one per group of 3
-  const totalGroups = Math.ceil(totalCaptains / 3); // 4 groups (3+3+3+1)
-  const activeGroup = Math.floor(startIndex / 3);
 
   return (
     <div className="w-full relative py-6">
@@ -144,6 +141,23 @@ export const CaptainsShowcase: React.FC<CaptainsShowcaseProps> = ({
 
       {/* 3-Card Animated Slider */}
       <div className="relative overflow-hidden">
+        <button
+          type="button"
+          onClick={goToPreviousGroup}
+          aria-label="Previous captains"
+          className="absolute left-1 top-1/2 z-30 -translate-y-1/2 rounded-full border border-white/20 bg-[#111a2e]/90 p-2 text-white shadow-lg transition-colors hover:bg-[#E87A2D]"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+        <button
+          type="button"
+          onClick={goToNextGroup}
+          aria-label="Next captains"
+          className="absolute right-1 top-1/2 z-30 -translate-y-1/2 rounded-full border border-white/20 bg-[#111a2e]/90 p-2 text-white shadow-lg transition-colors hover:bg-[#E87A2D]"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
+
         <div className="grid grid-cols-3 gap-4 sm:gap-6">
           <AnimatePresence mode="popLayout">
             {visibleCaptains.map((captain, i) => (
