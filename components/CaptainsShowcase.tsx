@@ -5,29 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Team } from '@/lib/phcl-data';
 
-const DEFAULT_CAPTAIN_IMAGES = [
-  'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=400&h=500&fit=crop&crop=face',
-  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=face',
-  'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop&crop=face',
-  'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=500&fit=crop&crop=face',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0QtEgIYy6isuo8YkT1Gz795LJicbP2ZkAg5hT59g9Vg&sw=400&h=500&fit=crop&crop=face',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiN7mvAEr11eIfEZ1Wtei5W2O9zd9JPp0xiyTltrFs-w&sw=400&h=500&fit=crop&crop=face',
-  'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=500&fit=crop&crop=face',
-  'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=400&h=500&fit=crop&crop=face',
-  'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=500&fit=crop&crop=face',
-  'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=500&fit=crop&crop=face',
-];
-
-const DEFAULT_CAPTAIN_NAMES = [
-  'Sarthak Mohite', 'Captain 2', 'Captain 3', 'Captain 4', 'Captain 5',
-  'Captain 6', 'Captain 7', 'Captain 8', 'Captain 9', 'Captain 10',
-];
-
-const DEFAULT_TEAM_NAMES = [
-  'Team Unknown', 'Team Bravo', 'Team Charlie', 'Team Delta', 'Team Echo',
-  'Team Foxtrot', 'Team Golf', 'Team Hotel', 'Team India', 'Team Juliet',
-];
-
 const BANNER_GRADIENTS = [
   'from-amber-500 via-orange-600 to-[#E87A2D]',
   'from-blue-600 via-indigo-600 to-blue-800',
@@ -65,30 +42,28 @@ export const CaptainsShowcase: React.FC<CaptainsShowcaseProps> = ({
 }) => {
   const [startIndex, setStartIndex] = useState(0);
 
-  // Build array of 10 captains
-  const captains = Array.from({ length: 10 }, (_, i) => {
-    if (i < teams.length) {
-      const team = teams[i];
-      return {
-        id: team.id,
-        name: team.captain,
-        teamName: team.name,
-        image: team.captainImage,
-        isReal: true,
-        originalIndex: i,
-      };
-    }
-    return {
-      id: `placeholder-${i}`,
-      name: DEFAULT_CAPTAIN_NAMES[i],
-      teamName: DEFAULT_TEAM_NAMES[i],
-      image: DEFAULT_CAPTAIN_IMAGES[i],
-      isReal: false,
-      originalIndex: i,
-    };
-  });
+  const captains = teams
+    .filter(team => team && team.id && team.captain)
+    .map((team, index) => ({
+      id: team.id,
+      name: team.captain,
+      teamName: team.name,
+      image: team.captainImage,
+      isReal: true,
+      originalIndex: index,
+    }));
 
   const totalCaptains = captains.length;
+  if (totalCaptains === 0) {
+    return (
+      <div className="w-full py-8 text-center">
+        <p className="text-sm font-bold uppercase tracking-[0.2em] text-slate-400">
+          No captains added yet
+        </p>
+      </div>
+    );
+  }
+
   const totalGroups = Math.ceil(totalCaptains / 3);
   const activeGroup = Math.floor(startIndex / 3);
 
@@ -124,7 +99,7 @@ export const CaptainsShowcase: React.FC<CaptainsShowcaseProps> = ({
             🌾
           </motion.span>
           <h3 className="text-lg sm:text-xl font-black uppercase tracking-[0.25em] text-white">
-            10 Team Captains • Season 5
+            {totalCaptains} Team Captain{totalCaptains === 1 ? '' : 's'} • Season 5
           </h3>
           <motion.span
             animate={{ rotate: [5, -5, 5] }}
@@ -141,22 +116,26 @@ export const CaptainsShowcase: React.FC<CaptainsShowcaseProps> = ({
 
       {/* 3-Card Animated Slider */}
       <div className="relative overflow-hidden">
-        <button
-          type="button"
-          onClick={goToPreviousGroup}
-          aria-label="Previous captains"
-          className="absolute left-1 top-1/2 z-30 -translate-y-1/2 rounded-full border border-white/20 bg-[#111a2e]/90 p-2 text-white shadow-lg transition-colors hover:bg-[#E87A2D]"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </button>
-        <button
-          type="button"
-          onClick={goToNextGroup}
-          aria-label="Next captains"
-          className="absolute right-1 top-1/2 z-30 -translate-y-1/2 rounded-full border border-white/20 bg-[#111a2e]/90 p-2 text-white shadow-lg transition-colors hover:bg-[#E87A2D]"
-        >
-          <ChevronRight className="h-5 w-5" />
-        </button>
+        {totalGroups > 1 && (
+          <>
+            <button
+              type="button"
+              onClick={goToPreviousGroup}
+              aria-label="Previous captains"
+              className="absolute left-1 top-1/2 z-30 -translate-y-1/2 rounded-full border border-white/20 bg-[#111a2e]/90 p-2 text-white shadow-lg transition-colors hover:bg-[#E87A2D]"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              onClick={goToNextGroup}
+              aria-label="Next captains"
+              className="absolute right-1 top-1/2 z-30 -translate-y-1/2 rounded-full border border-white/20 bg-[#111a2e]/90 p-2 text-white shadow-lg transition-colors hover:bg-[#E87A2D]"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </>
+        )}
 
         <div className="grid grid-cols-3 gap-4 sm:gap-6">
           <AnimatePresence mode="popLayout">
