@@ -41,7 +41,7 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({
 
   return (
     <div
-      className="relative bottom-15  w-full h-full overflow-hidden rounded-2xl border  border-white/12"
+      className="relative w-full overflow-hidden rounded-2xl border border-white/12"
       style={{
         background: 'rgba(30, 41, 59, 0.35)',
         backdropFilter: 'blur(20px)',
@@ -58,7 +58,7 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({
 
       {/* Slides */}
       
-      <div className="relative w-full h-120  aspect-video overflow-hidden rounded-2xl">
+      <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] lg:aspect-video overflow-hidden rounded-2xl">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}

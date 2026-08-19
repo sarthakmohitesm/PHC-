@@ -25,7 +25,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Top: Hero Info (left) + Image Slider (right) ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-12 md:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start py-8 sm:py-10 lg:py-12 xl:py-16">
 
           {/* Left: Hero Info */}
           <div className="lg:col-span-5 space-y-5">
@@ -110,7 +110,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
           </div>
 
           {/* Right: Image Slider */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 w-full mt-2 lg:mt-0">
             <ImageSlider />
           </div>
 
