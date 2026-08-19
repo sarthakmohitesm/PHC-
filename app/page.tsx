@@ -22,6 +22,7 @@ import {
 export default function Home() {
   const [activeTab, setActiveTab] = useState<string>('home');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(true);
   
   const [teams, setTeams] = useState<Team[]>(INITIAL_TEAMS);
   const [eventResults, setEventResults] = useState<EventResult[]>(INITIAL_EVENT_RESULTS);
@@ -29,6 +30,9 @@ export default function Home() {
 
   // Fetch dynamic data from MongoDB API
   const loadDataFromApi = useCallback(async () => {
+    const startTime = Date.now();
+    setIsLoading(true);
+
     try {
       // Teams
       const resTeams = await fetch('/api/teams');
@@ -45,6 +49,16 @@ export default function Home() {
       }
     } catch (err) {
       console.warn('API fetch error, using local state:', err);
+    } finally {
+      const elapsed = Date.now() - startTime;
+      const minimumDelay = 900;
+      const remainingDelay = Math.max(0, minimumDelay - elapsed);
+
+      if (remainingDelay > 0) {
+        await new Promise((resolve) => setTimeout(resolve, remainingDelay));
+      }
+
+      setIsLoading(false);
     }
   }, []);
 
@@ -78,6 +92,47 @@ export default function Home() {
   const handleCloseTeamModal = () => {
     setSelectedTeamId(null);
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_top,_#1e293b_0%,_#0f172a_35%,_#020817_100%)] text-white">
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(232,122,45,0.18),transparent,rgba(59,130,246,0.18))]" />
+          <div className="absolute left-1/2 top-1/2 h-[32rem] w-[32rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 bg-white/5 blur-3xl" />
+        </div>
+
+        <div className="relative z-10 flex flex-col items-center gap-8 px-6 text-center">
+          <div className="relative h-28 w-28 [transform-style:preserve-3d]">
+            <div className="absolute inset-0 rounded-full border border-white/10 bg-white/5 shadow-[0_0_40px_rgba(232,122,45,0.25)] backdrop-blur-sm" />
+            <div className="absolute inset-2 rounded-full border border-[#E87A2D]/60 bg-[#E87A2D]/10 shadow-[inset_0_0_25px_rgba(232,122,45,0.3)]" />
+            <div className="absolute inset-0 rounded-full border-4 border-t-[#E87A2D] border-r-[#fbbf24] border-b-transparent border-l-transparent animate-spin [animation-duration:1.7s] shadow-[0_0_30px_rgba(251,191,36,0.6)]" />
+            <div className="absolute inset-5 rounded-full border border-white/20 bg-[#0f172a]/80 shadow-[0_10px_30px_rgba(15,23,42,0.9)]" />
+            <div className="absolute inset-0 flex items-center justify-center text-3xl font-black text-[#E87A2D] [transform:translateZ(28px)]">
+              PHCL
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <p className="text-[10px] font-black uppercase tracking-[0.55em] text-[#fbbf24]">
+              Welcome to
+            </p>
+            <h1 className="text-4xl font-black tracking-[0.08em] text-white sm:text-5xl md:text-6xl [text-shadow:0_10px_25px_rgba(15,23,42,0.9)]">
+              PHCL
+            </h1>
+            <p className="text-lg font-semibold tracking-[0.22em] text-slate-200 uppercase sm:text-xl">
+              Pillai HOC College League
+            </p>
+          </div>
+
+          <div className="w-72 max-w-full">
+            <div className="h-1.5 overflow-hidden rounded-full bg-white/10 shadow-inner">
+              <div className="h-full w-1/2 rounded-full bg-[linear-gradient(90deg,#fbbf24,#E87A2D,#fb7185)] animate-[pulse_1.6s_ease-in-out_infinite]" />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col justify-between bg-[#0f172a] text-slate-100">
