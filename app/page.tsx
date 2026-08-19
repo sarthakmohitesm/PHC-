@@ -8,7 +8,6 @@ import { LeaderboardTable } from '@/components/LeaderboardTable';
 import { TeamsGrid } from '@/components/TeamsGrid';
 import { TeamRosterModal } from '@/components/TeamRosterModal';
 import { EventsGrid } from '@/components/EventsGrid';
-import { RulesScoringSection } from '@/components/RulesScoringSection';
 import { AdminPanel } from '@/components/AdminPanel';
 import { Footer } from '@/components/Footer';
 
@@ -150,11 +149,6 @@ export default function Home() {
               eventResults={eventResults}
               teams={teams}
             />
-          )}
-
-          {/* Rules & Points System View */}
-          {activeTab === 'rules' && (
-            <RulesScoringSection />
           )}
 
         </div>
