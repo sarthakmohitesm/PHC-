@@ -57,20 +57,33 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
 
     if (action === 'updateTeam' && teamData) {
       if (db) {
-        const updated = await TeamModel.findOneAndUpdate(
-          { id },
-          { $set: teamData },
-          { new: true }
-        );
-        if (updated) {
-          const idx = globalStore.teams.findIndex(t => t.id === id);
-          if (idx !== -1) globalStore.teams[idx] = updated.toObject();
-          return NextResponse.json({ success: true, team: updated });
+        const existingTeam = await TeamModel.findOne({ id });
+        if (existingTeam) {
+          if (teamData.captain && existingTeam.members && existingTeam.members.length > 0) {
+            const captMem = existingTeam.members.find((m: any) => m.role === 'Captain');
+            if (captMem) captMem.name = teamData.captain;
+            teamData.members = existingTeam.members;
+          }
+          const updated = await TeamModel.findOneAndUpdate(
+            { id },
+            { $set: teamData },
+            { new: true }
+          );
+          if (updated) {
+            const idx = globalStore.teams.findIndex(t => t.id === id);
+            if (idx !== -1) globalStore.teams[idx] = updated.toObject();
+            return NextResponse.json({ success: true, team: updated });
+          }
         }
       }
 
       const idx = globalStore.teams.findIndex(t => t.id === id);
       if (idx !== -1) {
+        const team = globalStore.teams[idx];
+        if (teamData.captain && team.members && team.members.length > 0) {
+          const captMem = team.members.find((m: any) => m.role === 'Captain');
+          if (captMem) captMem.name = teamData.captain;
+        }
         globalStore.teams[idx] = { ...globalStore.teams[idx], ...teamData };
         return NextResponse.json({ success: true, team: globalStore.teams[idx] });
       }

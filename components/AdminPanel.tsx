@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ShieldCheck, Trophy, Lock, LogOut, RefreshCw, Save, Award, UserPlus, Plus, Trash2, Users, X, UserCheck } from 'lucide-react';
+import { ShieldCheck, Trophy, Lock, LogOut, RefreshCw, Save, Award, UserPlus, Plus, Trash2, Users, X, UserCheck, Pencil, Sparkles, Image as ImageIcon } from 'lucide-react';
 import { Team, PHCL_EVENTS } from '@/lib/phcl-data';
+
+const BADGE_PRESETS = ['⚡', '🦁', '🦅', '🔥', '🏆', '👑', '🛡️', '⚔️', '🐺', '🚀', '⭐', '🐉'];
 
 interface AdminPanelProps {
   teams: Team[];
@@ -38,15 +40,23 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   const [memberYear, setMemberYear] = useState('TE');
   const [memberEvent, setMemberEvent] = useState('Box Cricket');
 
-  // Add Captain Modal / Form State
+  // Add Captain Modal / Form State (Captain Name, Team Name, Badge/Logo, Captain Image)
   const [showAddCaptainModal, setShowAddCaptainModal] = useState<boolean>(false);
   const [newTeamName, setNewTeamName] = useState('');
   const [newCaptainName, setNewCaptainName] = useState('');
-  const [newCaptainBio, setNewCaptainBio] = useState('');
-  const [newMotto, setNewMotto] = useState('');
   const [newBadge, setNewBadge] = useState('⚡');
   const [newCaptainImage, setNewCaptainImage] = useState('');
   const [captainMessage, setCaptainMessage] = useState('');
+
+  // Edit Captain Modal / Form State
+  const [showEditCaptainModal, setShowEditCaptainModal] = useState<boolean>(false);
+  const [editingTeamId, setEditingTeamId] = useState<string | null>(null);
+  const [editTeamName, setEditTeamName] = useState('');
+  const [editCaptainName, setEditCaptainName] = useState('');
+  const [editBadge, setEditBadge] = useState('⚡');
+  const [editCaptainImage, setEditCaptainImage] = useState('');
+  const [editCaptainMessage, setEditCaptainMessage] = useState('');
+  const [isUpdatingCaptain, setIsUpdatingCaptain] = useState(false);
 
   // Sync state from props teams when mounted or refreshed
   useEffect(() => {
@@ -126,34 +136,88 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
       setCaptainMessage('Maximum limit of 10 Captains reached!');
       return;
     }
-    if (!newTeamName || !newCaptainName) return;
+    if (!newTeamName.trim() || !newCaptainName.trim()) {
+      setCaptainMessage('Please provide both Captain Name and Team Name.');
+      return;
+    }
 
     try {
       const res = await fetch('/api/teams', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: newTeamName,
-          captain: newCaptainName,
-          captainBio: newCaptainBio || 'Official PHCL Team Captain',
-          motto: newMotto || 'Strive for Glory!',
-          badgeSymbol: newBadge || '⭐',
+          name: newTeamName.trim(),
+          captain: newCaptainName.trim(),
+          captainBio: `Official Captain of ${newTeamName.trim()}`,
+          motto: 'Strive for Glory!',
+          badgeSymbol: newBadge || '⚡',
           captainImage: newCaptainImage || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300'
         })
       });
       const data = await res.json();
       if (data.success) {
-        setCaptainMessage(`Captain "${newCaptainName}" added successfully!`);
+        setCaptainMessage('');
         setNewTeamName('');
         setNewCaptainName('');
-        setNewCaptainBio('');
-        setNewMotto('');
+        setNewBadge('⚡');
         setNewCaptainImage('');
         setShowAddCaptainModal(false);
         onRefreshData();
+      } else {
+        setCaptainMessage(data.message || 'Failed to create captain.');
       }
     } catch {
       setCaptainMessage('Failed to create captain.');
+    }
+  };
+
+  const handleOpenEditCaptain = (team: Team) => {
+    setEditingTeamId(team.id);
+    setEditTeamName(team.name);
+    setEditCaptainName(team.captain);
+    setEditBadge(team.badgeSymbol || '⚡');
+    setEditCaptainImage(team.captainImage || '');
+    setEditCaptainMessage('');
+    setShowEditCaptainModal(true);
+  };
+
+  const handleUpdateCaptain = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingTeamId) return;
+    if (!editTeamName.trim() || !editCaptainName.trim()) {
+      setEditCaptainMessage('Please provide both Captain Name and Team Name.');
+      return;
+    }
+
+    setIsUpdatingCaptain(true);
+    setEditCaptainMessage('');
+
+    try {
+      const res = await fetch(`/api/teams/${editingTeamId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'updateTeam',
+          teamData: {
+            name: editTeamName.trim(),
+            captain: editCaptainName.trim(),
+            badgeSymbol: editBadge || '⚡',
+            captainImage: editCaptainImage || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300'
+          }
+        })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setShowEditCaptainModal(false);
+        setEditingTeamId(null);
+        onRefreshData();
+      } else {
+        setEditCaptainMessage(data.message || 'Failed to update captain.');
+      }
+    } catch {
+      setEditCaptainMessage('Server error updating captain.');
+    } finally {
+      setIsUpdatingCaptain(false);
     }
   };
 
@@ -227,7 +291,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
             <Lock className="w-7 h-7" />
           </div>
           <h2 className="text-2xl font-black text-white">PHCL Admin Portal</h2>
-          <p className="text-xs text-slate-400">Log in to add new Captains, team squad members, and assign game points.</p>
+          <p className="text-xs text-slate-400">Log in to add new Captains, edit details, manage squad members, and assign game points.</p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-4">
@@ -290,7 +354,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
             <div className="flex items-center gap-2">
               <h2 className="text-2xl font-black text-white">PHCL Admin Dashboard</h2>
             </div>
-            <p className="text-xs text-slate-400">Add up to 10 Captains with Team Names, squad members, and assign points.</p>
+            <p className="text-xs text-slate-400">Manage up to 10 Captains (edit name, team name, logo & photo), squad rosters, and assign points.</p>
           </div>
         </div>
 
@@ -350,12 +414,15 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                 <UserCheck className="w-5 h-5 text-[#E87A2D]" />
                 Official Captains Boxes ({teams.length} / 10)
               </h3>
-              <p className="text-xs text-slate-400">Click &quot;Add New Captain&quot; to create a captain box with team name, image, and squad members.</p>
+              <p className="text-xs text-slate-400">Add, edit, or remove Captain details (Name, Team Name, Badge/Logo & Photo) and squad members.</p>
             </div>
 
             {teams.length < 10 && (
               <button
-                onClick={() => setShowAddCaptainModal(true)}
+                onClick={() => {
+                  setCaptainMessage('');
+                  setShowAddCaptainModal(true);
+                }}
                 className="px-5 py-2.5 rounded-lg bg-[#E87A2D] hover:bg-[#d06a20] text-white font-black text-xs transition-all flex items-center gap-2 shadow-md"
               >
                 <Plus className="w-4 h-4" />
@@ -370,7 +437,10 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
             {/* Show Add Captain Card if less than 10 captains */}
             {teams.length < 10 && (
               <div
-                onClick={() => setShowAddCaptainModal(true)}
+                onClick={() => {
+                  setCaptainMessage('');
+                  setShowAddCaptainModal(true);
+                }}
                 className="bg-slate-800/40 border-2 border-dashed border-slate-600 hover:border-[#E87A2D] rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer transition-all min-h-[280px] group"
               >
                 <div className="w-14 h-14 rounded-full bg-[#E87A2D]/10 text-[#E87A2D] group-hover:scale-110 flex items-center justify-center mb-3 transition-transform border border-[#E87A2D]/30">
@@ -379,7 +449,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                 <h4 className="text-base font-extrabold text-white group-hover:text-[#E87A2D] transition-colors">
                   + Add Captain #{teams.length + 1}
                 </h4>
-                <p className="text-xs text-slate-400 mt-1">Enter Captain Name, Team Name & Photo</p>
+                <p className="text-xs text-slate-400 mt-1">Captain Name, Team Name, Logo & Photo</p>
                 <span className="mt-4 px-3 py-1 bg-slate-800 text-amber-400 font-bold text-xs rounded-md border border-slate-600">
                   {10 - teams.length} Captain Slots Remaining
                 </span>
@@ -401,14 +471,23 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       </span>
                     </div>
 
-                    {/* Delete Captain Button */}
-                    <button
-                      onClick={() => handleDeleteCaptain(team.id, team.captain)}
-                      className="absolute top-2 right-2 z-10 p-2 rounded-lg bg-red-950/80 hover:bg-red-600 text-red-300 hover:text-white border border-red-500/50 transition-colors"
-                      title="Delete Captain"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
+                    {/* Action buttons: Edit Captain & Delete Captain */}
+                    <div className="absolute top-2 right-2 z-10 flex items-center gap-1.5">
+                      <button
+                        onClick={() => handleOpenEditCaptain(team)}
+                        className="p-2 rounded-lg bg-slate-950/80 hover:bg-[#E87A2D] text-slate-300 hover:text-white border border-slate-700 hover:border-[#E87A2D] transition-colors"
+                        title="Edit Captain Details"
+                      >
+                        <Pencil className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteCaptain(team.id, team.captain)}
+                        className="p-2 rounded-lg bg-red-950/80 hover:bg-red-600 text-red-300 hover:text-white border border-red-500/50 transition-colors"
+                        title="Delete Captain"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
 
                     {/* Captain Info & Image */}
                     <div className="flex items-center gap-3.5 z-10 w-full pt-6">
@@ -423,7 +502,6 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                           <h4 className="font-black text-white text-base truncate">{team.name}</h4>
                         </div>
                         <p className="text-xs font-bold text-amber-300 truncate">Capt: {team.captain}</p>
-                        <p className="text-[10px] text-slate-400 italic truncate">&quot;{team.motto}&quot;</p>
                       </div>
                     </div>
                   </div>
@@ -557,7 +635,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
             ))}
           </div>
 
-          {/* ADD CAPTAIN MODAL */}
+          {/* ADD CAPTAIN MODAL (4 Fields: Captain Name, Team Name, Badge/Logo, Captain Image) */}
           {showAddCaptainModal && (
             <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
               <div className="bg-slate-800 border border-slate-600 rounded-2xl p-6 max-w-md w-full space-y-4 shadow-2xl">
@@ -571,56 +649,72 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   </button>
                 </div>
 
-                <form onSubmit={handleCreateCaptain} className="space-y-3.5">
+                <form onSubmit={handleCreateCaptain} className="space-y-4">
+                  {/* 1. Captain Name */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-300 mb-1">Captain Full Name</label>
+                    <label className="block text-xs font-bold text-slate-300 mb-1">
+                      1. Captain Name <span className="text-[#E87A2D]">*</span>
+                    </label>
                     <input
                       type="text"
                       placeholder="e.g. Siddharth Patil"
                       value={newCaptainName}
                       onChange={(e) => setNewCaptainName(e.target.value)}
-                      className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-xs text-white"
+                      className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-[#E87A2D]"
                       required
                     />
                   </div>
 
+                  {/* 2. Team Name */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-300 mb-1">Team Name</label>
+                    <label className="block text-xs font-bold text-slate-300 mb-1">
+                      2. Team Name <span className="text-[#E87A2D]">*</span>
+                    </label>
                     <input
                       type="text"
                       placeholder="e.g. Red Strikers / Team Alpha"
                       value={newTeamName}
                       onChange={(e) => setNewTeamName(e.target.value)}
-                      className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-xs text-white"
+                      className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-[#E87A2D]"
                       required
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2">
-                    <div>
-                      <label className="block text-xs font-bold text-slate-300 mb-1">Badge Symbol</label>
-                      <input
-                        type="text"
-                        placeholder="e.g. ⚡"
-                        value={newBadge}
-                        onChange={(e) => setNewBadge(e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-xs text-white"
-                      />
+                  {/* 3. Badge or Logo */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-300 mb-1.5">
+                      3. Badge / Logo
+                    </label>
+                    <div className="flex flex-wrap gap-1.5 mb-2">
+                      {BADGE_PRESETS.map(badge => (
+                        <button
+                          key={badge}
+                          type="button"
+                          onClick={() => setNewBadge(badge)}
+                          className={`w-8 h-8 rounded-lg text-sm flex items-center justify-center border transition-all ${
+                            newBadge === badge
+                              ? 'bg-[#E87A2D] border-[#E87A2D] text-white scale-110 shadow'
+                              : 'bg-slate-900 border-slate-700 hover:border-slate-500'
+                          }`}
+                        >
+                          {badge}
+                        </button>
+                      ))}
                     </div>
-                    <div>
-                      <label className="block text-xs font-bold text-slate-300 mb-1">Team Motto</label>
-                      <input
-                        type="text"
-                        placeholder="e.g. Strive for Victory!"
-                        value={newMotto}
-                        onChange={(e) => setNewMotto(e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-xs text-white"
-                      />
-                    </div>
+                    <input
+                      type="text"
+                      placeholder="Or enter custom logo/emoji (e.g. ⚡, 🦁)"
+                      value={newBadge}
+                      onChange={(e) => setNewBadge(e.target.value)}
+                      className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-[#E87A2D]"
+                    />
                   </div>
 
+                  {/* 4. Captain Image */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-300 mb-1">Captain Photo (File Upload or URL)</label>
+                    <label className="block text-xs font-bold text-slate-300 mb-1">
+                      4. Captain Image (Upload File or URL)
+                    </label>
                     <div className="space-y-2">
                       <input
                         type="file"
@@ -642,29 +736,19 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         placeholder="Or paste image URL (https://...)"
                         value={newCaptainImage}
                         onChange={(e) => setNewCaptainImage(e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-xs text-white"
+                        className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-[#E87A2D]"
                       />
                       {newCaptainImage && (
                         <div className="flex items-center gap-2 pt-1">
-                          <img src={newCaptainImage} alt="Preview" className="w-10 h-10 rounded-lg object-cover border border-[#E87A2D]" />
-                          <span className="text-[10px] text-green-400 font-bold">Image Ready</span>
+                          <img src={newCaptainImage} alt="Preview" className="w-12 h-12 rounded-lg object-cover border-2 border-[#E87A2D]" />
+                          <span className="text-[11px] text-green-400 font-bold">Image ready</span>
                         </div>
                       )}
                     </div>
                   </div>
 
-                  <div>
-                    <label className="block text-xs font-bold text-slate-300 mb-1">Captain Bio</label>
-                    <textarea
-                      placeholder="Brief achievements..."
-                      value={newCaptainBio}
-                      onChange={(e) => setNewCaptainBio(e.target.value)}
-                      className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-xs text-white h-16"
-                    />
-                  </div>
-
                   {captainMessage && (
-                    <div className="p-2 bg-red-950/60 border border-red-500/50 rounded text-xs text-red-300">
+                    <div className="p-2.5 bg-red-950/60 border border-red-500/50 rounded-lg text-xs text-red-300">
                       {captainMessage}
                     </div>
                   )}
@@ -679,9 +763,148 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                     </button>
                     <button
                       type="submit"
-                      className="w-1/2 py-2.5 rounded-lg bg-[#E87A2D] hover:bg-[#d06a20] text-white font-bold text-xs"
+                      className="w-1/2 py-2.5 rounded-lg bg-[#E87A2D] hover:bg-[#d06a20] text-white font-bold text-xs shadow-lg transition-colors"
                     >
                       Create Captain Box
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
+
+          {/* EDIT CAPTAIN MODAL (4 Fields: Captain Name, Team Name, Badge/Logo, Captain Image) */}
+          {showEditCaptainModal && (
+            <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+              <div className="bg-slate-800 border border-slate-600 rounded-2xl p-6 max-w-md w-full space-y-4 shadow-2xl">
+                <div className="flex items-center justify-between border-b border-slate-700 pb-3">
+                  <h3 className="text-lg font-black text-white flex items-center gap-2">
+                    <Pencil className="w-5 h-5 text-[#E87A2D]" />
+                    Edit Captain Details
+                  </h3>
+                  <button onClick={() => setShowEditCaptainModal(false)} className="text-slate-400 hover:text-white">
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
+                <form onSubmit={handleUpdateCaptain} className="space-y-4">
+                  {/* 1. Captain Name */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-300 mb-1">
+                      1. Captain Name <span className="text-[#E87A2D]">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Captain Full Name"
+                      value={editCaptainName}
+                      onChange={(e) => setEditCaptainName(e.target.value)}
+                      className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-[#E87A2D]"
+                      required
+                    />
+                  </div>
+
+                  {/* 2. Team Name */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-300 mb-1">
+                      2. Team Name <span className="text-[#E87A2D]">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Team Name"
+                      value={editTeamName}
+                      onChange={(e) => setEditTeamName(e.target.value)}
+                      className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-[#E87A2D]"
+                      required
+                    />
+                  </div>
+
+                  {/* 3. Badge or Logo */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-300 mb-1.5">
+                      3. Badge / Logo
+                    </label>
+                    <div className="flex flex-wrap gap-1.5 mb-2">
+                      {BADGE_PRESETS.map(badge => (
+                        <button
+                          key={badge}
+                          type="button"
+                          onClick={() => setEditBadge(badge)}
+                          className={`w-8 h-8 rounded-lg text-sm flex items-center justify-center border transition-all ${
+                            editBadge === badge
+                              ? 'bg-[#E87A2D] border-[#E87A2D] text-white scale-110 shadow'
+                              : 'bg-slate-900 border-slate-700 hover:border-slate-500'
+                          }`}
+                        >
+                          {badge}
+                        </button>
+                      ))}
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="Or enter custom logo/emoji (e.g. ⚡, 🦁)"
+                      value={editBadge}
+                      onChange={(e) => setEditBadge(e.target.value)}
+                      className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-[#E87A2D]"
+                    />
+                  </div>
+
+                  {/* 4. Captain Image */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-300 mb-1">
+                      4. Captain Image (Upload File or URL)
+                    </label>
+                    <div className="space-y-2">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            const reader = new FileReader();
+                            reader.onloadend = () => {
+                              setEditCaptainImage(reader.result as string);
+                            };
+                            reader.readAsDataURL(file);
+                          }
+                        }}
+                        className="w-full text-xs text-slate-300 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-[#E87A2D] file:text-white hover:file:bg-[#d06a20] file:cursor-pointer cursor-pointer"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Or paste image URL (https://...)"
+                        value={editCaptainImage}
+                        onChange={(e) => setEditCaptainImage(e.target.value)}
+                        className="w-full bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-[#E87A2D]"
+                      />
+                      {editCaptainImage && (
+                        <div className="flex items-center gap-2 pt-1">
+                          <img src={editCaptainImage} alt="Preview" className="w-12 h-12 rounded-lg object-cover border-2 border-[#E87A2D]" />
+                          <span className="text-[11px] text-green-400 font-bold">Image ready</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {editCaptainMessage && (
+                    <div className="p-2.5 bg-red-950/60 border border-red-500/50 rounded-lg text-xs text-red-300">
+                      {editCaptainMessage}
+                    </div>
+                  )}
+
+                  <div className="flex gap-2 pt-2">
+                    <button
+                      type="button"
+                      onClick={() => setShowEditCaptainModal(false)}
+                      className="w-1/2 py-2.5 rounded-lg bg-slate-700 hover:bg-slate-600 text-white font-bold text-xs"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={isUpdatingCaptain}
+                      className="w-1/2 py-2.5 rounded-lg bg-[#E87A2D] hover:bg-[#d06a20] text-white font-bold text-xs shadow-lg transition-colors disabled:opacity-50"
+                    >
+                      {isUpdatingCaptain ? 'Saving...' : 'Save Changes'}
                     </button>
                   </div>
                 </form>
