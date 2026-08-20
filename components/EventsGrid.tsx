@@ -182,11 +182,6 @@ export const EventsGrid: React.FC<EventsGridProps> = ({
               </ul>
             </div>
 
-            <div className="bg-slate-950 p-3 rounded-xl border border-amber-500/20 text-xs flex justify-between items-center text-slate-300">
-              <span>Event points calculation:</span>
-              <span className="font-bold text-amber-400">Points are displayed on the Leaderboard</span>
-            </div>
-
             <button
               onClick={() => setActiveRuleModal(null)}
               className="w-full py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs"
