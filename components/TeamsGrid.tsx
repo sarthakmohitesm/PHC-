@@ -42,7 +42,7 @@ export const TeamsGrid: React.FC<TeamsGridProps> = ({
             <h2 className="text-2xl font-black text-white tracking-wide">8 League Teams & Captains</h2>
           </div>
           <p className="text-xs text-slate-400 mt-1">
-            Every team consists of exactly 22 members competing across 9 PHCL events. Click any squad to view full player details!
+            Every team consists of exactly 23 members competing across 9 PHCL events. Click any squad to view full player details!
           </p>
         </div>
 
