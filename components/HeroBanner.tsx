@@ -83,7 +83,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
                 <div className="flex items-center gap-2 text-[#1C6E7D] text-xs font-semibold uppercase">
                   <Shield className="w-4 h-4" /> Teams
                 </div>
-                <div className="text-2xl font-black text-white mt-1">10 Squads</div>
+                <div className="text-2xl font-black text-white mt-1">8 Squads</div>
               </div>
 
               <div className="glass-card p-3 rounded-xl">
