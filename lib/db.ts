@@ -1,14 +1,23 @@
 import mongoose from 'mongoose';
 import dns from 'dns';
 
-// Force DNS servers to Google & Cloudflare to resolve Atlas SRV records
-try {
-  dns.setServers(['8.8.8.8', '1.1.1.1']);
-} catch (e) {
-  console.warn('DNS override failed:', e);
+// Ensure DNS resolver uses reliable public DNS servers for Atlas SRV lookup on Windows/Node.js
+export function applyCustomDns() {
+  try {
+    dns.setServers(['8.8.8.8', '8.8.4.4', '1.1.1.1', '1.0.0.1']);
+    if (typeof (dns as any).setDefaultResultOrder === 'function') {
+      (dns as any).setDefaultResultOrder('ipv4first');
+    }
+  } catch {
+    // ignore if restricted
+  }
 }
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://sarthakam24hite_db_user:aO4Ygmq62505ZZ0S@phcl.bn6sxxu.mongodb.net/phcl?retryWrites=true&w=majority';
+applyCustomDns();
+
+const MONGODB_URI =
+  process.env.MONGODB_URI ||
+  'mongodb+srv://sarthakam24hite_db_user:aO4Ygmq62505ZZ0S@phcl.bn6sxxu.mongodb.net/phcl?retryWrites=true&w=majority';
 
 interface MongooseCache {
   conn: typeof mongoose | null;
@@ -27,21 +36,26 @@ if (!cached) {
 }
 
 export async function connectDB(throwOnError = false): Promise<typeof mongoose | null> {
-  if (cached?.conn) {
+  applyCustomDns();
+
+  if (cached?.conn && cached.conn.connection?.readyState === 1) {
     return cached.conn;
   }
 
   if (!cached?.promise) {
     const opts = {
       bufferCommands: false,
-      serverSelectionTimeoutMS: 5000,
+      serverSelectionTimeoutMS: 10000,
       socketTimeoutMS: 45000,
+      family: 4
     };
 
-    cached!.promise = mongoose.connect(MONGODB_URI, opts).then((mongooseInstance) => {
-      console.log('✅ MongoDB Atlas connected successfully — Database: phcl');
-      return mongooseInstance;
-    });
+    cached!.promise = mongoose
+      .connect(MONGODB_URI, opts)
+      .then((mongooseInstance) => {
+        console.log('✅ MongoDB Atlas connected successfully — Database: phcl');
+        return mongooseInstance;
+      });
   }
 
   try {
@@ -58,3 +72,4 @@ export async function connectDB(throwOnError = false): Promise<typeof mongoose |
 
   return cached!.conn;
 }
+
