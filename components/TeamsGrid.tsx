@@ -33,13 +33,13 @@ export const TeamsGrid: React.FC<TeamsGridProps> = ({
 
   return (
     <div className="space-y-8 py-6" id="teams">
-      
+
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-4">
         <div>
           <div className="flex items-center gap-2">
             <Shield className="w-6 h-6 text-amber-400" />
-            <h2 className="text-2xl font-black text-white tracking-wide">10 League Teams & Captains</h2>
+            <h2 className="text-2xl font-black text-white tracking-wide">8 League Teams & Captains</h2>
           </div>
           <p className="text-xs text-slate-400 mt-1">
             Every team consists of exactly 22 members competing across 9 PHCL events. Click any squad to view full player details!
