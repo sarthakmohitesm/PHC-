@@ -16,6 +16,30 @@ export async function GET() {
           await TeamModel.insertMany(INITIAL_TEAMS);
           return NextResponse.json({ success: true, teams: INITIAL_TEAMS, source: 'MongoDBMigrated' });
         }
+
+        // Synchronize updated colors and themes if needed
+        if (teams.some((t: any) => t.id === 'team-divesh' && t.themeColor !== 'brown')) {
+          for (const initTeam of INITIAL_TEAMS) {
+            await TeamModel.updateOne(
+              { id: initTeam.id },
+              {
+                $set: {
+                  name: initTeam.name,
+                  themeColor: initTeam.themeColor,
+                  bgGradient: initTeam.bgGradient,
+                  borderColor: initTeam.borderColor,
+                  shadowColor: initTeam.shadowColor,
+                  textColor: initTeam.textColor,
+                  badgeSymbol: initTeam.badgeSymbol,
+                  motto: initTeam.motto
+                }
+              },
+              { upsert: true }
+            );
+          }
+          const updatedTeams = await TeamModel.find({}).lean();
+          return NextResponse.json({ success: true, teams: updatedTeams, source: 'MongoDBSynced' });
+        }
         return NextResponse.json({ success: true, teams, source: 'MongoDB' });
       } else if (INITIAL_TEAMS.length > 0) {
         await TeamModel.insertMany(INITIAL_TEAMS);

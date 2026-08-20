@@ -28,6 +28,7 @@ export const CaptainsShowcase: React.FC<CaptainsShowcaseProps> = ({
         themeColor: team.themeColor,
         badgeSymbol: team.badgeSymbol,
         bannerGradient: visualTheme.bannerGradient,
+        bannerTextColor: visualTheme.bannerTextColor,
         glowColor: visualTheme.glowColor,
         isReal: true,
         originalIndex: index,
@@ -138,6 +139,7 @@ export const CaptainsShowcase: React.FC<CaptainsShowcaseProps> = ({
                   captain={captain}
                   index={captain.originalIndex}
                   bannerGradient={captain.bannerGradient}
+                  bannerTextColor={captain.bannerTextColor}
                   glowColor={captain.glowColor}
                   onOpenTeamModal={onOpenTeamModal}
                 />
@@ -178,11 +180,12 @@ interface CaptainCardProps {
   };
   index: number;
   bannerGradient: string;
+  bannerTextColor?: string;
   glowColor: string;
   onOpenTeamModal: (teamId: string) => void;
 }
 
-const CaptainCard: React.FC<CaptainCardProps> = ({ captain, index, bannerGradient, glowColor, onOpenTeamModal }) => {
+const CaptainCard: React.FC<CaptainCardProps> = ({ captain, index, bannerGradient, bannerTextColor, glowColor, onOpenTeamModal }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -228,7 +231,7 @@ const CaptainCard: React.FC<CaptainCardProps> = ({ captain, index, bannerGradien
       {/* Team Banner */}
       <div className={`w-full py-2 px-3 bg-gradient-to-r ${bannerGradient} flex items-center justify-center shadow-md relative overflow-hidden`}>
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-        <span className="text-[10px] sm:text-sm font-black text-white truncate tracking-wide uppercase drop-shadow-sm relative z-10">
+        <span className={`text-[10px] sm:text-sm font-black truncate tracking-wide uppercase drop-shadow-sm relative z-10 ${bannerTextColor || 'text-white'}`}>
           {captain.teamName}
         </span>
       </div>

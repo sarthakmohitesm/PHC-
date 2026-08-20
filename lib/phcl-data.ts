@@ -302,17 +302,17 @@ export const COMMON_RULES: string[] = [
 export const INITIAL_TEAMS: Team[] = [
   {
     id: 'team-divesh',
-    name: 'Thunder Titans',
+    name: 'Brown Titans',
     captain: 'Divesh Rathod',
     captainImage: '/Captains/Divesh Rathod.jpg',
     captainBio: 'Powerhouse captain driving tactical strength and precision across all arena matches.',
-    motto: 'Unleash the Thunder, Claim the Throne!',
-    themeColor: 'amber',
-    bgGradient: 'from-amber-950/50 via-slate-900 to-slate-950',
-    borderColor: 'border-amber-500/60',
-    shadowColor: 'shadow-amber-500/25',
-    textColor: 'text-amber-400',
-    badgeSymbol: '⚡',
+    motto: 'Unleash the Brown Titans!',
+    themeColor: 'brown',
+    bgGradient: 'from-amber-950/60 via-[#3d1a04]/80 to-slate-950',
+    borderColor: 'border-amber-700/60',
+    shadowColor: 'shadow-amber-900/30',
+    textColor: 'text-amber-300',
+    badgeSymbol: '🐻',
     members: [
       { id: 'divesh-mem-1', name: 'Divesh Rathod', role: 'Captain', specialtyEvent: 'Box Cricket', department: 'Computer Engg', year: 'TE' }
     ],
@@ -320,17 +320,17 @@ export const INITIAL_TEAMS: Team[] = [
   },
   {
     id: 'team-himanshi',
-    name: 'Blaze Phoenix',
+    name: 'Pink Tornado',
     captain: 'Himanshi Dodiya',
     captainImage: '/Captains/Himanshi Dodiya .jpg',
     captainBio: 'Resilient strategist rising above every challenge with fiery passion and lightning agility.',
-    motto: 'From the Ashes, We Rise to Glory!',
-    themeColor: 'red',
-    bgGradient: 'from-red-950/50 via-slate-900 to-slate-950',
-    borderColor: 'border-red-500/60',
-    shadowColor: 'shadow-red-500/25',
-    textColor: 'text-red-400',
-    badgeSymbol: '🔥',
+    motto: 'Fierce Whirlwind of Victory!',
+    themeColor: 'pink',
+    bgGradient: 'from-pink-950/60 via-slate-900 to-slate-950',
+    borderColor: 'border-pink-500/60',
+    shadowColor: 'shadow-pink-500/30',
+    textColor: 'text-pink-400',
+    badgeSymbol: '🌪️',
     members: [
       { id: 'himanshi-mem-1', name: 'Himanshi Dodiya', role: 'Captain', specialtyEvent: 'Badminton', department: 'IT', year: 'TE' }
     ],
@@ -338,17 +338,17 @@ export const INITIAL_TEAMS: Team[] = [
   },
   {
     id: 'team-himanshu',
-    name: 'Shadow Warriors',
+    name: 'Black Shadows',
     captain: 'Himanshu Mane',
     captainImage: '/Captains/Himanshu Mane.jpg',
     captainBio: 'Relentless tactician commanding the frontline with fearless intensity and grit.',
-    motto: 'Unyielding Valour, Undaunted Spirit!',
-    themeColor: 'blue',
-    bgGradient: 'from-blue-950/50 via-slate-900 to-slate-950',
-    borderColor: 'border-blue-500/60',
-    shadowColor: 'shadow-blue-500/25',
-    textColor: 'text-blue-400',
-    badgeSymbol: '⚔️',
+    motto: 'Silent, Deadly, Unstoppable!',
+    themeColor: 'black',
+    bgGradient: 'from-zinc-950 via-slate-900 to-black',
+    borderColor: 'border-zinc-700/80',
+    shadowColor: 'shadow-zinc-700/20',
+    textColor: 'text-slate-200',
+    badgeSymbol: '🥷',
     members: [
       { id: 'himanshu-mem-1', name: 'Himanshu Mane', role: 'Captain', specialtyEvent: 'Futsal', department: 'Mechanical Engg', year: 'BE' }
     ],
@@ -356,17 +356,17 @@ export const INITIAL_TEAMS: Team[] = [
   },
   {
     id: 'team-junaid',
-    name: 'Apex Predators',
+    name: 'Green Vipers',
     captain: 'Junaid Shabir',
     captainImage: '/Captains/Junaid Shabir.jpg',
     captainBio: 'Calculated leader orchestrating squad synergy and high-speed dominance.',
-    motto: 'Hunt Together, Conquer Forever!',
-    themeColor: 'purple',
-    bgGradient: 'from-purple-950/50 via-slate-900 to-slate-950',
-    borderColor: 'border-purple-500/60',
-    shadowColor: 'shadow-purple-500/25',
-    textColor: 'text-purple-400',
-    badgeSymbol: '🐺',
+    motto: 'Strike Swift, Strike True!',
+    themeColor: 'green',
+    bgGradient: 'from-emerald-950/60 via-slate-900 to-slate-950',
+    borderColor: 'border-emerald-500/60',
+    shadowColor: 'shadow-emerald-500/30',
+    textColor: 'text-emerald-400',
+    badgeSymbol: '🐍',
     members: [
       { id: 'junaid-mem-1', name: 'Junaid Shabir', role: 'Captain', specialtyEvent: 'Basketball', department: 'ECS', year: 'BE' }
     ],
@@ -374,16 +374,16 @@ export const INITIAL_TEAMS: Team[] = [
   },
   {
     id: 'team-kartiki',
-    name: 'Royal Valkyries',
+    name: 'Red Snappers',
     captain: 'Kartiki Jambekar',
     captainImage: '/Captains/Kartiki Jambekar.jpg',
     captainBio: 'Tenacious athlete inspiring unmatched team unity and peak performance.',
-    motto: 'Grace, Power, and Supreme Dominance!',
-    themeColor: 'pink',
-    bgGradient: 'from-pink-950/50 via-slate-900 to-slate-950',
-    borderColor: 'border-pink-500/60',
-    shadowColor: 'shadow-pink-500/25',
-    textColor: 'text-pink-400',
+    motto: 'Power, Passion, Supreme Dominance!',
+    themeColor: 'red',
+    bgGradient: 'from-red-950/60 via-slate-900 to-slate-950',
+    borderColor: 'border-red-500/60',
+    shadowColor: 'shadow-red-500/30',
+    textColor: 'text-red-400',
     badgeSymbol: '👑',
     members: [
       { id: 'kartiki-mem-1', name: 'Kartiki Jambekar', role: 'Captain', specialtyEvent: 'Relay', department: 'Civil Engg', year: 'SE' }
@@ -392,17 +392,17 @@ export const INITIAL_TEAMS: Team[] = [
   },
   {
     id: 'team-mayur',
-    name: 'Emerald Mavericks',
+    name: 'White Dragons',
     captain: 'Mayur Mhatre',
     captainImage: '/Captains/Mayur Mhatre.jpg',
     captainBio: 'Fierce competitive driver pushing squad endurance to the maximum limit.',
-    motto: 'Break the Limits, Claim Victory!',
-    themeColor: 'emerald',
-    bgGradient: 'from-emerald-950/50 via-slate-900 to-slate-950',
-    borderColor: 'border-emerald-500/60',
-    shadowColor: 'shadow-emerald-500/25',
-    textColor: 'text-emerald-400',
-    badgeSymbol: '🦁',
+    motto: 'Pure Power, Radiant Glory!',
+    themeColor: 'white',
+    bgGradient: 'from-slate-900 via-slate-800 to-slate-950',
+    borderColor: 'border-white/60',
+    shadowColor: 'shadow-white/20',
+    textColor: 'text-white',
+    badgeSymbol: '🐉',
     members: [
       { id: 'mayur-mem-1', name: 'Mayur Mhatre', role: 'Captain', specialtyEvent: 'Shotput', department: 'Automobile', year: 'TE' }
     ],
@@ -410,17 +410,17 @@ export const INITIAL_TEAMS: Team[] = [
   },
   {
     id: 'team-saloni',
-    name: 'Solar Knights',
+    name: 'Grey Knights',
     captain: 'Saloni Agalawe',
     captainImage: '/Captains/Saloni Agalawe.jpg',
     captainBio: 'Master strategist combining sharp intellect, rapid reflexes, and endurance.',
-    motto: 'Shine Brighter, Strike Stronger!',
-    themeColor: 'yellow',
-    bgGradient: 'from-yellow-950/50 via-slate-900 to-slate-950',
-    borderColor: 'border-yellow-500/60',
-    shadowColor: 'shadow-yellow-500/25',
-    textColor: 'text-yellow-400',
-    badgeSymbol: '🏆',
+    motto: 'Steely Resolve, Unyielding Honor!',
+    themeColor: 'grey',
+    bgGradient: 'from-slate-900 via-zinc-900 to-slate-950',
+    borderColor: 'border-slate-400/60',
+    shadowColor: 'shadow-slate-400/20',
+    textColor: 'text-slate-300',
+    badgeSymbol: '⚔️',
     members: [
       { id: 'saloni-mem-1', name: 'Saloni Agalawe', role: 'Captain', specialtyEvent: 'Quiz', department: 'Computer Engg', year: 'SE' }
     ],
@@ -428,16 +428,16 @@ export const INITIAL_TEAMS: Team[] = [
   },
   {
     id: 'team-shreya',
-    name: 'Cyber Spartans',
+    name: 'Violet Spartans',
     captain: 'Shreya Sathe',
     captainImage: '/Captains/Shreya Sathe .jpg',
     captainBio: 'Steely defense and surgical precision defending Spartan supremacy.',
     motto: 'Defend the Shield, Rule the Game!',
-    themeColor: 'cyan',
-    bgGradient: 'from-cyan-950/50 via-slate-900 to-slate-950',
-    borderColor: 'border-cyan-500/60',
-    shadowColor: 'shadow-cyan-500/25',
-    textColor: 'text-cyan-400',
+    themeColor: 'violet',
+    bgGradient: 'from-violet-950/60 via-slate-900 to-slate-950',
+    borderColor: 'border-violet-500/60',
+    shadowColor: 'shadow-violet-500/30',
+    textColor: 'text-violet-400',
     badgeSymbol: '🛡️',
     members: [
       { id: 'shreya-mem-1', name: 'Shreya Sathe', role: 'Captain', specialtyEvent: 'Chess', department: 'IT', year: 'BE' }
@@ -581,6 +581,7 @@ export function computeLeaderboard(teams: Team[], eventResults: EventResult[]): 
 
 export interface TeamVisualTheme {
   bannerGradient: string;
+  bannerTextColor: string;
   glowColor: string;
   badgeBg: string;
   borderColor: string;
@@ -588,10 +589,11 @@ export interface TeamVisualTheme {
   accentColor: string;
 }
 
-export function getTeamVisualTheme(team?: Partial<Team> | { name?: string; teamName?: string; themeColor?: string }): TeamVisualTheme {
+export function getTeamVisualTheme(team?: Partial<Team> | { name?: string; teamName?: string; captain?: string; themeColor?: string }): TeamVisualTheme {
   if (!team) {
     return {
       bannerGradient: 'from-amber-500 via-orange-600 to-[#E87A2D]',
+      bannerTextColor: 'text-white',
       glowColor: 'rgba(245, 158, 11, 0.45)',
       badgeBg: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
       borderColor: 'border-amber-500/60',
@@ -601,50 +603,29 @@ export function getTeamVisualTheme(team?: Partial<Team> | { name?: string; teamN
   }
 
   const rawName = (((team as any).teamName || team.name || '') + '').toLowerCase();
+  const rawCapt = ((team.captain || '') + '').toLowerCase();
   const rawTheme = (team.themeColor || '').toLowerCase();
-  const combined = `${rawName} ${rawTheme}`;
+  const combined = `${rawName} ${rawCapt} ${rawTheme}`;
 
-  // 1. Pink / Rose / Magenta / Tornado / Valkyrie
-  if (combined.includes('pink') || combined.includes('rose') || combined.includes('magenta') || combined.includes('tornado') || combined.includes('valkyrie')) {
+  // 1. Brown (Divesh Rathod / Brown Titans / brown)
+  if (combined.includes('brown') || combined.includes('divesh')) {
     return {
-      bannerGradient: 'from-pink-500 via-rose-500 to-pink-700',
-      glowColor: 'rgba(236, 72, 153, 0.55)',
-      badgeBg: 'bg-pink-500/20 text-pink-300 border-pink-500/40',
-      borderColor: 'border-pink-500/60',
-      textColor: 'text-pink-400',
-      accentColor: '#ec4899'
+      bannerGradient: 'from-[#8B4513] via-[#70360d] to-[#4a2205]',
+      bannerTextColor: 'text-white',
+      glowColor: 'rgba(139, 69, 19, 0.6)',
+      badgeBg: 'bg-[#8B4513]/25 text-amber-200 border-[#8B4513]/50',
+      borderColor: 'border-[#8B4513]/60',
+      textColor: 'text-amber-300',
+      accentColor: '#8B4513'
     };
   }
 
-  // 2. Red / Crimson / Flame / Blaze / Phoenix / Fire
-  if (combined.includes('red') || combined.includes('crimson') || combined.includes('blaze') || combined.includes('phoenix') || combined.includes('fire') || combined.includes('flame')) {
+  // 2. Green (Junaid Shabir / Green Vipers / green)
+  if (combined.includes('green') || combined.includes('junaid') || combined.includes('janaid') || combined.includes('viper')) {
     return {
-      bannerGradient: 'from-red-600 via-rose-600 to-red-800',
-      glowColor: 'rgba(239, 68, 68, 0.55)',
-      badgeBg: 'bg-red-500/20 text-red-300 border-red-500/40',
-      borderColor: 'border-red-500/60',
-      textColor: 'text-red-400',
-      accentColor: '#ef4444'
-    };
-  }
-
-  // 3. Purple / Violet / Apex / Indigo / Lavender
-  if (combined.includes('purple') || combined.includes('violet') || combined.includes('apex') || combined.includes('fuchsia') || combined.includes('lavender')) {
-    return {
-      bannerGradient: 'from-purple-600 via-fuchsia-600 to-indigo-800',
-      glowColor: 'rgba(168, 85, 247, 0.55)',
-      badgeBg: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
-      borderColor: 'border-purple-500/60',
-      textColor: 'text-purple-400',
-      accentColor: '#a855f7'
-    };
-  }
-
-  // 4. Emerald / Green / Lime / Maverick
-  if (combined.includes('green') || combined.includes('emerald') || combined.includes('lime') || combined.includes('maverick') || combined.includes('viper')) {
-    return {
-      bannerGradient: 'from-emerald-500 via-teal-600 to-green-700',
-      glowColor: 'rgba(16, 185, 129, 0.55)',
+      bannerGradient: 'from-emerald-600 via-green-600 to-emerald-800',
+      bannerTextColor: 'text-white',
+      glowColor: 'rgba(16, 185, 129, 0.6)',
       badgeBg: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
       borderColor: 'border-emerald-500/60',
       textColor: 'text-emerald-400',
@@ -652,57 +633,88 @@ export function getTeamVisualTheme(team?: Partial<Team> | { name?: string; teamN
     };
   }
 
-  // 5. Cyan / Sky / Frost / Spartan / Ice / Blue-Green
-  if (combined.includes('cyan') || combined.includes('sky') || combined.includes('frost') || combined.includes('ice') || combined.includes('spartan') || combined.includes('arctic')) {
+  // 3. Red (Kartiki Jambekar / Red Snappers / red)
+  if (combined.includes('red') || combined.includes('kartiki') || combined.includes('snapper')) {
     return {
-      bannerGradient: 'from-cyan-500 via-sky-600 to-blue-600',
-      glowColor: 'rgba(6, 182, 212, 0.55)',
-      badgeBg: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40',
-      borderColor: 'border-cyan-500/60',
-      textColor: 'text-cyan-400',
-      accentColor: '#06b6d4'
+      bannerGradient: 'from-red-600 via-rose-600 to-red-800',
+      bannerTextColor: 'text-white',
+      glowColor: 'rgba(239, 68, 68, 0.6)',
+      badgeBg: 'bg-red-500/20 text-red-300 border-red-500/40',
+      borderColor: 'border-red-500/60',
+      textColor: 'text-red-400',
+      accentColor: '#ef4444'
     };
   }
 
-  // 6. Blue / Navy / Cobalt / Warrior / Ocean
-  if (combined.includes('blue') || combined.includes('navy') || combined.includes('warrior') || combined.includes('cobalt') || combined.includes('ocean')) {
+  // 4. Grey / Gray (Saloni Agalawe / Grey Knights / grey / gray)
+  if (combined.includes('grey') || combined.includes('gray') || combined.includes('saloni')) {
     return {
-      bannerGradient: 'from-blue-600 via-indigo-600 to-blue-800',
-      glowColor: 'rgba(59, 130, 246, 0.55)',
-      badgeBg: 'bg-blue-500/20 text-blue-300 border-blue-500/40',
-      borderColor: 'border-blue-500/60',
-      textColor: 'text-blue-400',
-      accentColor: '#3b82f6'
+      bannerGradient: 'from-slate-500 via-zinc-600 to-slate-700',
+      bannerTextColor: 'text-white',
+      glowColor: 'rgba(148, 163, 184, 0.6)',
+      badgeBg: 'bg-slate-500/25 text-slate-200 border-slate-400/40',
+      borderColor: 'border-slate-400/60',
+      textColor: 'text-slate-300',
+      accentColor: '#94a3b8'
     };
   }
 
-  // 7. Yellow / Solar / Gold / Sun / Knight
-  if (combined.includes('yellow') || combined.includes('solar') || combined.includes('gold') || combined.includes('sun') || combined.includes('knight')) {
+  // 5. Pink (Himanshi Dodiya / Pink Tornado / pink)
+  if (combined.includes('pink') || combined.includes('himanshi') || combined.includes('tornado') || combined.includes('rose')) {
     return {
-      bannerGradient: 'from-amber-400 via-yellow-500 to-amber-600',
-      glowColor: 'rgba(234, 179, 8, 0.55)',
-      badgeBg: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/40',
-      borderColor: 'border-yellow-500/60',
-      textColor: 'text-yellow-400',
-      accentColor: '#eab308'
+      bannerGradient: 'from-pink-500 via-rose-500 to-pink-700',
+      bannerTextColor: 'text-white',
+      glowColor: 'rgba(236, 72, 153, 0.6)',
+      badgeBg: 'bg-pink-500/20 text-pink-300 border-pink-500/40',
+      borderColor: 'border-pink-500/60',
+      textColor: 'text-pink-400',
+      accentColor: '#ec4899'
     };
   }
 
-  // 8. Teal / Turquoise / Aqua
-  if (combined.includes('teal') || combined.includes('turquoise') || combined.includes('aqua')) {
+  // 6. White (Mayur Mhatre / White Dragons / white)
+  if (combined.includes('white') || combined.includes('mayur') || combined.includes('dragon')) {
     return {
-      bannerGradient: 'from-teal-500 via-emerald-600 to-teal-800',
-      glowColor: 'rgba(20, 184, 166, 0.55)',
-      badgeBg: 'bg-teal-500/20 text-teal-300 border-teal-500/40',
-      borderColor: 'border-teal-500/60',
-      textColor: 'text-teal-400',
-      accentColor: '#14b8a6'
+      bannerGradient: 'from-slate-100 via-white to-slate-200',
+      bannerTextColor: 'text-slate-950 font-black',
+      glowColor: 'rgba(255, 255, 255, 0.65)',
+      badgeBg: 'bg-white/20 text-white border-white/50',
+      borderColor: 'border-white/70',
+      textColor: 'text-white',
+      accentColor: '#ffffff'
     };
   }
 
-  // Default Amber / Orange (e.g. Titan, Thunder, Strikers)
+  // 7. Black (Himanshu Mane / Black Shadows / black)
+  if (combined.includes('black') || combined.includes('himanshu') || combined.includes('himashu') || combined.includes('shadow')) {
+    return {
+      bannerGradient: 'from-zinc-950 via-slate-900 to-black',
+      bannerTextColor: 'text-white',
+      glowColor: 'rgba(255, 255, 255, 0.3)',
+      badgeBg: 'bg-zinc-800/80 text-zinc-200 border-zinc-600',
+      borderColor: 'border-zinc-700',
+      textColor: 'text-zinc-300',
+      accentColor: '#3f3f46'
+    };
+  }
+
+  // 8. Violet / Purple (Shreya Sathe / Violet Spartans / violet / purple)
+  if (combined.includes('violet') || combined.includes('purple') || combined.includes('shreya') || combined.includes('spartan') || combined.includes('vilote')) {
+    return {
+      bannerGradient: 'from-violet-600 via-purple-600 to-indigo-800',
+      bannerTextColor: 'text-white',
+      glowColor: 'rgba(139, 92, 246, 0.6)',
+      badgeBg: 'bg-violet-500/20 text-violet-300 border-violet-500/40',
+      borderColor: 'border-violet-500/60',
+      textColor: 'text-violet-400',
+      accentColor: '#8b5cf6'
+    };
+  }
+
+  // Fallback Amber / Orange
   return {
     bannerGradient: 'from-amber-500 via-orange-600 to-[#E87A2D]',
+    bannerTextColor: 'text-white',
     glowColor: 'rgba(245, 158, 11, 0.55)',
     badgeBg: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
     borderColor: 'border-amber-500/60',
