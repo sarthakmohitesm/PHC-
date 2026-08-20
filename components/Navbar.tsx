@@ -21,7 +21,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navItems = [
     { id: 'leaderboard', label: 'Leaderboard', icon: Trophy },
     { id: 'teams', label: 'Teams & Captains', icon: Shield },
-    { id: 'events', label: '9 Events', icon: Zap }
+    { id: 'events', label: '8 Events', icon: Zap }
   ];
 
   const handleReplayPreloader = () => {
@@ -35,9 +35,9 @@ export const Navbar: React.FC<NavbarProps> = ({
     <header className="sticky top-0 z-50 glass-navbar">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          
+
           {/* Logo Brand — Click to show Hero */}
-          <div 
+          <div
             onClick={() => setActiveTab('home')}
             className="flex items-center gap-3 cursor-pointer group"
             title="Go to Home"
@@ -87,11 +87,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-200 ${
-                    isActive
-                      ? 'bg-[#E87A2D] text-white'
-                      : 'text-slate-300 hover:text-white hover:bg-slate-800'
-                  }`}
+                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-200 ${isActive
+                    ? 'bg-[#E87A2D] text-white'
+                    : 'text-slate-300 hover:text-white hover:bg-slate-800'
+                    }`}
                 >
                   <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-400'}`} />
                   <span>{item.label}</span>
@@ -111,11 +110,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Admin Portal Button */}
             <button
               onClick={() => setActiveTab('admin')}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold transition-all duration-200 ${
-                activeTab === 'admin'
-                  ? 'bg-amber-500 text-slate-950'
-                  : 'bg-slate-800 text-amber-400 border border-amber-500/40 hover:bg-amber-500 hover:text-slate-950'
-              }`}
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold transition-all duration-200 ${activeTab === 'admin'
+                ? 'bg-amber-500 text-slate-950'
+                : 'bg-slate-800 text-amber-400 border border-amber-500/40 hover:bg-amber-500 hover:text-slate-950'
+                }`}
             >
               <Lock className="w-3.5 h-3.5" />
               <span>Admin Portal</span>
@@ -173,11 +171,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                     setActiveTab(item.id);
                     setMobileMenuOpen(false);
                   }}
-                  className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                    isActive
-                      ? 'bg-[#E87A2D] text-white'
-                      : 'text-slate-300 hover:bg-slate-800'
-                  }`}
+                  className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${isActive
+                    ? 'bg-[#E87A2D] text-white'
+                    : 'text-slate-300 hover:bg-slate-800'
+                    }`}
                 >
                   <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-slate-400'}`} />
                   <span>{item.label}</span>
