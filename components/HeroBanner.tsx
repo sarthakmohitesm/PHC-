@@ -90,7 +90,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
                 <div className="flex items-center gap-2 text-[#1C6E7D] text-xs font-semibold uppercase">
                   <Users className="w-4 h-4" /> Roster
                 </div>
-                <div className="text-2xl font-black text-white mt-1">220 Players</div>
+                <div className="text-2xl font-black text-white mt-1">184 Players</div>
               </div>
 
               <div className="glass-card p-3 rounded-xl">
