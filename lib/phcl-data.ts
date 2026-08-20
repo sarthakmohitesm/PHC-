@@ -148,7 +148,7 @@ export const PHCL_EVENTS: EventInfo[] = [
     icon: '🏃',
     category: 'Outdoor Sports',
     eventType: 'Group Event',
-    venue: 'Main Ground',
+    venue: 'Parking Area',
     teamSize: '4 Participants (2 Boys + 2 Girls)',
     description: 'Mixed-gender team baton relay race testing sprint speed and baton exchange precision.',
     rules: [
