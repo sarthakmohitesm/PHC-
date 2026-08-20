@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { connectDB } from '@/lib/db';
 import { TeamModel } from '@/lib/models/Team';
 import { globalStore } from '@/lib/store';
+import { INITIAL_TEAMS } from '@/lib/phcl-data';
 
 export async function GET() {
   try {
@@ -10,12 +11,19 @@ export async function GET() {
       const teams = await TeamModel.find({}).lean();
       if (teams && teams.length > 0) {
         return NextResponse.json({ success: true, teams, source: 'MongoDB' });
+      } else if (INITIAL_TEAMS.length > 0) {
+        await TeamModel.insertMany(INITIAL_TEAMS);
+        return NextResponse.json({ success: true, teams: INITIAL_TEAMS, source: 'MongoDBSeeded' });
       }
+    }
+
+    if (globalStore.teams.length === 0 && INITIAL_TEAMS.length > 0) {
+      globalStore.teams = [...INITIAL_TEAMS];
     }
 
     return NextResponse.json({ success: true, teams: globalStore.teams, source: 'Memory' });
   } catch (error: any) {
-    return NextResponse.json({ success: true, teams: globalStore.teams, source: 'MemoryFallback', error: error.message });
+    return NextResponse.json({ success: true, teams: globalStore.teams.length > 0 ? globalStore.teams : INITIAL_TEAMS, source: 'MemoryFallback', error: error.message });
   }
 }
 

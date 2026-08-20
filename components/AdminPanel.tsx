@@ -6,6 +6,17 @@ import { Team, PHCL_EVENTS } from '@/lib/phcl-data';
 
 const BADGE_PRESETS = ['⚡', '🦁', '🦅', '🔥', '🏆', '👑', '🛡️', '⚔️', '🐺', '🚀', '⭐', '🐉'];
 
+const CAPTAIN_PHOTO_PRESETS = [
+  { name: 'Divesh Rathod', image: '/Captains/Divesh Rathod.jpg' },
+  { name: 'Himanshi Dodiya', image: '/Captains/Himanshi Dodiya .jpg' },
+  { name: 'Himanshu Mane', image: '/Captains/Himanshu Mane.jpg' },
+  { name: 'Junaid Shabir', image: '/Captains/Junaid Shabir.jpg' },
+  { name: 'Kartiki Jambekar', image: '/Captains/Kartiki Jambekar.jpg' },
+  { name: 'Mayur Mhatre', image: '/Captains/Mayur Mhatre.jpg' },
+  { name: 'Saloni Agalawe', image: '/Captains/Saloni Agalawe.jpg' },
+  { name: 'Shreya Sathe', image: '/Captains/Shreya Sathe .jpg' }
+];
+
 interface AdminPanelProps {
   teams: Team[];
   onRefreshData: () => void;
@@ -713,8 +724,34 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   {/* 4. Captain Image */}
                   <div>
                     <label className="block text-xs font-bold text-slate-300 mb-1">
-                      4. Captain Image (Upload File or URL)
+                      4. Captain Image (Select Official Preset, Upload File, or Enter URL)
                     </label>
+
+                    {/* Official Captain Photo Presets */}
+                    <div className="mb-2.5">
+                      <span className="text-[10px] text-slate-400 font-bold block mb-1">Select Official Captain Photo:</span>
+                      <div className="grid grid-cols-4 gap-1.5">
+                        {CAPTAIN_PHOTO_PRESETS.map((p) => (
+                          <button
+                            key={p.name}
+                            type="button"
+                            onClick={() => {
+                              setNewCaptainImage(p.image);
+                              if (!newCaptainName) setNewCaptainName(p.name);
+                            }}
+                            className={`flex flex-col items-center p-1 rounded-lg border transition-all text-center ${
+                              newCaptainImage === p.image
+                                ? 'bg-[#E87A2D]/20 border-[#E87A2D] ring-1 ring-[#E87A2D]'
+                                : 'bg-slate-900 border-slate-700 hover:border-slate-500'
+                            }`}
+                          >
+                            <img src={p.image} alt={p.name} className="w-8 h-8 rounded-full object-cover mb-0.5" />
+                            <span className="text-[9px] text-slate-300 truncate w-full leading-tight">{p.name.split(' ')[0]}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
                     <div className="space-y-2">
                       <input
                         type="file"
@@ -851,8 +888,34 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   {/* 4. Captain Image */}
                   <div>
                     <label className="block text-xs font-bold text-slate-300 mb-1">
-                      4. Captain Image (Upload File or URL)
+                      4. Captain Image (Select Official Preset, Upload File, or Enter URL)
                     </label>
+
+                    {/* Official Captain Photo Presets */}
+                    <div className="mb-2.5">
+                      <span className="text-[10px] text-slate-400 font-bold block mb-1">Select Official Captain Photo:</span>
+                      <div className="grid grid-cols-4 gap-1.5">
+                        {CAPTAIN_PHOTO_PRESETS.map((p) => (
+                          <button
+                            key={p.name}
+                            type="button"
+                            onClick={() => {
+                              setEditCaptainImage(p.image);
+                              if (!editCaptainName) setEditCaptainName(p.name);
+                            }}
+                            className={`flex flex-col items-center p-1 rounded-lg border transition-all text-center ${
+                              editCaptainImage === p.image
+                                ? 'bg-[#E87A2D]/20 border-[#E87A2D] ring-1 ring-[#E87A2D]'
+                                : 'bg-slate-900 border-slate-700 hover:border-slate-500'
+                            }`}
+                          >
+                            <img src={p.image} alt={p.name} className="w-8 h-8 rounded-full object-cover mb-0.5" />
+                            <span className="text-[9px] text-slate-300 truncate w-full leading-tight">{p.name.split(' ')[0]}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
                     <div className="space-y-2">
                       <input
                         type="file"

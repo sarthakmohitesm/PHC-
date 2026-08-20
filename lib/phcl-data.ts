@@ -298,8 +298,153 @@ export const COMMON_RULES: string[] = [
   'No-Show/Dropout: If a player drops out or fails to report for the scheduled game, the player will be disqualified from that particular game, and their team will also be disqualified from that game.'
 ];
 
-// INITIAL TEAMS - Empty by default; Admin adds up to 10 Captains & Team Names
-export const INITIAL_TEAMS: Team[] = [];
+// INITIAL TEAMS - 8 Official PHCL Season 5 Captains & Teams
+export const INITIAL_TEAMS: Team[] = [
+  {
+    id: 'team-divesh',
+    name: 'Team Titans',
+    captain: 'Divesh Rathod',
+    captainImage: '/Captains/Divesh Rathod.jpg',
+    captainBio: 'Leading Team Titans with tactical grit and athletic leadership.',
+    motto: 'Strength, Honor, Victory!',
+    themeColor: 'orange',
+    bgGradient: 'from-orange-950/40 to-slate-900',
+    borderColor: 'border-[#E87A2D]',
+    shadowColor: 'shadow-orange-500/20',
+    textColor: 'text-[#E87A2D]',
+    badgeSymbol: '⚡',
+    members: [
+      { id: 'divesh-mem-1', name: 'Divesh Rathod', role: 'Captain', specialtyEvent: 'Box Cricket', department: 'Computer Engg', year: 'TE' }
+    ],
+    eventScores: {}
+  },
+  {
+    id: 'team-himanshi',
+    name: 'Team Phoenix',
+    captain: 'Himanshi Dodiya',
+    captainImage: '/Captains/Himanshi Dodiya .jpg',
+    captainBio: 'Strategic leadership driving Team Phoenix to championship heights.',
+    motto: 'Rise Above the Rest!',
+    themeColor: 'amber',
+    bgGradient: 'from-amber-950/40 to-slate-900',
+    borderColor: 'border-amber-500',
+    shadowColor: 'shadow-amber-500/20',
+    textColor: 'text-amber-400',
+    badgeSymbol: '🦅',
+    members: [
+      { id: 'himanshi-mem-1', name: 'Himanshi Dodiya', role: 'Captain', specialtyEvent: 'Badminton', department: 'IT', year: 'TE' }
+    ],
+    eventScores: {}
+  },
+  {
+    id: 'team-himanshu',
+    name: 'Team Warriors',
+    captain: 'Himanshu Mane',
+    captainImage: '/Captains/Himanshu Mane.jpg',
+    captainBio: 'Dynamic commander leading the frontline in high-intensity sports.',
+    motto: 'Relentless Courage!',
+    themeColor: 'blue',
+    bgGradient: 'from-blue-950/40 to-slate-900',
+    borderColor: 'border-blue-500',
+    shadowColor: 'shadow-blue-500/20',
+    textColor: 'text-blue-400',
+    badgeSymbol: '⚔️',
+    members: [
+      { id: 'himanshu-mem-1', name: 'Himanshu Mane', role: 'Captain', specialtyEvent: 'Futsal', department: 'Mechanical Engg', year: 'BE' }
+    ],
+    eventScores: {}
+  },
+  {
+    id: 'team-junaid',
+    name: 'Team Apex',
+    captain: 'Junaid Shabir',
+    captainImage: '/Captains/Junaid Shabir.jpg',
+    captainBio: 'Calculated decisions and high-tempo execution for Team Apex.',
+    motto: 'Apex Predators of the League!',
+    themeColor: 'purple',
+    bgGradient: 'from-purple-950/40 to-slate-900',
+    borderColor: 'border-purple-500',
+    shadowColor: 'shadow-purple-500/20',
+    textColor: 'text-purple-400',
+    badgeSymbol: '🐺',
+    members: [
+      { id: 'junaid-mem-1', name: 'Junaid Shabir', role: 'Captain', specialtyEvent: 'Basketball', department: 'ECS', year: 'BE' }
+    ],
+    eventScores: {}
+  },
+  {
+    id: 'team-kartiki',
+    name: 'Team Valkyries',
+    captain: 'Kartiki Jambekar',
+    captainImage: '/Captains/Kartiki Jambekar.jpg',
+    captainBio: 'Tenacious athlete and motivational captain guiding Team Valkyries.',
+    motto: 'Glory Awaits the Bold!',
+    themeColor: 'pink',
+    bgGradient: 'from-pink-950/40 to-slate-900',
+    borderColor: 'border-pink-500',
+    shadowColor: 'shadow-pink-500/20',
+    textColor: 'text-pink-400',
+    badgeSymbol: '👑',
+    members: [
+      { id: 'kartiki-mem-1', name: 'Kartiki Jambekar', role: 'Captain', specialtyEvent: 'Relay', department: 'Civil Engg', year: 'SE' }
+    ],
+    eventScores: {}
+  },
+  {
+    id: 'team-mayur',
+    name: 'Team Mavericks',
+    captain: 'Mayur Mhatre',
+    captainImage: '/Captains/Mayur Mhatre.jpg',
+    captainBio: 'Energetic and focused leader dedicated to peak squad performance.',
+    motto: 'Break Barriers, Claim Victory!',
+    themeColor: 'teal',
+    bgGradient: 'from-teal-950/40 to-slate-900',
+    borderColor: 'border-teal-500',
+    shadowColor: 'shadow-teal-500/20',
+    textColor: 'text-teal-400',
+    badgeSymbol: '🦁',
+    members: [
+      { id: 'mayur-mem-1', name: 'Mayur Mhatre', role: 'Captain', specialtyEvent: 'Shotput', department: 'Automobile', year: 'TE' }
+    ],
+    eventScores: {}
+  },
+  {
+    id: 'team-saloni',
+    name: 'Team Reign',
+    captain: 'Saloni Agalawe',
+    captainImage: '/Captains/Saloni Agalawe.jpg',
+    captainBio: 'Inspiring captain combining intelligence, speed, and endurance.',
+    motto: 'Rule the Arena!',
+    themeColor: 'yellow',
+    bgGradient: 'from-yellow-950/40 to-slate-900',
+    borderColor: 'border-yellow-500',
+    shadowColor: 'shadow-yellow-500/20',
+    textColor: 'text-yellow-400',
+    badgeSymbol: '🔥',
+    members: [
+      { id: 'saloni-mem-1', name: 'Saloni Agalawe', role: 'Captain', specialtyEvent: 'Quiz', department: 'Computer Engg', year: 'SE' }
+    ],
+    eventScores: {}
+  },
+  {
+    id: 'team-shreya',
+    name: 'Team Spartans',
+    captain: 'Shreya Sathe',
+    captainImage: '/Captains/Shreya Sathe .jpg',
+    captainBio: 'Master tactician and resolute defender of Spartan excellence.',
+    motto: 'Unbreakable Spirit!',
+    themeColor: 'cyan',
+    bgGradient: 'from-cyan-950/40 to-slate-900',
+    borderColor: 'border-cyan-500',
+    shadowColor: 'shadow-cyan-500/20',
+    textColor: 'text-cyan-400',
+    badgeSymbol: '🛡️',
+    members: [
+      { id: 'shreya-mem-1', name: 'Shreya Sathe', role: 'Captain', specialtyEvent: 'Chess', department: 'IT', year: 'BE' }
+    ],
+    eventScores: {}
+  }
+];
 
 export const INITIAL_EVENT_RESULTS: EventResult[] = [];
 
