@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Trophy, Shield, Zap, Menu, X, Search, Lock } from 'lucide-react';
+import { Trophy, Shield, Zap, Menu, X, Search, Lock, RotateCcw } from 'lucide-react';
 
 interface NavbarProps {
   activeTab: string;
@@ -23,6 +23,13 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'teams', label: 'Teams & Captains', icon: Shield },
     { id: 'events', label: '9 Events', icon: Zap }
   ];
+
+  const handleReplayPreloader = () => {
+    if (typeof window === 'undefined') return;
+    const url = new URL(window.location.href);
+    url.searchParams.set('preloader', '1');
+    window.location.href = url.toString();
+  };
 
   return (
     <header className="sticky top-0 z-50 glass-navbar">
@@ -92,6 +99,15 @@ export const Navbar: React.FC<NavbarProps> = ({
               );
             })}
 
+            <button
+              onClick={handleReplayPreloader}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold text-slate-200 border border-slate-600 bg-slate-800 hover:text-white hover:border-[#E87A2D] transition-all duration-200"
+              title="Replay intro"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>Replay Intro</span>
+            </button>
+
             {/* Admin Portal Button */}
             <button
               onClick={() => setActiveTab('admin')}
@@ -108,6 +124,15 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Mobile Menu Button */}
           <div className="flex md:hidden items-center gap-2">
+            <button
+              onClick={handleReplayPreloader}
+              className="p-2 rounded-lg text-slate-200 bg-slate-800 border border-slate-600 text-xs font-bold flex items-center gap-1"
+              title="Replay intro"
+            >
+              <RotateCcw className="w-4 h-4" />
+              <span>Intro</span>
+            </button>
+
             <button
               onClick={() => setActiveTab('admin')}
               className="p-2 rounded-lg text-amber-400 bg-slate-800 border border-amber-500/40 text-xs font-bold flex items-center gap-1"
