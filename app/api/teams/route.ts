@@ -10,6 +10,12 @@ export async function GET() {
     if (db) {
       const teams = await TeamModel.find({}).lean();
       if (teams && teams.length > 0) {
+        // If old placeholder teams exist, migrate them to the 8 official themed teams
+        if (teams.some((t: any) => t.id === 'team-alpha' || t.captain === 'Captain 2' || t.name === 'Team Alpha')) {
+          await TeamModel.deleteMany({});
+          await TeamModel.insertMany(INITIAL_TEAMS);
+          return NextResponse.json({ success: true, teams: INITIAL_TEAMS, source: 'MongoDBMigrated' });
+        }
         return NextResponse.json({ success: true, teams, source: 'MongoDB' });
       } else if (INITIAL_TEAMS.length > 0) {
         await TeamModel.insertMany(INITIAL_TEAMS);
