@@ -80,14 +80,17 @@ export const PHCL_EVENTS: EventInfo[] = [
     eventType: 'Group Event',
     venue: 'Main Lawn',
     teamSize: '3 Players per team',
-    description: 'Fast-paced 3v3 lawn futsal with flying goalkeepers, goal line rules, and penalty shootout tiebreakers.',
+    description: 'Fast-paced 3v3 lawn futsal with no offside rule, rise penalties, and corner kicks in a high-intensity format.',
     rules: [
-      'Reporting time strictly 9.30 AM.',
-      'Goals must be below waist height. Corner kicks apply.',
-      'Outsides considered but NO offsides. Studs strictly prohibited.',
-      'Flying Goalkeeper allowed (hands permitted only inside D-Box).',
-      'Match duration: 20 minutes (2 min assemble, 8 min 1st half, 2 min break, 8 min 2nd half).',
-      'Tiebreakers: Goal difference first -> 3 Penalties -> Toss/Chits.'
+      'Reporting Time: All teams and players must report to the venue by 9:30 AM. Teams must be ready and present before their scheduled match.',
+      'Tournament Format: 2 groups with 4 teams each. Matches played in 3v3 format.',
+      'Match Duration: 20 minutes total — 2 min assemble, 8 min first half, 2 min half-time break, 8 min second half.',
+      'Corners: Corner kicks will be considered and awarded according to the situation.',
+      'Out of Bounds: Ball going outside the playing area is considered out. Restart given from the point where the ball went out.',
+      'Offside: There will be no offside rule in the 3v3 tournament.',
+      'Footwear: Studded footwear is strictly prohibited. Players must wear suitable non-studded sports shoes.',
+      'Ball Height – Rise Rule: A ball played above knee height is a rise. 3 rises by a team will result in a penalty being awarded against that team.',
+      'Fouls: 3 fouls by a team will result in a penalty. The referee\'s decision regarding fouls will be final.'
     ],
     status: 'Completed',
     scheduledTime: 'Day 1 - 01:30 PM',
@@ -101,14 +104,17 @@ export const PHCL_EVENTS: EventInfo[] = [
     eventType: 'Group Event',
     venue: 'Main Lawn',
     teamSize: '6 Players',
-    description: 'High-octane lawn box cricket with underarm bowling, 3-over matches, and strict boundary rules.',
+    description: 'High-octane box cricket with underarm bowling, 3-over matches, strict boundary rules, and Super Over tiebreakers.',
     rules: [
-      'Reporting time strictly 9.30 AM.',
-      'Each match consists of 3 overs.',
-      'Maximum 1 over per bowler.',
-      'Wickets count: Catch, Bowled, Run-out, Stumped & Hit Wicket.',
-      'Underarm bowling only; proper bowling action required without throwing.',
-      'Hitting out of the box on a no-ball results in batsman declared OUT.'
+      'Tournament Format: 2 groups with 4 teams in each group.',
+      'All teams and players must report to the venue by 9:00 AM.',
+      'Each match will consist of 3 overs per team.',
+      'Non-striker must stay fully within the crease until the ball is delivered. A penalty of -1 run will be awarded to the batting team every time a non-striker steps out, and no runs can be scored off that ball.',
+      'In case of a tie, a Super Over will be played — each team bats and bowls for one over to determine the winner.',
+      'Overarm bowling and throwing are not allowed. The bowler must deliver the ball using an appropriate bowling action.',
+      'If the batsman hits the ball outside the designated playing box on a no-ball, or if the ball goes outside the box without touching the ground, the batsman will be declared OUT.',
+      'If the ball goes outside the designated playing box without making contact with the ground, it will be given out.',
+      'Matches will be played according to the fixtures.'
     ],
     status: 'Completed',
     scheduledTime: 'Day 1 - 09:30 AM',
@@ -122,13 +128,15 @@ export const PHCL_EVENTS: EventInfo[] = [
     eventType: 'Group Event',
     venue: 'Basketball Court',
     teamSize: '3 Members',
-    description: 'Fast 3v3 basketball showdown with 6-minute fast-paced half matches.',
+    description: 'Fast 3v3 half-court basketball with modified scoring and free throw tiebreakers.',
     rules: [
-      'Team size: 3 members per side.',
-      'Duration: 6 minutes total (3 minutes per half).',
-      'Proper basketball kit and court shoes mandatory.',
-      'Scoring: 3-pointer = 2 points, 2-pointer = 1 point.',
-      'Defensive team must play strictly within the defensive lane.'
+      'Tournament Format: 2 groups with 4 teams each. Group A Winner vs Group B Winner in the Final.',
+      'Each team consists of 3 players. Match played on a half court.',
+      'Match duration: 6 minutes total (3 minutes per half).',
+      'Proper basketball kit and shoes are mandatory.',
+      'Points System: 3-pointer = 2 points, 2-pointer = 1 point.',
+      'The defensive team should play within the designated defensive lane.',
+      'Tiebreaker: Each team gets 3 free throws. If still tied, 1 free throw each alternately until a winner is decided.'
     ],
     status: 'Completed',
     scheduledTime: 'Day 2 - 04:00 PM',
@@ -141,14 +149,14 @@ export const PHCL_EVENTS: EventInfo[] = [
     category: 'Outdoor Sports',
     eventType: 'Group Event',
     venue: 'Main Ground',
-    teamSize: '4 Participants',
-    description: 'High-speed team baton relay race testing sprint velocity and baton exchange precision.',
+    teamSize: '4 Participants (2 Boys + 2 Girls)',
+    description: 'Mixed-gender team baton relay race testing sprint speed and baton exchange precision.',
     rules: [
-      'Team consists of 4 runners per squad.',
-      'Baton pass must occur strictly within the designated exchange zone.',
-      'Dropping the baton requires the runner to pick it up without interfering with other lanes.',
-      'Spike shoes are NOT allowed. Proper running attire required.',
-      'Camera tracking near finish line for photo-finish decisions.'
+      'Team Composition: 2 Boys + 2 Girls are compulsory.',
+      'The baton must be passed within the designated exchange zone.',
+      'If the baton is dropped, the same participant must pick it up and continue the race.',
+      'Participants must run in their assigned lanes and must not obstruct or interfere with other teams.',
+      'The decision of the officials/judges will be final and binding.'
     ],
     status: 'Live',
     scheduledTime: 'Day 2 - 10:00 AM',
@@ -162,13 +170,20 @@ export const PHCL_EVENTS: EventInfo[] = [
     eventType: 'Group Event',
     venue: 'PHCET Reception',
     teamSize: '2 Participants',
-    description: 'Formal 10-minute parliamentary debate clash testing logic, evidence, and persuasive rhetoric.',
+    description: 'Formal 10-minute parliamentary debate with pre-assigned topics and strict speaking time limits.',
     rules: [
-      'Total debate duration: 10 minutes.',
-      'Round 1 topic provided 1 day prior. On-spot topics get 10 minutes preparation.',
-      'Affirmative & Negative teams must maintain assigned stances without shifting.',
-      'Speakers must provide evidence/facts. No new points allowed in rebuttals.',
-      'Maximum 1 minute speaking time per speaker. Interruptions strictly prohibited.'
+      'Time duration for the whole debate is 10 minutes.',
+      'Topic for the 1st round will be given 1 day prior before the event date.',
+      'Topics for further rounds will be given on the spot — teams get 10 minutes for preparation.',
+      'The team supporting the motion must not shift its point of view. Same applies for the opposition.',
+      'If a speaker makes a statement, they must be able to provide evidence or reasons to support it.',
+      'Facts presented in a debate must be accurate.',
+      'Speakers may not bring up new points in a rebuttal speech.',
+      'Only one speaker can speak from each team at a time.',
+      'The affirmative side speaks first, followed by a response from the negative side.',
+      'Each member of the opposing sides should take their turns in speaking.',
+      'Each speaker is given a maximum of one minute to speak. Once time runs out, the speaker must close their speech.',
+      'Interruption of the speaker is strictly prohibited.'
     ],
     status: 'Upcoming',
     scheduledTime: 'Day 3 - 11:00 AM',
@@ -182,12 +197,15 @@ export const PHCL_EVENTS: EventInfo[] = [
     eventType: 'Individual Event',
     venue: 'PHCET Reception',
     teamSize: '1 Participant',
-    description: 'Tactical grandmaster chess under 10-minute clock control per player.',
+    description: 'Tactical rapid chess under 10-minute clock control with touch-move rule and tiebreaker blitz.',
     rules: [
-      'Reporting time strictly 9.30 AM.',
-      'Clock timing: 10 minutes per player.',
-      'Accumulating 2 illegal moves results in immediate loss.',
-      'Misbehavior or distraction results in team disqualification.'
+      'Each game is 10 minutes per player, no increment.',
+      'Touch-move rule applies.',
+      'Illegal move results in a warning; second illegal move results in loss.',
+      'If the player\'s time runs out, they lose the game.',
+      'No outside help or phone use is allowed.',
+      'Tiebreaker match will be 3 minutes per player.',
+      'Players must download a chess clock on their phones before the match.'
     ],
     status: 'Completed',
     scheduledTime: 'Day 1 - 04:00 PM',
@@ -203,10 +221,12 @@ export const PHCL_EVENTS: EventInfo[] = [
     teamSize: '1 Participant',
     description: 'Heavy shotput throws testing upper body strength and technique across 3 attempts.',
     rules: [
-      '3 rounds per athlete, best distance attempt considered.',
-      'Shot must be released with one hand above shoulder height.',
-      'Stepping out of circle before landing results in immediate foul.',
-      'Shotput weights: Girls 5kg, Boys 7kg.'
+      'Each athlete will be given 3 attempts. The best valid attempt will be considered for the final result.',
+      'The shot must be put from the shoulder using one hand and must remain close to the neck/chin during the putting action.',
+      'The athlete must remain inside the circle until the shot has landed. Leaving the circle before the shot lands will result in a foul.',
+      'The shot must land inside the designated landing sector.',
+      'The athlete must not touch the top of the stop board or the ground outside the circle during the attempt.',
+      'Shot weight: Boys – 7 kg; Girls – 5 kg.'
     ],
     status: 'Completed',
     scheduledTime: 'Day 2 - 11:00 AM',
@@ -217,15 +237,21 @@ export const PHCL_EVENTS: EventInfo[] = [
     name: 'Badminton',
     icon: '🏸',
     category: 'Indoor Sports',
-    eventType: 'Individual Event',
+    eventType: 'Group Event',
     venue: 'Main Lawn',
-    teamSize: '1 Participant',
-    description: 'Singles badminton tournament requiring quick footwork and precise racket control.',
+    teamSize: '2 Participants (1 Boy + 1 Girl)',
+    description: 'Mixed doubles badminton tournament with rally scoring to 11 points and serve rotation rules.',
     rules: [
-      'Reporting time strictly 9.30 AM.',
-      'Umpire decision is absolute and final.',
-      'Matches consist of best of 3 sets, 11 points per set.',
-      'Misbehavior or unsportsmanlike conduct results in immediate team DQ.'
+      'Team Composition: 1 Boy + 1 Girl are compulsory.',
+      'First team to 11 points wins. Every rally gives 1 point.',
+      'Even score → serve from the right. Odd score → serve from the left.',
+      'Serve diagonally into the opponent\'s service court.',
+      'If the serving team wins the rally, they get the point and continue serving. If they lose, opponents get the point and serve.',
+      'At 10–10, the next point will be deuce. After that, scoring 2 more points from a single team will win the match.',
+      'A shuttle landing on the line is IN.',
+      'The final match will consist of 15 points, subject to time availability. If time is limited, it will be reduced to an 11-point match.',
+      'There won\'t be a reserve if the shuttle touches the net and falls to the opponent\'s court.',
+      'If the racket or body touches the net, the point will be scored by the opponent team.'
     ],
     status: 'Completed',
     scheduledTime: 'Day 1 - 11:30 AM',
@@ -239,11 +265,15 @@ export const PHCL_EVENTS: EventInfo[] = [
     eventType: 'Group Event',
     venue: 'PHCET Reception',
     teamSize: '2 Participants',
-    description: 'Multi-round intellectual battle featuring Rapid Fire, Buzzer Round, and High Stakes Q&A.',
+    description: 'Multi-round intellectual battle featuring Q&A Round, Digital Quiz, and Buzzer Round finals.',
     rules: [
-      'Round 1 (Rapid Fire): 2 Groups of 5 teams. 15 seconds to answer max questions.',
-      'Round 2 (Buzzer Round): Top 6 teams compete across 15 questions.',
-      'Round 3 (Final Q&A): Top 4 teams compete across 10 questions.'
+      'Round 1 – Q&A Round: 8 teams participate with 2 members per team. Quizmaster reads questions displayed on projector. Teams select correct option on answer sheets. 10 seconds per question. 3 points per correct answer. No negative marking. Top 6 teams qualify for Round 2.',
+      'Round 2 – Digital Quiz: 6 teams participate. Quiz conducted through a designated website. 10 questions per team with 15 seconds each. Question auto-changes after 15 seconds. 3 points per correct answer. No negative marking. Top 4 teams qualify for the Final Round.',
+      'Round 3 – Buzzer Round: 4 teams participate. Questions asked to all four teams. Team that presses the buzzer first gets to answer. Must wait for Quizmaster\'s permission before answering. Only the acknowledged team can give the answer.',
+      'If the first team gives an incorrect answer, the question may be opened to remaining teams.',
+      'The team with the highest score at the end is declared the Quiz Champion.',
+      'In case of a tie, a buzzer-based tiebreaker will be conducted.',
+      'Team members can discuss and decide their answers in all rounds.'
     ],
     status: 'Completed',
     scheduledTime: 'Day 2 - 02:00 PM',
@@ -251,16 +281,21 @@ export const PHCL_EVENTS: EventInfo[] = [
   }
 ];
 
-// Common Rules from Season 5 Rulebook
+// Common Rules from Season 5 Rulebook (2026)
 export const COMMON_RULES: string[] = [
-  'Reporting Time: Captains must ensure teams report at least 30 minutes before match time. Failure to report may lead to disqualification.',
-  'Disqualification: Any misbehavior during the event will lead to immediate disqualification of the team.',
-  'Eligibility: All participants must be enrolled students for AY 2025-26. Dropout or provisional admission students are NOT eligible.',
-  'Dropout Penalty: If a member has dropout status, the team must play one player short or forfeit match points.',
-  'Referees & Judges: Decisions made by official referees/judges are final and binding.',
-  'Badges & Wristbands: All team members must wear allotted PHCL badges/wristbands throughout competition.',
-  'Substitutions: Maximum 1 substitution per team allowed in case of emergency (subject to referee approval).',
-  'Rule Adaptability: Event rules are subject to change based on time schedule and venue conditions.'
+  'Team Composition: 17 Boys + 6 Girls are compulsory per team.',
+  'Reporting Time: Captains must ensure their teams report at least 30 minutes before their scheduled match. Failure to do so may result in disqualification.',
+  'Misbehavior: Any misbehavior during the event will lead to the disqualification of the team.',
+  'Eligibility: All participants must be enrolled as students in the college for the academic year 2026-27. Students with a dropout status or provisional admission are not eligible.',
+  'Dropout Penalty: If a team member is found to be a dropout or has provisional admission, the team must either play one player short or continue without earning match points.',
+  'Referees & Judges: The decision of the Referee/Judges is final and binding.',
+  'Badges & Bands: Team members must wear their allotted badges/bands throughout the competition.',
+  'Substitutions: In case of an emergency, a maximum of one substitution is allowed from the team only. Final decision regarding substitutions will be made by the referee/judge.',
+  'Rule Adaptability: The rules are subject to change based on time and other conditions.',
+  'Late Arrival Penalty: If a player arrives late, -3 points will be deducted from their team.',
+  'Fight/Argument Penalty: If a player gets into a fight or serious argument with the referee or any opposition team member, -5 points will be deducted from their team.',
+  'Abusive Language Penalty: If a player uses abusive language or abuses the referee or any opposition team player, -5 points will be deducted from their team.',
+  'No-Show/Dropout: If a player drops out or fails to report for the scheduled game, the player will be disqualified from that particular game, and their team will also be disqualified from that game.'
 ];
 
 // INITIAL TEAMS - Empty by default; Admin adds up to 10 Captains & Team Names
