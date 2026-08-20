@@ -103,7 +103,7 @@ export const PHCL_EVENTS: EventInfo[] = [
     category: 'Outdoor Sports',
     eventType: 'Group Event',
     venue: 'Main Lawn',
-    teamSize: '6 Players',
+    teamSize: '5 Players',
     description: 'High-octane box cricket with underarm bowling, 3-over matches, strict boundary rules, and Super Over tiebreakers.',
     rules: [
       'Tournament Format: 2 groups with 4 teams in each group.',
