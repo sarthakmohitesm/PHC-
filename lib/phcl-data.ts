@@ -578,3 +578,135 @@ export function computeLeaderboard(teams: Team[], eventResults: EventResult[]): 
 
   return list;
 }
+
+export interface TeamVisualTheme {
+  bannerGradient: string;
+  glowColor: string;
+  badgeBg: string;
+  borderColor: string;
+  textColor: string;
+  accentColor: string;
+}
+
+export function getTeamVisualTheme(team?: Partial<Team> | { name?: string; teamName?: string; themeColor?: string }): TeamVisualTheme {
+  if (!team) {
+    return {
+      bannerGradient: 'from-amber-500 via-orange-600 to-[#E87A2D]',
+      glowColor: 'rgba(245, 158, 11, 0.45)',
+      badgeBg: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
+      borderColor: 'border-amber-500/60',
+      textColor: 'text-amber-400',
+      accentColor: '#E87A2D'
+    };
+  }
+
+  const rawName = (((team as any).teamName || team.name || '') + '').toLowerCase();
+  const rawTheme = (team.themeColor || '').toLowerCase();
+  const combined = `${rawName} ${rawTheme}`;
+
+  // 1. Pink / Rose / Magenta / Tornado / Valkyrie
+  if (combined.includes('pink') || combined.includes('rose') || combined.includes('magenta') || combined.includes('tornado') || combined.includes('valkyrie')) {
+    return {
+      bannerGradient: 'from-pink-500 via-rose-500 to-pink-700',
+      glowColor: 'rgba(236, 72, 153, 0.55)',
+      badgeBg: 'bg-pink-500/20 text-pink-300 border-pink-500/40',
+      borderColor: 'border-pink-500/60',
+      textColor: 'text-pink-400',
+      accentColor: '#ec4899'
+    };
+  }
+
+  // 2. Red / Crimson / Flame / Blaze / Phoenix / Fire
+  if (combined.includes('red') || combined.includes('crimson') || combined.includes('blaze') || combined.includes('phoenix') || combined.includes('fire') || combined.includes('flame')) {
+    return {
+      bannerGradient: 'from-red-600 via-rose-600 to-red-800',
+      glowColor: 'rgba(239, 68, 68, 0.55)',
+      badgeBg: 'bg-red-500/20 text-red-300 border-red-500/40',
+      borderColor: 'border-red-500/60',
+      textColor: 'text-red-400',
+      accentColor: '#ef4444'
+    };
+  }
+
+  // 3. Purple / Violet / Apex / Indigo / Lavender
+  if (combined.includes('purple') || combined.includes('violet') || combined.includes('apex') || combined.includes('fuchsia') || combined.includes('lavender')) {
+    return {
+      bannerGradient: 'from-purple-600 via-fuchsia-600 to-indigo-800',
+      glowColor: 'rgba(168, 85, 247, 0.55)',
+      badgeBg: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
+      borderColor: 'border-purple-500/60',
+      textColor: 'text-purple-400',
+      accentColor: '#a855f7'
+    };
+  }
+
+  // 4. Emerald / Green / Lime / Maverick
+  if (combined.includes('green') || combined.includes('emerald') || combined.includes('lime') || combined.includes('maverick') || combined.includes('viper')) {
+    return {
+      bannerGradient: 'from-emerald-500 via-teal-600 to-green-700',
+      glowColor: 'rgba(16, 185, 129, 0.55)',
+      badgeBg: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
+      borderColor: 'border-emerald-500/60',
+      textColor: 'text-emerald-400',
+      accentColor: '#10b981'
+    };
+  }
+
+  // 5. Cyan / Sky / Frost / Spartan / Ice / Blue-Green
+  if (combined.includes('cyan') || combined.includes('sky') || combined.includes('frost') || combined.includes('ice') || combined.includes('spartan') || combined.includes('arctic')) {
+    return {
+      bannerGradient: 'from-cyan-500 via-sky-600 to-blue-600',
+      glowColor: 'rgba(6, 182, 212, 0.55)',
+      badgeBg: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40',
+      borderColor: 'border-cyan-500/60',
+      textColor: 'text-cyan-400',
+      accentColor: '#06b6d4'
+    };
+  }
+
+  // 6. Blue / Navy / Cobalt / Warrior / Ocean
+  if (combined.includes('blue') || combined.includes('navy') || combined.includes('warrior') || combined.includes('cobalt') || combined.includes('ocean')) {
+    return {
+      bannerGradient: 'from-blue-600 via-indigo-600 to-blue-800',
+      glowColor: 'rgba(59, 130, 246, 0.55)',
+      badgeBg: 'bg-blue-500/20 text-blue-300 border-blue-500/40',
+      borderColor: 'border-blue-500/60',
+      textColor: 'text-blue-400',
+      accentColor: '#3b82f6'
+    };
+  }
+
+  // 7. Yellow / Solar / Gold / Sun / Knight
+  if (combined.includes('yellow') || combined.includes('solar') || combined.includes('gold') || combined.includes('sun') || combined.includes('knight')) {
+    return {
+      bannerGradient: 'from-amber-400 via-yellow-500 to-amber-600',
+      glowColor: 'rgba(234, 179, 8, 0.55)',
+      badgeBg: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/40',
+      borderColor: 'border-yellow-500/60',
+      textColor: 'text-yellow-400',
+      accentColor: '#eab308'
+    };
+  }
+
+  // 8. Teal / Turquoise / Aqua
+  if (combined.includes('teal') || combined.includes('turquoise') || combined.includes('aqua')) {
+    return {
+      bannerGradient: 'from-teal-500 via-emerald-600 to-teal-800',
+      glowColor: 'rgba(20, 184, 166, 0.55)',
+      badgeBg: 'bg-teal-500/20 text-teal-300 border-teal-500/40',
+      borderColor: 'border-teal-500/60',
+      textColor: 'text-teal-400',
+      accentColor: '#14b8a6'
+    };
+  }
+
+  // Default Amber / Orange (e.g. Titan, Thunder, Strikers)
+  return {
+    bannerGradient: 'from-amber-500 via-orange-600 to-[#E87A2D]',
+    glowColor: 'rgba(245, 158, 11, 0.55)',
+    badgeBg: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
+    borderColor: 'border-amber-500/60',
+    textColor: 'text-amber-400',
+    accentColor: '#E87A2D'
+  };
+}

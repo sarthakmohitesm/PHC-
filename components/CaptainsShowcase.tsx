@@ -3,33 +3,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Team } from '@/lib/phcl-data';
-
-const BANNER_GRADIENTS = [
-  'from-amber-500 via-orange-600 to-[#E87A2D]',
-  'from-blue-600 via-indigo-600 to-blue-800',
-  'from-emerald-600 via-teal-600 to-green-800',
-  'from-red-600 via-rose-600 to-red-900',
-  'from-purple-600 via-fuchsia-700 to-indigo-900',
-  'from-teal-500 via-cyan-600 to-teal-800',
-  'from-rose-500 via-pink-600 to-rose-900',
-  'from-amber-700 via-orange-800 to-amber-950',
-  'from-lime-600 via-emerald-600 to-lime-900',
-  'from-cyan-600 via-blue-700 to-indigo-950',
-];
-
-const GLOW_COLORS = [
-  'rgba(245, 158, 11, 0.45)',
-  'rgba(59, 130, 246, 0.45)',
-  'rgba(16, 185, 129, 0.45)',
-  'rgba(239, 68, 68, 0.45)',
-  'rgba(168, 85, 247, 0.45)',
-  'rgba(20, 184, 166, 0.45)',
-  'rgba(244, 63, 94, 0.45)',
-  'rgba(217, 119, 6, 0.45)',
-  'rgba(132, 204, 22, 0.45)',
-  'rgba(6, 182, 212, 0.45)',
-];
+import { Team, getTeamVisualTheme } from '@/lib/phcl-data';
 
 interface CaptainsShowcaseProps {
   teams: Team[];
@@ -44,14 +18,21 @@ export const CaptainsShowcase: React.FC<CaptainsShowcaseProps> = ({
 
   const captains = teams
     .filter(team => team && team.id && team.captain)
-    .map((team, index) => ({
-      id: team.id,
-      name: team.captain,
-      teamName: team.name,
-      image: team.captainImage,
-      isReal: true,
-      originalIndex: index,
-    }));
+    .map((team, index) => {
+      const visualTheme = getTeamVisualTheme(team);
+      return {
+        id: team.id,
+        name: team.captain,
+        teamName: team.name,
+        image: team.captainImage,
+        themeColor: team.themeColor,
+        badgeSymbol: team.badgeSymbol,
+        bannerGradient: visualTheme.bannerGradient,
+        glowColor: visualTheme.glowColor,
+        isReal: true,
+        originalIndex: index,
+      };
+    });
 
   const totalCaptains = captains.length;
   if (totalCaptains === 0) {
@@ -156,8 +137,8 @@ export const CaptainsShowcase: React.FC<CaptainsShowcaseProps> = ({
                 <CaptainCard
                   captain={captain}
                   index={captain.originalIndex}
-                  bannerGradient={BANNER_GRADIENTS[captain.originalIndex]}
-                  glowColor={GLOW_COLORS[captain.originalIndex]}
+                  bannerGradient={captain.bannerGradient}
+                  glowColor={captain.glowColor}
                   onOpenTeamModal={onOpenTeamModal}
                 />
               </motion.div>

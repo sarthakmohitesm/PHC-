@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Shield, Users, Trophy, Award, ChevronRight, Search } from 'lucide-react';
-import { Team, TeamLeaderboardEntry } from '@/lib/phcl-data';
+import { Team, TeamLeaderboardEntry, getTeamVisualTheme } from '@/lib/phcl-data';
 
 interface TeamsGridProps {
   teams: Team[];
@@ -65,23 +65,26 @@ export const TeamsGrid: React.FC<TeamsGridProps> = ({
           const entry = getLeaderboardEntry(team.id);
           const rank = entry ? entry.rank : '-';
           const points = entry ? entry.totalPoints : 0;
-          const goldWins = entry ? entry.eventsWon : 0;
+          const theme = getTeamVisualTheme(team);
 
           return (
             <div
               key={team.id}
-              className="glass-card-hover rounded-2xl p-6 relative flex flex-col justify-between group"
+              className="glass-card-hover rounded-2xl p-6 relative flex flex-col justify-between group transition-all duration-300 hover:border-white/30"
+              style={{
+                borderColor: undefined
+              }}
             >
               <div className="space-y-4">
                 {/* Header Badge */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="text-2xl">{team.badgeSymbol}</span>
-                    <span className="text-xs font-black text-amber-400 tracking-wider uppercase">
+                    <span className={`text-xs font-black tracking-wider uppercase ${theme.textColor}`}>
                       RANK #{rank}
                     </span>
                   </div>
-                  <span className="text-xs px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 font-bold border border-slate-700">
+                  <span className={`text-xs px-2.5 py-1 rounded-full font-bold border ${theme.badgeBg}`}>
                     22 Members
                   </span>
                 </div>
@@ -91,7 +94,8 @@ export const TeamsGrid: React.FC<TeamsGridProps> = ({
                   <img
                     src={team.captainImage}
                     alt={team.captain}
-                    className="w-16 h-16 rounded-2xl object-cover border-2 border-slate-700 group-hover:border-amber-400 transition-colors shadow-md"
+                    className="w-16 h-16 rounded-2xl object-cover border-2 border-slate-700 group-hover:scale-105 transition-all shadow-md"
+                    style={{ borderColor: theme.accentColor }}
                   />
                   <div>
                     <h3 className="text-xl font-black text-white group-hover:text-amber-400 transition-colors">
@@ -100,8 +104,8 @@ export const TeamsGrid: React.FC<TeamsGridProps> = ({
                     <p className="text-xs font-semibold text-slate-300">
                       Captain: <span className="text-white">{team.captain}</span>
                     </p>
-                    <p className="text-[11px] text-amber-400/90 italic mt-0.5 font-medium">
-                      "{team.motto}"
+                    <p className={`text-[11px] italic mt-0.5 font-medium ${theme.textColor}`}>
+                      &quot;{team.motto}&quot;
                     </p>
                   </div>
                 </div>
@@ -116,7 +120,7 @@ export const TeamsGrid: React.FC<TeamsGridProps> = ({
               <div className="mt-6 pt-4 border-t border-slate-800/80 space-y-3">
                 <div className="text-center bg-black/30 backdrop-blur-sm p-2.5 rounded-xl border border-white/10">
                   <span className="block text-[10px] text-slate-400 font-bold uppercase">League Points</span>
-                  <span className="text-lg font-black text-amber-400">{points} pts</span>
+                  <span className={`text-lg font-black ${theme.textColor}`}>{points} pts</span>
                 </div>
 
                 <button
