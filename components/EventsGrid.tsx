@@ -85,6 +85,39 @@ export const EventsGrid: React.FC<EventsGridProps> = ({
         )}
       </div>
 
+      {/* Points System */}
+      <div className="glass-card-hover overflow-hidden rounded-[26px] border border-slate-700/80 bg-slate-900/70 text-white shadow-[0_18px_45px_rgba(15,23,42,0.28)] backdrop-blur-sm">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="border-b md:border-b-0 md:border-r border-slate-700/80">
+            <div className="border-b border-slate-700/80 px-3 py-4 text-center text-2xl md:text-4xl font-black tracking-[-0.05em] text-white">
+              Group Events
+            </div>
+            <div className="grid grid-cols-2">
+              <div className="border-r border-slate-700/80 px-2 py-6 text-center text-3xl md:text-[4rem] font-black tracking-[-0.06em] text-white leading-none">
+                50 <span className="text-xl md:text-3xl font-black text-sky-300 tracking-[-0.04em] align-middle">Pts</span>
+              </div>
+              <div className="px-2 py-6 text-center text-3xl md:text-[4rem] font-black tracking-[-0.06em] text-white leading-none">
+                30 <span className="text-xl md:text-3xl font-black text-sky-300 tracking-[-0.04em] align-middle">Pts</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div className="border-b border-slate-700/80 px-3 py-4 text-center text-2xl md:text-4xl font-black tracking-[-0.05em] text-white">
+              Individual Events
+            </div>
+            <div className="grid grid-cols-2">
+              <div className="border-r border-slate-700/80 px-2 py-6 text-center text-3xl md:text-[4rem] font-black tracking-[-0.06em] text-white leading-none">
+                30 <span className="text-xl md:text-3xl font-black text-sky-300 tracking-[-0.04em] align-middle">Pts</span>
+              </div>
+              <div className="px-2 py-6 text-center text-3xl md:text-[4rem] font-black tracking-[-0.06em] text-white leading-none">
+                20 <span className="text-xl md:text-3xl font-black text-sky-300 tracking-[-0.04em] align-middle">Pts</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Grid of 9 Events */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {PHCL_EVENTS.map((ev) => {
