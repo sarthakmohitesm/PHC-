@@ -22,13 +22,8 @@ const PRELOADER_INTERVAL_MS = 5 * 60 * 1000;
 export default function Home() {
   const [activeTab, setActiveTab] = useState<string>('home');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [showPreloader, setShowPreloader] = useState(false);
-  
-  const [teams, setTeams] = useState<Team[]>(INITIAL_TEAMS);
-  const [eventResults, setEventResults] = useState<EventResult[]>(INITIAL_EVENT_RESULTS);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
+  const [showPreloader, setShowPreloader] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
 
     const params = new URLSearchParams(window.location.search);
     const forcePreloader = params.get('preloader') === '1' || params.get('preloader') === 'true';
@@ -38,14 +33,15 @@ export default function Home() {
 
     if (forcePreloader) {
       window.localStorage.removeItem('phcl-preloader-seen');
-      setShowPreloader(true);
-      return;
+      return true;
     }
 
-    if (shouldShowPreloader) {
-      setShowPreloader(true);
-    }
-  }, []);
+    return shouldShowPreloader;
+  });
+
+  const [teams, setTeams] = useState<Team[]>(INITIAL_TEAMS);
+  const [eventResults, setEventResults] = useState<EventResult[]>(INITIAL_EVENT_RESULTS);
+
 
   const handlePreloaderComplete = () => {
     if (typeof window !== 'undefined') {
@@ -76,7 +72,11 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    loadDataFromApi();
+    const runLoad = async () => {
+      await loadDataFromApi();
+    };
+
+    runLoad();
   }, [loadDataFromApi]);
 
   // Dynamically compute leaderboard based on current teams & event results from DB/State

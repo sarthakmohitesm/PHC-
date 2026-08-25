@@ -3,16 +3,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Placeholder images — replace these with your actual uploaded images
 const SLIDER_IMAGES = [
-  {
-    url: '/phcl-logo.png',
-    caption: 'PHCL Season 5',
-  },
-  {
-    url: '/euforia-logo.png',
-    caption: 'Euforia 2026',
-  },
+  { url: '/Hero%20img/1.JPG', caption: 'PHCL Season 5' },
+  { url: '/Hero%20img/2.jpg', caption: 'PHCL Matchday' },
+  { url: '/Hero%20img/3.JPG', caption: 'PHCL Action' },
+  { url: '/Hero%20img/4.JPG', caption: 'PHCL Energy' },
+  { url: '/Hero%20img/5.JPG', caption: 'PHCL Atmosphere' },
+  { url: '/Hero%20img/6.jpg', caption: 'PHCL Arena' },
+  { url: '/Hero%20img/7.jpg', caption: 'PHCL Moments' },
+  { url: '/Hero%20img/8.jpg', caption: 'PHCL Celebration' },
+  { url: '/Hero%20img/9.JPG', caption: 'PHCL Finals' },
+  { url: '/Hero%20img/10.JPG', caption: 'PHCL Legacy' },
 ];
 
 interface ImageSliderProps {

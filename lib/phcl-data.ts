@@ -611,7 +611,7 @@ export function getTeamVisualTheme(team?: Partial<Team> | { name?: string; teamN
     };
   }
 
-  const rawName = (((team as any).teamName || team.name || '') + '').toLowerCase();
+  const rawName = (((('teamName' in team && team.teamName) || team.name || '') + '').toLowerCase());
   const rawCapt = ((team.captain || '') + '').toLowerCase();
   const rawTheme = (team.themeColor || '').toLowerCase();
   const combined = `${rawName} ${rawCapt} ${rawTheme}`;
