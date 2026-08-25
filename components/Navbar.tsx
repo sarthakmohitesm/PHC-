@@ -123,15 +123,6 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Mobile Menu Button */}
           <div className="flex md:hidden items-center gap-2">
             <button
-              onClick={handleReplayPreloader}
-              className="p-2 rounded-lg text-slate-200 bg-slate-800 border border-slate-600 text-xs font-bold flex items-center gap-1"
-              title="Replay intro"
-            >
-              <RotateCcw className="w-4 h-4" />
-              <span>Intro</span>
-            </button>
-
-            <button
               onClick={() => setActiveTab('admin')}
               className="p-2 rounded-lg text-amber-400 bg-slate-800 border border-amber-500/40 text-xs font-bold flex items-center gap-1"
             >
@@ -181,6 +172,17 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </button>
               );
             })}
+
+            <button
+              onClick={() => {
+                handleReplayPreloader();
+                setMobileMenuOpen(false);
+              }}
+              className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-slate-200 bg-slate-800 border border-slate-600"
+            >
+              <RotateCcw className="w-5 h-5 text-slate-300" />
+              <span>Replay Intro</span>
+            </button>
 
             <button
               onClick={() => {
