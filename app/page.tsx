@@ -22,8 +22,13 @@ const PRELOADER_INTERVAL_MS = 5 * 60 * 1000;
 export default function Home() {
   const [activeTab, setActiveTab] = useState<string>('home');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [showPreloader, setShowPreloader] = useState<boolean>(() => {
-    if (typeof window === 'undefined') return false;
+  const [showPreloader, setShowPreloader] = useState(false);
+
+  const [teams, setTeams] = useState<Team[]>(INITIAL_TEAMS);
+  const [eventResults, setEventResults] = useState<EventResult[]>(INITIAL_EVENT_RESULTS);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
 
     const params = new URLSearchParams(window.location.search);
     const forcePreloader = params.get('preloader') === '1' || params.get('preloader') === 'true';
@@ -33,14 +38,18 @@ export default function Home() {
 
     if (forcePreloader) {
       window.localStorage.removeItem('phcl-preloader-seen');
-      return true;
+      // Browser-only preloader check cannot be known during SSR, so this must be resolved after mount.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setShowPreloader(true);
+      return;
     }
 
-    return shouldShowPreloader;
-  });
-
-  const [teams, setTeams] = useState<Team[]>(INITIAL_TEAMS);
-  const [eventResults, setEventResults] = useState<EventResult[]>(INITIAL_EVENT_RESULTS);
+    if (shouldShowPreloader) {
+      // Browser-only preloader check cannot be known during SSR, so this must be resolved after mount.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setShowPreloader(true);
+    }
+  }, []);
 
 
   const handlePreloaderComplete = () => {
