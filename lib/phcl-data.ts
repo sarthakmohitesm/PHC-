@@ -89,7 +89,7 @@ export const PHCL_EVENTS: EventInfo[] = [
       'Out of Bounds: Ball going outside the playing area is considered out. Restart given from the point where the ball went out.',
       'Offside: There will be no offside rule in the 3v3 tournament.',
       'Footwear: Studded footwear is strictly prohibited. Players must wear suitable non-studded sports shoes.',
-      'Ball Height – Rise Rule: A ball played above knee height is a rise. 3 rises by a team will result in a penalty being awarded against that team.',
+      'Ball Height – Rise Rule: A ball played above Waist height is a rise. 3 rises by a team will result in a penalty being awarded against that team.',
       'Fouls: 3 fouls by a team will result in a penalty. The referee\'s decision regarding fouls will be final.'
     ],
     status: 'Completed',
@@ -571,7 +571,16 @@ export function computeLeaderboard(teams: Team[], eventResults: EventResult[]): 
     return a.team.name.localeCompare(b.team.name);
   });
 
-  // Assign ranks
+  const hasStartedLeaderboard = list.some(item => item.totalPoints > 0);
+
+  if (!hasStartedLeaderboard) {
+    list.forEach((item) => {
+      item.rank = 0;
+    });
+    return list;
+  }
+
+  // Assign ranks only after the leaderboard has officially started.
   list.forEach((item, index) => {
     item.rank = index + 1;
   });

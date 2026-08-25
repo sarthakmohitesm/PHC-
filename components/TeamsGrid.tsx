@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Shield, Users, Trophy, Award, ChevronRight, Search } from 'lucide-react';
+import { Shield, Search } from 'lucide-react';
 import { Team, TeamLeaderboardEntry, getTeamVisualTheme } from '@/lib/phcl-data';
 
 interface TeamsGridProps {
@@ -116,21 +116,12 @@ export const TeamsGrid: React.FC<TeamsGridProps> = ({
                 </p>
               </div>
 
-              {/* Stats & Roster Trigger */}
-              <div className="mt-6 pt-4 border-t border-slate-800/80 space-y-3">
+              {/* Stats */}
+              <div className="mt-6 pt-4 border-t border-slate-800/80">
                 <div className="text-center bg-black/30 backdrop-blur-sm p-2.5 rounded-xl border border-white/10">
                   <span className="block text-[10px] text-slate-400 font-bold uppercase">League Points</span>
                   <span className={`text-lg font-black ${theme.textColor}`}>{points} pts</span>
                 </div>
-
-                <button
-                  onClick={() => onOpenTeamModal(team.id)}
-                  className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-slate-200 text-xs font-extrabold transition-all duration-200 flex items-center justify-center gap-2 group/btn"
-                >
-                  <Users className="w-4 h-4" />
-                  <span>Inspect 22-Member Roster</span>
-                  <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                </button>
               </div>
             </div>
           );

@@ -14,6 +14,7 @@ export const LeaderboardPodium: React.FC<LeaderboardPodiumProps> = ({
   onOpenTeamModal
 }) => {
   if (topThree.length < 3) return null;
+  if (topThree.every(entry => entry.totalPoints === 0)) return null;
 
   const first = topThree[0];
   const second = topThree[1];

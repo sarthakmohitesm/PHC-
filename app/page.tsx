@@ -3,10 +3,8 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { HeroBanner } from '@/components/HeroBanner';
-import { LeaderboardPodium } from '@/components/LeaderboardPodium';
 import { LeaderboardTable } from '@/components/LeaderboardTable';
 import { TeamsGrid } from '@/components/TeamsGrid';
-import { TeamRosterModal } from '@/components/TeamRosterModal';
 import { EventsGrid } from '@/components/EventsGrid';
 import { AdminPanel } from '@/components/AdminPanel';
 import { Footer } from '@/components/Footer';
@@ -28,7 +26,6 @@ export default function Home() {
   
   const [teams, setTeams] = useState<Team[]>(INITIAL_TEAMS);
   const [eventResults, setEventResults] = useState<EventResult[]>(INITIAL_EVENT_RESULTS);
-  const [selectedTeamId, setSelectedTeamId] = useState<string | null>(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -87,26 +84,8 @@ export default function Home() {
     return computeLeaderboard(teams, eventResults);
   }, [teams, eventResults]);
 
-  const topThree = useMemo(() => {
-    return leaderboard.slice(0, 3);
-  }, [leaderboard]);
-
-  const selectedTeam = useMemo(() => {
-    if (!selectedTeamId) return null;
-    return teams.find(t => t.id === selectedTeamId) || null;
-  }, [selectedTeamId, teams]);
-
-  const selectedLeaderboardEntry = useMemo(() => {
-    if (!selectedTeamId) return undefined;
-    return leaderboard.find(l => l.team.id === selectedTeamId);
-  }, [selectedTeamId, leaderboard]);
-
-  const handleOpenTeamModal = (teamId: string) => {
-    setSelectedTeamId(teamId);
-  };
-
-  const handleCloseTeamModal = () => {
-    setSelectedTeamId(null);
+  const handleOpenTeamModal = () => {
+    return;
   };
 
   return (
@@ -169,14 +148,6 @@ export default function Home() {
             />
           )}
 
-          {/* 3D Top 3 Podium (Visible on Home or Leaderboard view) */}
-          {(activeTab === 'home' || activeTab === 'leaderboard') && (
-            <LeaderboardPodium
-              topThree={topThree}
-              onOpenTeamModal={handleOpenTeamModal}
-            />
-          )}
-
           {/* Leaderboard Table View */}
           {(activeTab === 'home' || activeTab === 'leaderboard') && (
             <LeaderboardTable
@@ -209,13 +180,6 @@ export default function Home() {
         </div>
 
       </main>
-
-      {/* Roster Modal */}
-      <TeamRosterModal
-        team={selectedTeam}
-        leaderboardEntry={selectedLeaderboardEntry}
-        onClose={handleCloseTeamModal}
-      />
 
       {/* Footer */}
       <Footer />
