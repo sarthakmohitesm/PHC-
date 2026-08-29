@@ -57,10 +57,10 @@ export const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
       {/* 9 EVENTS POINTS MATRIX TABLE */}
       <div className="glass-card rounded-2xl overflow-hidden shadow-2xl">
         <div className="w-full overflow-x-auto overflow-y-hidden pb-2 [scrollbar-width:thin] [scrollbar-color:rgba(148,163,184,0.8)_transparent]">
-          <table className="w-full min-w-[520px] text-left border-collapse table-fixed">
+          <table className="w-full min-w-[420px] text-left border-collapse table-fixed">
             <thead>
               <tr className="bg-slate-900/90 border-b border-slate-700 text-[10px] text-slate-300 uppercase font-black tracking-wider">
-                <th className="py-3 px-2 sm:px-3 w-[170px] sticky left-0 bg-[#0f172a] z-10 border-r border-slate-700">
+                <th className="py-3 px-2 sm:px-3 w-[150px] sticky left-0 bg-[#0f172a] z-10 border-r border-slate-700">
                   Team & Captain
                 </th>
                 {PHCL_EVENTS.map(ev => {
@@ -68,7 +68,7 @@ export const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
                   const shortName = ev.name.includes('Box Cricket') ? 'Cricket' : ev.name;
 
                   return (
-                    <th key={ev.id} className="py-2.5 px-0.5 sm:px-1 text-center w-[58px] border-r border-slate-800/60">
+                    <th key={ev.id} className="py-2.5 px-0.5 sm:px-1 text-center w-[52px] border-r border-slate-800/60">
                       <div className="text-base sm:text-lg">{ev.icon}</div>
                       <div className="font-black text-white text-[9px] sm:text-[10px] uppercase leading-tight truncate px-0.5" title={ev.name}>
                         {shortName}
@@ -76,7 +76,7 @@ export const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
                     </th>
                   );
                 })}
-                <th className="py-3 px-1 sm:px-2 text-center w-[80px] bg-slate-950 text-amber-400 font-black">
+                <th className="py-3 px-1 sm:px-2 text-center w-[60px] bg-slate-950 text-amber-400 font-black">
                   Total
                 </th>
               </tr>
