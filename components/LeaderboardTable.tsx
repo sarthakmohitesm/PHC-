@@ -56,11 +56,11 @@ export const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
 
       {/* 9 EVENTS POINTS MATRIX TABLE */}
       <div className="glass-card rounded-2xl overflow-hidden shadow-2xl">
-        <div className="w-full">
-          <table className="w-full text-left border-collapse table-fixed">
+        <div className="w-full overflow-x-auto overflow-y-hidden pb-2 [scrollbar-width:thin] [scrollbar-color:rgba(148,163,184,0.8)_transparent]">
+          <table className="w-full min-w-[520px] text-left border-collapse table-fixed">
             <thead>
               <tr className="bg-slate-900/90 border-b border-slate-700 text-[10px] text-slate-300 uppercase font-black tracking-wider">
-                <th className="py-3 px-2 sm:px-3 w-[18%] sticky left-0 bg-[#0f172a] z-10 border-r border-slate-700">
+                <th className="py-3 px-2 sm:px-3 w-[170px] sticky left-0 bg-[#0f172a] z-10 border-r border-slate-700">
                   Team & Captain
                 </th>
                 {PHCL_EVENTS.map(ev => {
@@ -68,7 +68,7 @@ export const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
                   const shortName = ev.name.includes('Box Cricket') ? 'Cricket' : ev.name;
 
                   return (
-                    <th key={ev.id} className="py-2.5 px-0.5 sm:px-1 text-center w-[8%] border-r border-slate-800/60">
+                    <th key={ev.id} className="py-2.5 px-0.5 sm:px-1 text-center w-[58px] border-r border-slate-800/60">
                       <div className="text-base sm:text-lg">{ev.icon}</div>
                       <div className="font-black text-white text-[9px] sm:text-[10px] uppercase leading-tight truncate px-0.5" title={ev.name}>
                         {shortName}
@@ -76,7 +76,7 @@ export const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
                     </th>
                   );
                 })}
-                <th className="py-3 px-1 sm:px-2 text-center w-[10%] bg-slate-950 text-amber-400 font-black">
+                <th className="py-3 px-1 sm:px-2 text-center w-[80px] bg-slate-950 text-amber-400 font-black">
                   Total
                 </th>
               </tr>
@@ -98,16 +98,16 @@ export const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
                       
                       {/* Team & Captain Column */}
                       <td className="py-2.5 px-2 sm:px-3 font-extrabold text-white sticky left-0 bg-[#111a2e] z-10 border-r border-slate-700">
-                        <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0">
+                        <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-[180px] max-w-[220px]">
                           <span className="text-base sm:text-xl shrink-0">{team.badgeSymbol}</span>
-                          <div className="min-w-0 truncate">
+                          <div className="min-w-0">
                             <button
                               onClick={() => onOpenTeamModal(team.id)}
-                              className="font-extrabold text-xs sm:text-sm text-white hover:text-[#E87A2D] transition-colors truncate block text-left w-full"
+                              className="font-extrabold text-xs sm:text-sm text-white hover:text-[#E87A2D] transition-colors whitespace-nowrap block text-left w-full"
                             >
                               {team.name}
                             </button>
-                            <span className="text-[10px] sm:text-[11px] text-slate-400 font-normal truncate block">
+                            <span className="text-[10px] sm:text-[11px] text-slate-400 font-normal whitespace-nowrap block">
                               {team.captain}
                             </span>
                           </div>
