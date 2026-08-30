@@ -37,9 +37,23 @@ export const Footer: React.FC = () => {
 
         {/* Social handles */}
         <div className="flex justify-center gap-6 text-[11px] text-slate-400">
-          <span>Follow: <span className="text-[#E87A2D] font-bold">@pillaieuforia</span></span>
+          <a
+            href="https://www.instagram.com/pillaieuforia?igsi=MWtpZXRwNjAyYjZkNw=="
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-[#E87A2D] font-bold hover:text-[#ff9f4f] transition-colors"
+          >
+            <span className="text-slate-400">Follow:</span> @pillaieuforia
+          </a>
           <span className="text-slate-600">|</span>
-          <span>Follow: <span className="text-[#E87A2D] font-bold">@pillaihoccollege</span></span>
+          <a
+            href="https://www.instagram.com/pillaihoccollege?igsi=MWIyM200dmZvejdpcA=="
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-[#E87A2D] font-bold hover:text-[#ff9f4f] transition-colors"
+          >
+            <span className="text-slate-400">Follow:</span> @pillaihoccollege
+          </a>
         </div>
 
         {/* Divider & Copyright */}
