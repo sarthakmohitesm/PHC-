@@ -92,7 +92,7 @@ export const TeamRosterModal: React.FC<TeamRosterModalProps> = ({
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
               <Users className="w-5 h-5 text-amber-400" />
-              <h3 className="text-lg font-extrabold text-white">Full 22-Athlete Roster</h3>
+              <h3 className="text-lg font-extrabold text-white">Full 23-Athlete Roster</h3>
             </div>
 
             <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">

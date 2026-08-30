@@ -85,7 +85,7 @@ export const TeamsGrid: React.FC<TeamsGridProps> = ({
                     </span>
                   </div>
                   <span className={`text-xs px-2.5 py-1 rounded-full font-bold border ${theme.badgeBg}`}>
-                    22 Members
+                    23 Members
                   </span>
                 </div>
 
