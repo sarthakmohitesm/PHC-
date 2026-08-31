@@ -197,6 +197,89 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         )}
       </div>
+
+      <div className="ticker-wrap">
+        <div className="ticker-track" aria-label="Announcement ticker">
+          {[1, 2].map((item) => (
+            <div key={item} className="ticker-item">
+              <a
+                href="https://www.instagram.com/pillaieuforia?igsi=MWtpZXRwNjAyYjZkNw=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#ffb265] transition-colors"
+              >
+                Follow @pillaieuforia on Instagram for more updates
+              </a>
+              <span className="ticker-separator">•</span>
+              <span>PHCL Season 5</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <style jsx>{`
+        .ticker-wrap {
+          position: relative;
+          overflow: hidden;
+          background: rgba(11, 18, 34, 0.96);
+          border-top: 1px solid rgba(148, 163, 184, 0.18);
+          border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+          box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+        }
+
+        .ticker-track {
+          display: inline-flex;
+          align-items: center;
+          white-space: nowrap;
+          min-width: max-content;
+          animation: ticker-scroll 18s linear infinite;
+        }
+
+        .ticker-item {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.8rem;
+          padding: 0.6rem 1.4rem;
+          font-size: 10px;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: rgba(226, 232, 240, 0.95);
+          font-weight: 700;
+        }
+
+        .ticker-badge {
+          display: inline-flex;
+          align-items: center;
+          padding: 0.2rem 0.55rem;
+          border-radius: 9999px;
+          background: rgba(232, 122, 45, 0.18);
+          border: 1px solid rgba(232, 122, 45, 0.6);
+          color: #fbbf24;
+          font-size: 9px;
+          letter-spacing: 0.14em;
+        }
+
+        .ticker-separator {
+          color: rgba(148, 163, 184, 0.8);
+        }
+
+        @keyframes ticker-scroll {
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-50%);
+          }
+        }
+
+        @media (max-width: 640px) {
+          .ticker-item {
+            padding: 0.55rem 1rem;
+            font-size: 9px;
+            letter-spacing: 0.08em;
+          }
+        }
+      `}</style>
     </header>
   );
 };
