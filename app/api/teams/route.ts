@@ -101,6 +101,36 @@ export async function GET() {
           return NextResponse.json({ success: true, teams: updatedTeams, source: 'MongoDBRosterSynced' });
         }
 
+        // Keep every official team's stored roster aligned with the source data.
+        let rosterWasSynced = false;
+        for (const initialTeam of INITIAL_TEAMS) {
+          const storedTeam = teams.find(team =>
+            team.id === initialTeam.id ||
+            team.name === initialTeam.name ||
+            team.captain === initialTeam.captain
+          );
+
+          if (storedTeam && storedTeam.members.length !== initialTeam.members.length) {
+            await TeamModel.updateOne(
+              { _id: storedTeam._id },
+              {
+                $set: {
+                  id: initialTeam.id,
+                  name: initialTeam.name,
+                  captain: initialTeam.captain,
+                  members: initialTeam.members
+                }
+              }
+            );
+            rosterWasSynced = true;
+          }
+        }
+
+        if (rosterWasSynced) {
+          const updatedTeams = await TeamModel.find({}).lean();
+          return NextResponse.json({ success: true, teams: updatedTeams, source: 'MongoDBRosterSynced' });
+        }
+
         // Synchronize updated colors and themes if needed
         if (teams.some((t: any) => t.id === 'team-divesh' && (t.themeColor !== 'blue' || t.name !== 'Blue Knights'))) {
           for (const initTeam of INITIAL_TEAMS) {
