@@ -594,7 +594,29 @@ export const INITIAL_TEAMS: Team[] = [
     textColor: 'text-violet-400',
     badgeSymbol: '🛡️',
     members: [
-      { id: 'shreya-mem-1', name: 'Shreya Sathe', role: 'Captain', specialtyEvent: 'Chess', department: 'IT', year: 'BE' }
+      { id: 'shreya-mem-1', name: 'Shreya Sathe', role: 'Captain', specialtyEvent: 'Debate', department: 'IT', year: 'BE' },
+      { id: 'shreya-mem-2', name: 'Akash Nichinde', role: 'Squad Member', specialtyEvent: 'Box Cricket', department: 'Not specified', year: 'Not specified' },
+      { id: 'shreya-mem-3', name: 'Rugved Patil', role: 'Squad Member', specialtyEvent: 'Box Cricket', department: 'Not specified', year: 'Not specified' },
+      { id: 'shreya-mem-4', name: 'Atharv Ketkar', role: 'Squad Member', specialtyEvent: 'Box Cricket', department: 'Not specified', year: 'Not specified' },
+      { id: 'shreya-mem-5', name: 'Harshad Damale', role: 'Squad Member', specialtyEvent: 'Box Cricket', department: 'Not specified', year: 'Not specified' },
+      { id: 'shreya-mem-6', name: 'Jatin Palvi', role: 'Squad Member', specialtyEvent: 'Futsal', department: 'Not specified', year: 'Not specified' },
+      { id: 'shreya-mem-7', name: 'Prasad Gudekar', role: 'Squad Member', specialtyEvent: 'Relay', department: 'Not specified', year: 'Not specified' },
+      { id: 'shreya-mem-8', name: 'Aditya Mali', role: 'Squad Member', specialtyEvent: 'Relay', department: 'Not specified', year: 'Not specified' },
+      { id: 'shreya-mem-9', name: 'Naitik Yerunkar', role: 'Squad Member', specialtyEvent: 'Futsal', department: 'Not specified', year: 'Not specified' },
+      { id: 'shreya-mem-10', name: 'Ayush', role: 'Squad Member', specialtyEvent: 'Futsal', department: 'Not specified', year: 'Not specified' },
+      { id: 'shreya-mem-11', name: 'Manali', role: 'Squad Member', specialtyEvent: 'Relay', department: 'Not specified', year: 'Not specified' },
+      { id: 'shreya-mem-12', name: 'Barsha', role: 'Squad Member', specialtyEvent: 'Relay', department: 'Not specified', year: 'Not specified' },
+      { id: 'shreya-mem-13', name: 'Jagrut', role: 'Squad Member', specialtyEvent: 'Box Cricket', department: 'Not specified', year: 'Not specified' },
+      { id: 'shreya-mem-14', name: 'Yashasvi', role: 'Squad Member', specialtyEvent: 'Quiz', department: 'Not specified', year: 'Not specified' },
+      { id: 'shreya-mem-15', name: 'Nidhi', role: 'Squad Member', specialtyEvent: 'Quiz', department: 'Not specified', year: 'Not specified' },
+      { id: 'shreya-mem-16', name: 'Tanvi Singh', role: 'Squad Member', specialtyEvent: 'Badminton', department: 'Not specified', year: 'Not specified' },
+      { id: 'shreya-mem-17', name: 'Pranjal', role: 'Squad Member', specialtyEvent: 'Debate', department: 'Not specified', year: 'Not specified' },
+      { id: 'shreya-mem-18', name: 'Shivam', role: 'Squad Member', specialtyEvent: 'Basketball', department: 'Not specified', year: 'Not specified' },
+      { id: 'shreya-mem-19', name: 'Saiganesh', role: 'Squad Member', specialtyEvent: 'Shotput', department: 'Not specified', year: 'Not specified' },
+      { id: 'shreya-mem-20', name: 'Mayur', role: 'Squad Member', specialtyEvent: 'Chess', department: 'Not specified', year: 'Not specified' },
+      { id: 'shreya-mem-21', name: 'Kuldeep', role: 'Squad Member', specialtyEvent: 'Basketball', department: 'Not specified', year: 'Not specified' },
+      { id: 'shreya-mem-22', name: 'Aman', role: 'Squad Member', specialtyEvent: 'Basketball', department: 'Not specified', year: 'Not specified' },
+      { id: 'shreya-mem-23', name: 'Akansha', role: 'Squad Member', specialtyEvent: 'Badminton', department: 'Not specified', year: 'Not specified' }
     ],
     eventScores: {}
   }
