@@ -14,6 +14,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "PHCL Season 5 | Captains & Leaderboard | Euforia 2026",
+  icons: {
+    icon: "/phcl-logo.png",
+    shortcut: "/phcl-logo.png",
+    apple: "/phcl-logo.png",
+  },
   description: "Official PHCL Season 5 portal for Euforia 2026. Explore captain profiles, leaderboard standings, event point system, and official tournament rules.",
   keywords: [
     "PHCL",

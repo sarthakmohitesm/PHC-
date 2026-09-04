@@ -21,7 +21,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navItems = [
     { id: 'leaderboard', label: 'Leaderboard', icon: Trophy },
     { id: 'teams', label: 'Teams & Captains', icon: Shield },
-    { id: 'events', label: '8 Events', icon: Zap }
+    { id: 'events', label: 'Events & Rules', icon: Zap }
   ];
 
   const handleReplayPreloader = () => {
