@@ -8,6 +8,7 @@ import { TeamsGrid } from '@/components/TeamsGrid';
 import { EventsGrid } from '@/components/EventsGrid';
 import { AdminPanel } from '@/components/AdminPanel';
 import { Footer } from '@/components/Footer';
+import { TeamRosterModal } from '@/components/TeamRosterModal';
 
 import {
   INITIAL_TEAMS,
@@ -26,6 +27,7 @@ export default function Home() {
 
   const [teams, setTeams] = useState<Team[]>(INITIAL_TEAMS);
   const [eventResults, setEventResults] = useState<EventResult[]>(INITIAL_EVENT_RESULTS);
+  const [selectedTeamId, setSelectedTeamId] = useState<string | null>(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -93,8 +95,15 @@ export default function Home() {
     return computeLeaderboard(teams, eventResults);
   }, [teams, eventResults]);
 
-  const handleOpenTeamModal = () => {
-    return;
+  const selectedTeam = selectedTeamId
+    ? teams.find(team => team.id === selectedTeamId) || null
+    : null;
+  const selectedLeaderboardEntry = selectedTeam
+    ? leaderboard.find(entry => entry.team.id === selectedTeam.id)
+    : undefined;
+
+  const handleOpenTeamModal = (teamId: string) => {
+    setSelectedTeamId(teamId);
   };
 
   return (
@@ -192,6 +201,12 @@ export default function Home() {
 
       {/* Footer */}
       <Footer />
+
+      <TeamRosterModal
+        team={selectedTeam}
+        leaderboardEntry={selectedLeaderboardEntry}
+        onClose={() => setSelectedTeamId(null)}
+      />
 
       </div>
     </>

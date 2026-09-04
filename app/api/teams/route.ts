@@ -17,6 +17,54 @@ export async function GET() {
           return NextResponse.json({ success: true, teams: INITIAL_TEAMS, source: 'MongoDBMigrated' });
         }
 
+        const initialGreenVipers = INITIAL_TEAMS.find(team => team.id === 'team-junaid');
+        const storedGreenVipers = teams.find(team =>
+          team.id === 'team-junaid' ||
+          team.name === 'Green Vipers' ||
+          team.captain === 'Junaid Shabir'
+        );
+        if (
+          initialGreenVipers &&
+          storedGreenVipers &&
+          storedGreenVipers.members.length !== initialGreenVipers.members.length
+        ) {
+          await TeamModel.updateOne(
+            { _id: storedGreenVipers._id },
+            {
+              $set: {
+                id: initialGreenVipers.id,
+                name: initialGreenVipers.name,
+                captain: initialGreenVipers.captain,
+                captainBio: initialGreenVipers.captainBio,
+                motto: initialGreenVipers.motto,
+                members: initialGreenVipers.members
+              }
+            }
+          );
+          const updatedTeams = await TeamModel.find({}).lean();
+          return NextResponse.json({ success: true, teams: updatedTeams, source: 'MongoDBRosterSynced' });
+        }
+
+        const initialBlackHawks = INITIAL_TEAMS.find(team => team.id === 'team-himanshu');
+        const storedBlackHawks = teams.find(team =>
+          team.id === 'team-himanshu' ||
+          team.name === 'Black Hawks' ||
+          team.name === 'Black Shadows' ||
+          team.captain === 'Himanshu Mane'
+        );
+        if (
+          initialBlackHawks &&
+          storedBlackHawks &&
+          storedBlackHawks.members.length !== initialBlackHawks.members.length
+        ) {
+          await TeamModel.updateOne(
+            { _id: storedBlackHawks._id },
+            { $set: { id: initialBlackHawks.id, members: initialBlackHawks.members } }
+          );
+          const updatedTeams = await TeamModel.find({}).lean();
+          return NextResponse.json({ success: true, teams: updatedTeams, source: 'MongoDBRosterSynced' });
+        }
+
         // Synchronize updated colors and themes if needed
         if (teams.some((t: any) => t.id === 'team-divesh' && t.themeColor !== 'brown')) {
           for (const initTeam of INITIAL_TEAMS) {
@@ -40,6 +88,7 @@ export async function GET() {
           const updatedTeams = await TeamModel.find({}).lean();
           return NextResponse.json({ success: true, teams: updatedTeams, source: 'MongoDBSynced' });
         }
+
         return NextResponse.json({ success: true, teams, source: 'MongoDB' });
       } else if (INITIAL_TEAMS.length > 0) {
         await TeamModel.insertMany(INITIAL_TEAMS);

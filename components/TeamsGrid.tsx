@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Shield, Search } from 'lucide-react';
+import { Shield, Search, Users } from 'lucide-react';
 import { Team, TeamLeaderboardEntry, getTeamVisualTheme } from '@/lib/phcl-data';
 
 interface TeamsGridProps {
@@ -122,6 +122,14 @@ export const TeamsGrid: React.FC<TeamsGridProps> = ({
                   <span className="block text-[10px] text-slate-400 font-bold uppercase">League Points</span>
                   <span className={`text-lg font-black ${theme.textColor}`}>{points} pts</span>
                 </div>
+                <button
+                  type="button"
+                  onClick={() => onOpenTeamModal(team.id)}
+                  className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border border-[#E87A2D]/50 bg-[#E87A2D]/10 px-3 py-2.5 text-xs font-black uppercase tracking-wide text-amber-400 transition-colors hover:border-[#E87A2D] hover:bg-[#E87A2D] hover:text-white"
+                >
+                  <Users className="h-4 w-4" />
+                  View Roster
+                </button>
               </div>
             </div>
           );
