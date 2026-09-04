@@ -52,6 +52,14 @@ export default function Home() {
       setShowPreloader(true);
     }
   }, []);
+
+  const handlePreloaderComplete = () => {
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('phcl-preloader-seen', String(Date.now()));
+    }
+    setShowPreloader(false);
+  };
+
   const loadDataFromApi = useCallback(async () => {
     try {
       // Teams
@@ -105,8 +113,8 @@ export default function Home() {
             autoPlay
             muted
             playsInline
-            // onEnded={handlePreloaderComplete}
-            // onError={handlePreloaderComplete}
+            onEnded={handlePreloaderComplete}
+            onError={handlePreloaderComplete}
             className="h-full w-full object-cover"
           />
         </div>
