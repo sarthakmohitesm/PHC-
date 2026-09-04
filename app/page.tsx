@@ -52,16 +52,6 @@ export default function Home() {
       setShowPreloader(true);
     }
   }, []);
-
-
-  const handlePreloaderComplete = () => {
-    if (typeof window !== 'undefined') {
-      window.localStorage.setItem('phcl-preloader-seen', String(Date.now()));
-    }
-    setShowPreloader(false);
-  };
-
-  // Fetch dynamic data from MongoDB API
   const loadDataFromApi = useCallback(async () => {
     try {
       // Teams
@@ -115,20 +105,10 @@ export default function Home() {
             autoPlay
             muted
             playsInline
-            onEnded={handlePreloaderComplete}
-            onError={handlePreloaderComplete}
+            // onEnded={handlePreloaderComplete}
+            // onError={handlePreloaderComplete}
             className="h-full w-full object-cover"
           />
-
-          <div className="pointer-events-none absolute inset-0">
-            <div className="absolute bottom-5 right-5 flex items-center justify-center rounded-4xl border border-white/10 bg-[#020817]/90 p-2 shadow-[0_0_40px_rgba(255,255,255,0.12)] md:bottom-8 md:right-8 md:p-3">
-              <img
-                src="/euforia-logo.png"
-                alt="Euforia Logo"
-                className="h-20 w-20 object-contain drop-shadow-[0_0_16px_rgba(255,255,255,0.4)] md:h-28 md:w-28"
-              />
-            </div>
-          </div>
         </div>
       )}
 

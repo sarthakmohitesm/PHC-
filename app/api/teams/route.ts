@@ -65,6 +65,42 @@ export async function GET() {
           return NextResponse.json({ success: true, teams: updatedTeams, source: 'MongoDBRosterSynced' });
         }
 
+        const initialBlueKnights = INITIAL_TEAMS.find(team => team.id === 'team-divesh');
+        const storedBlueKnights = teams.find(team =>
+          team.id === 'team-divesh' ||
+          team.name === 'Blue Knights' ||
+          team.name === 'Brown Titans' ||
+          team.name === 'Brown Raptors' ||
+          team.captain === 'Divesh Rathod' ||
+          team.captain === 'Divesh Subhash Rathod'
+        );
+        if (
+          initialBlueKnights &&
+          storedBlueKnights &&
+          storedBlueKnights.members.length !== initialBlueKnights.members.length
+        ) {
+          await TeamModel.updateOne(
+            { _id: storedBlueKnights._id },
+            {
+              $set: {
+                id: initialBlueKnights.id,
+                name: initialBlueKnights.name,
+                captain: initialBlueKnights.captain,
+                members: initialBlueKnights.members,
+                themeColor: initialBlueKnights.themeColor,
+                bgGradient: initialBlueKnights.bgGradient,
+                borderColor: initialBlueKnights.borderColor,
+                shadowColor: initialBlueKnights.shadowColor,
+                textColor: initialBlueKnights.textColor,
+                badgeSymbol: initialBlueKnights.badgeSymbol,
+                motto: initialBlueKnights.motto
+              }
+            }
+          );
+          const updatedTeams = await TeamModel.find({}).lean();
+          return NextResponse.json({ success: true, teams: updatedTeams, source: 'MongoDBRosterSynced' });
+        }
+
         // Synchronize updated colors and themes if needed
         if (teams.some((t: any) => t.id === 'team-divesh' && (t.themeColor !== 'blue' || t.name !== 'Blue Knights'))) {
           for (const initTeam of INITIAL_TEAMS) {
