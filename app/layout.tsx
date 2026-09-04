@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "PHCL Season 5 | Captains & Leaderboard | Euforia 2026",
   icons: {
-    icon: "/phcl-logo.png",
-    shortcut: "/phcl-logo.png",
-    apple: "/phcl-logo.png",
+    icon: "/phcl-logo.png?v=2",
+    shortcut: "/phcl-logo.png?v=2",
+    apple: "/phcl-logo.png?v=2",
   },
   description: "Official PHCL Season 5 portal for Euforia 2026. Explore captain profiles, leaderboard standings, event point system, and official tournament rules.",
   keywords: [
@@ -33,11 +33,18 @@ export const metadata: Metadata = {
     title: "PHCL Season 5 | Captains & Leaderboard | Euforia 2026",
     description: "Official PHCL Season 5 portal for Euforia 2026. Explore captain profiles, leaderboard standings, event point system, and official tournament rules.",
     type: "website",
+    images: [
+      {
+        url: "/phcl-logo.png?v=2",
+        alt: "PHCL Season 5 logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "PHCL Season 5 | Captains & Leaderboard | Euforia 2026",
     description: "Official PHCL Season 5 portal for Euforia 2026. Explore captain profiles, leaderboard standings, event point system, and official tournament rules.",
+    images: ["/phcl-logo.png?v=2"],
   },
 };
 
