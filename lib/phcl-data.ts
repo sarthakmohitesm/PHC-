@@ -302,17 +302,17 @@ export const COMMON_RULES: string[] = [
 export const INITIAL_TEAMS: Team[] = [
   {
     id: 'team-divesh',
-    name: 'Brown Titans',
+    name: 'Blue Knights',
     captain: 'Divesh Rathod',
     captainImage: '/Captains/Divesh Rathod.jpg',
     captainBio: 'Powerhouse captain driving tactical strength and precision across all arena matches.',
-    motto: 'Unleash the Brown Titans!',
-    themeColor: 'brown',
-    bgGradient: 'from-amber-950/60 via-[#3d1a04]/80 to-slate-950',
-    borderColor: 'border-amber-700/60',
-    shadowColor: 'shadow-amber-900/30',
-    textColor: 'text-amber-300',
-    badgeSymbol: '🐻',
+    motto: 'Defend the Blue Knights!',
+    themeColor: 'blue',
+    bgGradient: 'from-blue-950/60 via-slate-900 to-slate-950',
+    borderColor: 'border-blue-500/60',
+    shadowColor: 'shadow-blue-500/30',
+    textColor: 'text-blue-300',
+    badgeSymbol: '🛡️',
     members: [
       { id: 'divesh-mem-1', name: 'Divesh Rathod', role: 'Captain', specialtyEvent: 'Box Cricket', department: 'Computer Engg', year: 'TE' }
     ],
@@ -660,16 +660,16 @@ export function getTeamVisualTheme(team?: Partial<Team> | { name?: string; teamN
   const rawTheme = (team.themeColor || '').toLowerCase();
   const combined = `${rawName} ${rawCapt} ${rawTheme}`;
 
-  // 1. Brown (Divesh Rathod / Brown Titans / brown)
-  if (combined.includes('brown') || combined.includes('divesh')) {
+  // 1. Blue (Divesh Rathod / Blue Knights / blue)
+  if (combined.includes('blue') || combined.includes('divesh') || combined.includes('knight')) {
     return {
-      bannerGradient: 'from-[#8B4513] via-[#70360d] to-[#4a2205]',
+      bannerGradient: 'from-blue-600 via-cyan-600 to-blue-900',
       bannerTextColor: 'text-white',
-      glowColor: 'rgba(139, 69, 19, 0.6)',
-      badgeBg: 'bg-[#8B4513]/25 text-amber-200 border-[#8B4513]/50',
-      borderColor: 'border-[#8B4513]/60',
-      textColor: 'text-amber-300',
-      accentColor: '#8B4513'
+      glowColor: 'rgba(37, 99, 235, 0.6)',
+      badgeBg: 'bg-blue-500/20 text-blue-300 border-blue-500/40',
+      borderColor: 'border-blue-500/60',
+      textColor: 'text-blue-300',
+      accentColor: '#2563eb'
     };
   }
 

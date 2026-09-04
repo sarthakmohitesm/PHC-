@@ -66,7 +66,7 @@ export async function GET() {
         }
 
         // Synchronize updated colors and themes if needed
-        if (teams.some((t: any) => t.id === 'team-divesh' && t.themeColor !== 'brown')) {
+        if (teams.some((t: any) => t.id === 'team-divesh' && (t.themeColor !== 'blue' || t.name !== 'Blue Knights'))) {
           for (const initTeam of INITIAL_TEAMS) {
             await TeamModel.updateOne(
               { id: initTeam.id },
