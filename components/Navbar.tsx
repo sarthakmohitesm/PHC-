@@ -45,6 +45,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <img
               src="/phcl-logo.png"
               alt="PHCL Logo"
+              suppressHydrationWarning
               className="w-14 h-14 object-contain group-hover:scale-105 transition-transform"
             />
             <div>

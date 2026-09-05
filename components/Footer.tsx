@@ -15,6 +15,7 @@ export const Footer: React.FC = () => {
             <img
               src="/phcl-logo.png"
               alt="PHCL Logo"
+              suppressHydrationWarning
               className="w-12 h-12 object-contain"
             />
             <div>

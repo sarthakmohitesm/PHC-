@@ -72,6 +72,7 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({
             <img
               src={images[currentIndex].url}
               alt={images[currentIndex].caption || `Slide ${currentIndex + 1}`}
+              suppressHydrationWarning
               className="w-full h-full object-cover"
             />
           </motion.div>

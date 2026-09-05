@@ -223,6 +223,7 @@ const CaptainCard: React.FC<CaptainCardProps> = ({ captain, index, bannerGradien
         <img
           src={captain.image}
           alt={captain.name}
+          suppressHydrationWarning
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0d1322] via-transparent to-black/30 opacity-70 group-hover:opacity-40 transition-opacity duration-300" />
