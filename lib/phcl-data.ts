@@ -542,7 +542,7 @@ export const INITIAL_TEAMS: Team[] = [
   },
   {
     id: 'team-saloni',
-    name: 'Grey Knights',
+    name: 'Grey Gators',
     captain: 'Saloni Balu Agalawe',
     captainImage: '/Captains/Saloni Agalawe.jpg',
     captainBio: 'Master strategist combining sharp intellect, rapid reflexes, and endurance.',
