@@ -342,7 +342,7 @@ export const INITIAL_TEAMS: Team[] = [
   },
   {
     id: 'team-himanshi',
-    name: 'Pink Tornado',
+    name: 'Pink Tornados',
     captain: 'Himanshi Dodiya',
     captainImage: '/Captains/Himanshi Dodiya .jpg',
     captainBio: 'Resilient strategist rising above every challenge with fiery passion and lightning agility.',
@@ -382,7 +382,7 @@ export const INITIAL_TEAMS: Team[] = [
   },
   {
     id: 'team-himanshu',
-    name: 'Black Shadows',
+    name: 'Black Hawks',
     captain: 'Himanshu Mane',
     captainImage: '/Captains/Himanshu Mane.jpg',
     captainBio: 'Relentless tactician commanding the frontline with fearless intensity and grit.',
@@ -582,7 +582,7 @@ export const INITIAL_TEAMS: Team[] = [
   },
   {
     id: 'team-shreya',
-    name: 'Violet Spartans',
+    name: 'Violet vikings',
     captain: 'Shreya Sathe',
     captainImage: '/Captains/Shreya Sathe .jpg',
     captainBio: 'Steely defense and surgical precision defending Spartan supremacy.',
